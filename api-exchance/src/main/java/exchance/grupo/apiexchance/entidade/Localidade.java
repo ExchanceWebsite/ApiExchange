@@ -1,0 +1,74 @@
+package exchance.grupo.apiexchance.entidade;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+import java.util.List;
+
+@Entity
+public class Localidade {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idLocalidade;
+
+
+    private String pais;
+
+
+    private String cidade;
+
+
+    private String endereco;
+
+
+    private String cep;
+
+
+    @OneToMany(mappedBy = "localidade")
+    private List<Estudante> estudantes;
+
+    @OneToMany(mappedBy = "localidade")
+    private List<HostFamily> hosts;
+
+    public Integer getIdLocalidade() {
+        return idLocalidade;
+    }
+
+    public void setIdLocalidade(Integer idLocalidade) {
+        this.idLocalidade = idLocalidade;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+}
