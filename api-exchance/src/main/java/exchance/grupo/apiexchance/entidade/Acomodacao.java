@@ -1,9 +1,6 @@
 package exchance.grupo.apiexchance.entidade;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -16,8 +13,8 @@ public class Acomodacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAcomodacao;
 
-
-    private Integer fkHost;
+    @ManyToOne
+    private HostFamily host;
 
 
     private String descricao;
@@ -42,12 +39,12 @@ public class Acomodacao {
         this.idAcomodacao = idAcomodacao;
     }
 
-    public Integer getFkHost() {
-        return fkHost;
+    public HostFamily getHost() {
+        return host;
     }
 
-    public void setFkHost(Integer fkHost) {
-        this.fkHost = fkHost;
+    public void setHost(HostFamily host) {
+        this.host = host;
     }
 
     public String getDescricao() {

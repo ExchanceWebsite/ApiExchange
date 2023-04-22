@@ -1,10 +1,7 @@
 package exchance.grupo.apiexchance.entidade;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -19,8 +16,8 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReserva;
 
-
-    private Integer fkEstudante;
+    @ManyToOne
+    private Estudante estudante;
 
 
     private LocalDate entrada;
@@ -31,10 +28,11 @@ public class Reserva {
     private String formaPagamento;
 
 
-    private Integer fkAcomodacao;
+    @ManyToOne
+    private Acomodacao acomodacao;
 
-
-    private Integer fkAcomodacaoHost;
+    @ManyToOne
+    private HostFamily host;
 
     public Integer getIdReserva() {
         return idReserva;
@@ -44,12 +42,28 @@ public class Reserva {
         this.idReserva = idReserva;
     }
 
-    public Integer getFkEstudante() {
-        return fkEstudante;
+    public Estudante getEstudante() {
+        return estudante;
     }
 
-    public void setFkEstudante(Integer fkEstudante) {
-        this.fkEstudante = fkEstudante;
+    public void setEstudante(Estudante estudante) {
+        this.estudante = estudante;
+    }
+
+    public Acomodacao getAcomodacao() {
+        return acomodacao;
+    }
+
+    public void setAcomodacao(Acomodacao acomodacao) {
+        this.acomodacao = acomodacao;
+    }
+
+    public HostFamily getHost() {
+        return host;
+    }
+
+    public void setHost(HostFamily host) {
+        this.host = host;
     }
 
     public LocalDate getEntrada() {
@@ -74,21 +88,5 @@ public class Reserva {
 
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
-    }
-
-    public Integer getFkAcomodacao() {
-        return fkAcomodacao;
-    }
-
-    public void setFkAcomodacao(Integer fkAcomodacao) {
-        this.fkAcomodacao = fkAcomodacao;
-    }
-
-    public Integer getFkAcomodacaoHost() {
-        return fkAcomodacaoHost;
-    }
-
-    public void setFkAcomodacaoHost(Integer fkAcomodacaoHost) {
-        this.fkAcomodacaoHost = fkAcomodacaoHost;
     }
 }

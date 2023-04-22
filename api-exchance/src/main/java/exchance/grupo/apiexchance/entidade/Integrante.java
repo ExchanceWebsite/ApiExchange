@@ -1,9 +1,6 @@
 package exchance.grupo.apiexchance.entidade;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -25,8 +22,8 @@ public class Integrante {
 
     private Integer idade;
 
-
-    private Integer fkHost;
+    @ManyToOne
+    private HostFamily host;
 
     public Integer getIdIntegrante() {
         return idIntegrante;
@@ -60,11 +57,11 @@ public class Integrante {
         this.idade = idade;
     }
 
-    public Integer getFkHost() {
-        return fkHost;
+    public HostFamily getHost() {
+        return host;
     }
 
-    public void setFkHost(Integer fkHost) {
-        this.fkHost = fkHost;
+    public void setHost(HostFamily host) {
+        this.host = host;
     }
 }

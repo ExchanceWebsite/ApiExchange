@@ -1,10 +1,7 @@
 package exchance.grupo.apiexchance.entidade;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
@@ -20,11 +17,11 @@ public class Comentario {
     private Integer idComentario;
 
 
-    private Integer fkProprietario;
+    @ManyToOne
+    private Estudante proprietario;
 
-
-    private Integer fkDestinatario;
-
+    @ManyToOne
+    private HostFamily destinatario;
 
 
     private String Comentario;
@@ -40,20 +37,20 @@ public class Comentario {
         this.idComentario = idComentario;
     }
 
-    public Integer getFkProprietario() {
-        return fkProprietario;
+    public Estudante getProprietario() {
+        return proprietario;
     }
 
-    public void setFkProprietario(Integer fkProprietario) {
-        this.fkProprietario = fkProprietario;
+    public void setProprietario(Estudante proprietario) {
+        this.proprietario = proprietario;
     }
 
-    public Integer getFkDestinatario() {
-        return fkDestinatario;
+    public HostFamily getDestinatario() {
+        return destinatario;
     }
 
-    public void setFkDestinatario(Integer fkDestinatario) {
-        this.fkDestinatario = fkDestinatario;
+    public void setDestinatario(HostFamily destinatario) {
+        this.destinatario = destinatario;
     }
 
     public String getComentario() {

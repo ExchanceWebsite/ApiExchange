@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.List;
+
 @Entity
 public class Estudante {
 
@@ -38,6 +40,12 @@ public class Estudante {
 
     @ManyToOne
     private Localidade localidade;
+
+    @OneToMany(mappedBy = "estudante")
+    private List<Reserva> reservas;
+
+    @OneToMany(mappedBy = "proprietario")
+    private List<Comentario> comentarios;
 
     public Integer getIdEstudante() {
         return idEstudante;

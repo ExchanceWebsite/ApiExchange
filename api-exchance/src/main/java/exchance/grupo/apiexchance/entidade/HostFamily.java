@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 public class HostFamily {
 
@@ -30,6 +32,14 @@ public class HostFamily {
     @ManyToOne
     private Localidade localidade;
 
+    @OneToMany(mappedBy = "host")
+    private List<Acomodacao> acomodacoes;
+
+    @OneToMany(mappedBy = "host")
+    private List<Integrante> integrantes;
+
+    @OneToMany(mappedBy = "destinatario")
+    private List<Comentario> comentarios;
 
     public Integer getIdHostFamily() {
         return idHostFamily;
