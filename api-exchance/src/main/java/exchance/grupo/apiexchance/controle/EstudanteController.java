@@ -6,6 +6,11 @@ import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.repositorio.ComentarioRepository;
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
+import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
+import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +26,9 @@ public class EstudanteController {
     @Autowired
     private EstudanteRepository estudanteRepository;
 
+    @Autowired
+    private EstudanteService estudanteService;
+
     @GetMapping
     public ResponseEntity<List<Estudante>> listar() {
 
@@ -34,22 +42,16 @@ public class EstudanteController {
     }
 
     @PostMapping
-    public ResponseEntity<Estudante> cadastrar(@RequestBody @Valid Estudante novoEstudante) {
-        Estudante estudanteCadastrado = this.estudanteRepository.save(novoEstudante);
-        return ResponseEntity.status(201).body(estudanteCadastrado);
+    @SecurityRequirement(name = "Bearer")
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid EstudanteDTO estudanteDTO) {
+        this.estudanteService.criar(estudanteDTO);
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Void> login(@RequestParam String email, @RequestParam String senha){
+    public ResponseEntity<EstudanteTokenDto> login(@RequestBody EstudanteLoginDto estudanteLoginDto) {
+        EstudanteTokenDto estudanteTokenDto = this.estudanteService.autenticar(estudanteLoginDto);
 
-        Optional<Estudante> contaEncontrada = estudanteRepository.findBySenhaAndEmail(senha, email);
-
-        if(contaEncontrada.isEmpty()){
-            return ResponseEntity.status(401).build();
-        }else{
-            return ResponseEntity.status(200).build();
-        }
-
-
+        return ResponseEntity.status(200).body(estudanteTokenDto);
     }
 }

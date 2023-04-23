@@ -3,6 +3,8 @@ package exchance.grupo.apiexchance.controle;
 
 import exchance.grupo.apiexchance.entidade.Integrante;
 import exchance.grupo.apiexchance.repositorio.IntegranteRepository;
+import exchance.grupo.apiexchance.service.Integrante.IntegranteService;
+import exchance.grupo.apiexchance.service.Integrante.dto.IntegranteDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ public class IntegranteController {
     @Autowired
     private IntegranteRepository integranteRepository;
 
+    @Autowired
+    private IntegranteService integranteService;
+
     @GetMapping
     public ResponseEntity<List<Integrante>> listar() {
 
@@ -30,8 +35,8 @@ public class IntegranteController {
     }
 
     @PostMapping
-    public ResponseEntity<Integrante> cadastrar(@RequestBody @Valid Integrante novoIntegrante) {
-        Integrante integranteCadastrado = this.integranteRepository.save(novoIntegrante);
-        return ResponseEntity.status(201).body(integranteCadastrado);
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid IntegranteDTO integranteDTO) {
+        this.integranteService.criar(integranteDTO);
+        return ResponseEntity.status(201).build();
     }
 }

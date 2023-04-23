@@ -1,13 +1,10 @@
-package exchance.grupo.apiexchance.dto;
+package exchance.grupo.apiexchance.service.Estudante.dto;
 
-import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.Localidade;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 public class EstudanteDTO {
-
-    private Integer idEstudante;
 
 
     @NotBlank
@@ -43,19 +40,36 @@ public class EstudanteDTO {
     @NotBlank
     private Localidade localidade;
 
-    public EstudanteDTO(Estudante estudanteEntidade) {
-        this.idEstudante = estudanteEntidade.getIdEstudante();
-        this.nome = estudanteEntidade.getNome();
-        this.idade = estudanteEntidade.getIdade();
-        this.descricao = estudanteEntidade.getDescricao();
-        this.email = estudanteEntidade.getEmail();
-        this.telefone = estudanteEntidade.getTelefone();
-        this.cpf = estudanteEntidade.getCpf();
-        this.localidade = estudanteEntidade.getLocalidade();
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Integer getIdEstudante() {
-        return idEstudante;
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setLocalidade(Localidade localidade) {
+        this.localidade = localidade;
     }
 
     public String getNome() {
@@ -82,7 +96,7 @@ public class EstudanteDTO {
         return cpf;
     }
 
-    public Localidade getFkLocalidade() {
+    public Localidade getLocalidade() {
         return localidade;
     }
 }

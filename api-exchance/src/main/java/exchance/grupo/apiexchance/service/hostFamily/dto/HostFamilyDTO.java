@@ -1,4 +1,4 @@
-package exchance.grupo.apiexchance.dto;
+package exchance.grupo.apiexchance.service.hostFamily.dto;
 
 import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.entidade.Localidade;
@@ -7,8 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class HostFamilyDTO {
-
-    private Integer idHostFamily;
 
 
     @NotBlank
@@ -33,18 +31,6 @@ public class HostFamilyDTO {
     @NotBlank
     private Localidade localidade;
 
-    public HostFamilyDTO(HostFamily hostFamilyEntidade) {
-        this.idHostFamily = hostFamilyEntidade.getIdHostFamily();
-        this.nome = hostFamilyEntidade.getNome();
-        this.verificado = hostFamilyEntidade.getVerificado();
-        this.descricao = hostFamilyEntidade.getDescricao();
-        this.email = hostFamilyEntidade.getEmail();
-        this.localidade = hostFamilyEntidade.getLocalidade();
-    }
-
-    public Integer getIdHostFamily() {
-        return idHostFamily;
-    }
 
     public String getNome() {
         return nome;
@@ -62,7 +48,31 @@ public class HostFamilyDTO {
         return email;
     }
 
-    public Localidade getFkLocalidade() {
+    public Localidade getLocalidade() {
         return localidade;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setVerificado(String verificado) {
+        this.verificado = verificado;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setLocalidade(Localidade localidade) {
+        this.localidade = localidade;
     }
 }

@@ -1,8 +1,7 @@
-package exchance.grupo.apiexchance.dto;
+package exchance.grupo.apiexchance.service.Localidade.dto;
 
 import exchance.grupo.apiexchance.entidade.Localidade;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class LocalidadeDTO {
@@ -26,18 +25,6 @@ public class LocalidadeDTO {
     @Size(min = 3)
     private String cep;
 
-    public LocalidadeDTO(Localidade localidadeEntidade) {
-        this.idLocalidade = localidadeEntidade.getIdLocalidade();
-        this.pais = localidadeEntidade.getPais();
-        this.cidade = localidadeEntidade.getCidade();
-        this.endereco = localidadeEntidade.getEndereco();
-        this.cep = localidadeEntidade.getCep();
-    }
-
-    public Integer getIdLocalidade() {
-        return idLocalidade;
-    }
-
     public String getPais() {
         return pais;
     }
@@ -52,5 +39,21 @@ public class LocalidadeDTO {
 
     public String getCep() {
         return cep;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }

@@ -1,5 +1,6 @@
-package exchance.grupo.apiexchance.dto;
+package exchance.grupo.apiexchance.service.Integrante.dto;
 
+import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.entidade.Integrante;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -22,15 +23,8 @@ public class IntegranteDTO {
     private Integer idade;
 
     @NotBlank
-    private Integer fkHost;
+    private HostFamily host;
 
-    public IntegranteDTO(Integrante integranteEntidade) {
-        this.idIntegrante = integranteEntidade.getIdIntegrante();
-        this.nome = integranteEntidade.getNome();
-        this.parentesco = integranteEntidade.getParentesco();
-        this.idade = integranteEntidade.getIdade();
-        this.fkHost = integranteEntidade.getFkHost();
-    }
 
     public Integer getIdIntegrante() {
         return idIntegrante;
@@ -48,7 +42,23 @@ public class IntegranteDTO {
         return idade;
     }
 
-    public Integer getFkHost() {
-        return fkHost;
+    public HostFamily getHost() {
+        return host;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public void setHost(HostFamily host) {
+        this.host = host;
     }
 }

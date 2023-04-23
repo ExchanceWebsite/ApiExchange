@@ -4,6 +4,8 @@ package exchance.grupo.apiexchance.controle;
 import exchance.grupo.apiexchance.entidade.Comentario;
 import exchance.grupo.apiexchance.entidade.Reserva;
 import exchance.grupo.apiexchance.repositorio.ReservaRepository;
+import exchance.grupo.apiexchance.service.Reserva.ReservaService;
+import exchance.grupo.apiexchance.service.Reserva.dto.ReservaDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
 
+    @Autowired
+    private ReservaService reservaService;
+
     @GetMapping
     public ResponseEntity<List<Reserva>> listar() {
 
@@ -31,8 +36,8 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Reserva> cadastrar(@RequestBody @Valid Reserva novaReserva) {
-        Reserva reservaCadastrada = this.reservaRepository.save(novaReserva);
-        return ResponseEntity.status(201).body(reservaCadastrada);
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid ReservaDTO reservaDTO) {
+        this.reservaService.criar(reservaDTO);
+        return ResponseEntity.status(201).build();
     }
 }

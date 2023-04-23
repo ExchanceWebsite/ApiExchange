@@ -1,6 +1,7 @@
-package exchance.grupo.apiexchance.dto;
+package exchance.grupo.apiexchance.service.Acomodacao.dto;
 
 import exchance.grupo.apiexchance.entidade.Acomodacao;
+import exchance.grupo.apiexchance.entidade.HostFamily;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -8,11 +9,8 @@ import java.time.LocalDate;
 
 public class AcomodacaoDTO {
 
-    private Integer idAcomodacao;
-
-
     @NotBlank
-    private Integer fkHost;
+    private HostFamily host;
 
     @NotBlank
     private String descricao;
@@ -31,22 +29,9 @@ public class AcomodacaoDTO {
     @NotBlank
     private String regras;
 
-    public AcomodacaoDTO(Acomodacao acomodacaoEntidade) {
-        this.idAcomodacao = acomodacaoEntidade.getIdAcomodacao();
-        this.fkHost = acomodacaoEntidade.getFkHost();
-        this.descricao = acomodacaoEntidade.getDescricao();
-        this.inicioDisponibilidade = acomodacaoEntidade.getInicioDisponibilidade();
-        this.fimDisponibilidade = acomodacaoEntidade.getFimDisponibilidade();
-        this.valorDiaria = acomodacaoEntidade.getValorDiaria();
-        this.regras = acomodacaoEntidade.getRegras();
-    }
 
-    public Integer getIdAcomodacao() {
-        return idAcomodacao;
-    }
-
-    public Integer getFkHost() {
-        return fkHost;
+    public HostFamily getHost() {
+        return host;
     }
 
     public String getDescricao() {
@@ -67,5 +52,29 @@ public class AcomodacaoDTO {
 
     public String getRegras() {
         return regras;
+    }
+
+    public void setHost(HostFamily host) {
+        this.host = host;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setInicioDisponibilidade(LocalDate inicioDisponibilidade) {
+        this.inicioDisponibilidade = inicioDisponibilidade;
+    }
+
+    public void setFimDisponibilidade(LocalDate fimDisponibilidade) {
+        this.fimDisponibilidade = fimDisponibilidade;
+    }
+
+    public void setValorDiaria(Double valorDiaria) {
+        this.valorDiaria = valorDiaria;
+    }
+
+    public void setRegras(String regras) {
+        this.regras = regras;
     }
 }

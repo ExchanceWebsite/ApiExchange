@@ -1,8 +1,9 @@
 package exchance.grupo.apiexchance.controle;
 
-import exchance.grupo.apiexchance.dto.AcomodacaoDTO;
 import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.repositorio.AcomodacaoRepository;
+import exchance.grupo.apiexchance.service.Acomodacao.AcomodacaoService;
+import exchance.grupo.apiexchance.service.Acomodacao.dto.AcomodacaoDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,9 @@ public class AcomodacaoController {
     @Autowired
     private AcomodacaoRepository acomodacaoRepository;
 
+    @Autowired
+    private AcomodacaoService acomodacaoService;
+
     @GetMapping
     public ResponseEntity<List<Acomodacao>> listar() {
 
@@ -32,8 +36,8 @@ public class AcomodacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Acomodacao> cadastrar(@RequestBody @Valid Acomodacao novaAcomodacao) {
-        Acomodacao acomodacaoCadastrada = this.acomodacaoRepository.save(novaAcomodacao);
-        return ResponseEntity.status(201).body(acomodacaoCadastrada);
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid AcomodacaoDTO acomodacaoDTO) {
+        this.acomodacaoService.criar(acomodacaoDTO);
+        return ResponseEntity.status(201).build();
     }
 }

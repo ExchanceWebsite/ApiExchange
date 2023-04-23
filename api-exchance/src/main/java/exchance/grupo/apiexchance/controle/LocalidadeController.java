@@ -1,9 +1,11 @@
 package exchance.grupo.apiexchance.controle;
 
 
-import exchance.grupo.apiexchance.dto.LocalidadeDTO;
+
 import exchance.grupo.apiexchance.entidade.Localidade;
 import exchance.grupo.apiexchance.repositorio.LocalidadeRepository;
+import exchance.grupo.apiexchance.service.Localidade.LocalidadeService;
+import exchance.grupo.apiexchance.service.Localidade.dto.LocalidadeDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class LocalidadeController {
     @Autowired
     private LocalidadeRepository localidadeRepository;
 
+    @Autowired
+    private LocalidadeService localidadeService;
+
     @GetMapping
     public ResponseEntity<List<Localidade>> listar() {
 
@@ -31,11 +36,8 @@ public class LocalidadeController {
     }
 
     @PostMapping
-    public ResponseEntity<Localidade> cadastrar(@RequestBody @Valid Localidade novaLocalidade) {
-
-        LocalidadeDTO localidadeDTO = new LocalidadeDTO(novaLocalidade);
-
-        Localidade localidadeCadastrada = this.localidadeRepository.save(novaLocalidade);
-        return ResponseEntity.status(201).body(localidadeCadastrada);
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid LocalidadeDTO localidadeDTO) {
+        this.localidadeService.criar(localidadeDTO);
+        return ResponseEntity.status(201).build();
     }
 }

@@ -2,6 +2,14 @@ package exchance.grupo.apiexchance.controle;
 
 import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.repositorio.HostFamilyRepository;
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
+import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
+import exchance.grupo.apiexchance.service.hostFamily.HostFamilyService;
+import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyLoginDto;
+import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyTokenDto;
+import exchance.grupo.apiexchance.service.hostFamily.dto.HostFamilyDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +25,9 @@ public class HostFamilyController {
     @Autowired
     private HostFamilyRepository hostFamilyRepository;
 
+    @Autowired
+    private HostFamilyService hostFamilyService;
+
     @GetMapping
     public ResponseEntity<List<HostFamily>> listar() {
 
@@ -30,23 +41,16 @@ public class HostFamilyController {
     }
 
     @PostMapping
-    public ResponseEntity<HostFamily> cadastrar(@RequestBody @Valid HostFamily novaHost) {
-        HostFamily hostFamilyCadastrada = this.hostFamilyRepository.save(novaHost);
-        return ResponseEntity.status(201).body(hostFamilyCadastrada);
+    @SecurityRequirement(name = "Bearer")
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid HostFamilyDTO hostFamilyDTO) {
+        this.hostFamilyService.criar(hostFamilyDTO);
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Void> login(@RequestParam String email, @RequestParam String senha){
+    public ResponseEntity<HostFamilyTokenDto> login(@RequestBody HostFamilyLoginDto hostFamilyLoginDto) {
+        HostFamilyTokenDto hostFamilyTokenDto = this.hostFamilyService.autenticar(hostFamilyLoginDto);
 
-        Optional<HostFamily> contaEncontrada = hostFamilyRepository.findBySenhaAndEmail(senha, email);
-
-
-        if(contaEncontrada.isEmpty()){
-            return ResponseEntity.status(401).build();
-        }else{
-            return ResponseEntity.status(200).build();
-        }
-
-
+        return ResponseEntity.status(200).body(hostFamilyTokenDto);
     }
 }

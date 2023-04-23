@@ -5,6 +5,8 @@ import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.entidade.Comentario;
 import exchance.grupo.apiexchance.repositorio.AcomodacaoRepository;
 import exchance.grupo.apiexchance.repositorio.ComentarioRepository;
+import exchance.grupo.apiexchance.service.Comentario.ComentarioService;
+import exchance.grupo.apiexchance.service.Comentario.dto.ComentarioDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ public class ComentarioController {
     @Autowired
     private ComentarioRepository comentarioRepository;
 
+    @Autowired
+    private ComentarioService comentarioService;
+
     @GetMapping
     public ResponseEntity<List<Comentario>> listar() {
 
@@ -32,8 +37,8 @@ public class ComentarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Comentario> cadastrar(@RequestBody @Valid Comentario novoComentario) {
-        Comentario comentarioCadastrado = this.comentarioRepository.save(novoComentario);
-        return ResponseEntity.status(201).body(comentarioCadastrado);
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid ComentarioDTO comentarioDTO) {
+        this.comentarioService.criar(comentarioDTO);
+        return ResponseEntity.status(201).build();
     }
 }
