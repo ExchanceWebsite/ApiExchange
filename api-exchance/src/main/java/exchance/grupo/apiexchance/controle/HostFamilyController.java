@@ -47,7 +47,7 @@ public class HostFamilyController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<HostFamilyTokenDto> login(@RequestBody HostFamilyLoginDto hostFamilyLoginDto) {
         HostFamilyTokenDto hostFamilyTokenDto = this.hostFamilyService.autenticar(hostFamilyLoginDto);
 

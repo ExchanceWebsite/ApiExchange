@@ -1,6 +1,6 @@
 package exchance.grupo.apiexchance.security.estudante;
 
-import exchance.grupo.apiexchance.service.Estudante.autenticacao.EstudanteAutenticacaoService;
+import exchance.grupo.apiexchance.security.AutenticacaoService;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteDetalhesDto;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,11 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class EstudanteAutenticacaoProvider implements AuthenticationProvider {
 
-  private final EstudanteAutenticacaoService estudanteAutenticacaoService;
+  private final AutenticacaoService autenticacaoService;
   private final PasswordEncoder passwordEncoder;
 
-  public EstudanteAutenticacaoProvider(EstudanteAutenticacaoService estudanteAutenticacaoService, PasswordEncoder passwordEncoder) {
-    this.estudanteAutenticacaoService = estudanteAutenticacaoService;
+  public EstudanteAutenticacaoProvider(AutenticacaoService autenticacaoService, PasswordEncoder passwordEncoder) {
+    this.autenticacaoService = autenticacaoService;
     this.passwordEncoder = passwordEncoder;
   }
 
@@ -28,7 +28,7 @@ public class EstudanteAutenticacaoProvider implements AuthenticationProvider {
     final String username = authentication.getName();
     final String password = authentication.getCredentials().toString();
 
-    EstudanteDetalhesDto userDetails = this.estudanteAutenticacaoService.loadUserByUsername(username);
+    EstudanteDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username, "estudante");
 
     if (this.passwordEncoder.matches(password, userDetails.getPassword())) {
       return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
