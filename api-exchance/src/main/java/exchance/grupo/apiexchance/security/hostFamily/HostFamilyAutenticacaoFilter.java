@@ -1,8 +1,8 @@
-/*
 package exchance.grupo.apiexchance.security.hostFamily;
 
 import exchance.grupo.apiexchance.security.jwt.GerenciadorTokenJwt;
-import exchance.grupo.apiexchance.service.hostFamily.autenticacao.HostFamilyAutenticacaoService;
+import exchance.grupo.apiexchance.security.AutenticacaoService;
+import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyDetalhesDto;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -23,12 +22,12 @@ public class HostFamilyAutenticacaoFilter extends OncePerRequestFilter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HostFamilyAutenticacaoFilter.class);
 
-    private final HostFamilyAutenticacaoService hostFamilyAutenticacaoService;
+    private final AutenticacaoService autenticacaoService;
 
     private final GerenciadorTokenJwt jwtTokenManager;
 
-    public HostFamilyAutenticacaoFilter(HostFamilyAutenticacaoService hostFamilyAutenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
-        this.hostFamilyAutenticacaoService = hostFamilyAutenticacaoService;
+    public HostFamilyAutenticacaoFilter(AutenticacaoService autenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
+        this.autenticacaoService = autenticacaoService;
         this.jwtTokenManager = jwtTokenManager;
     }
 
@@ -65,7 +64,7 @@ public class HostFamilyAutenticacaoFilter extends OncePerRequestFilter {
 
     private void addUsernameInContext(HttpServletRequest request, String username, String jwtToken) {
 
-        UserDetails userDetails = hostFamilyAutenticacaoService.loadUserByUsername(username);
+        HostFamilyDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username);
 
         if (jwtTokenManager.validateToken(jwtToken, userDetails)) {
 
@@ -78,4 +77,4 @@ public class HostFamilyAutenticacaoFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
     }
-}*/
+}

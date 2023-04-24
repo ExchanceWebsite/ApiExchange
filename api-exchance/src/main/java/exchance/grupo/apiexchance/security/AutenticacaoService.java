@@ -1,12 +1,12 @@
-/*
-package exchance.grupo.apiexchance.service.Estudante.autenticacao;
+package exchance.grupo.apiexchance.security;
 
 import exchance.grupo.apiexchance.entidade.Estudante;
+import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
+import exchance.grupo.apiexchance.repositorio.HostFamilyRepository;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteDetalhesDto;
-import jdk.jfr.Name;
+import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyDetalhesDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,29 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class EstudanteAutenticacaoService implements UserDetailsService {
+public class AutenticacaoService implements UserDetailsService {
+
+  @Autowired
+  private HostFamilyRepository hostFamilyRepository;
 
   @Autowired
   private EstudanteRepository estudanteRepository;
 
   // Método da interface implementada
-
   @Override
-  public EstudanteDetalhesDto loadUserByUsername(String username) throws UsernameNotFoundException {
+  public HostFamilyDetalhesDto loadUserByUsername(String username) throws UsernameNotFoundException {
+
+    Optional<HostFamily> hostFamilyOpt = hostFamilyRepository.findByEmail(username);
+
+    if (hostFamilyOpt.isEmpty()) {
+
+      throw new UsernameNotFoundException(String.format("usuario: %s nao encontrado", username));
+    }
+
+    return new HostFamilyDetalhesDto(hostFamilyOpt.get());
+  }
+
+  public EstudanteDetalhesDto loadUserByUsername(String username, String source) throws UsernameNotFoundException {
 
     Optional<Estudante> estudanteOpt = estudanteRepository.findByEmail(username);
 
@@ -33,5 +47,5 @@ public class EstudanteAutenticacaoService implements UserDetailsService {
 
     return new EstudanteDetalhesDto(estudanteOpt.get());
   }
+
 }
-*/

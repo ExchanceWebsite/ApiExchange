@@ -1,7 +1,9 @@
 package exchance.grupo.apiexchance.security.estudante;
 
+import exchance.grupo.apiexchance.security.AutenticacaoService;
 import exchance.grupo.apiexchance.security.jwt.GerenciadorTokenJwt;
-import exchance.grupo.apiexchance.service.Estudante.autenticacao.EstudanteAutenticacaoService;
+
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteDetalhesDto;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -9,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,13 +24,13 @@ import java.util.Objects;
 public class EstudanteAutenticacaoFilter extends OncePerRequestFilter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EstudanteAutenticacaoFilter.class);
-
-    private final EstudanteAutenticacaoService estudanteAutenticacaoService;
+    @Autowired
+    private final AutenticacaoService autenticacaoService;
 
     private final GerenciadorTokenJwt jwtTokenManager;
 
-    public EstudanteAutenticacaoFilter(EstudanteAutenticacaoService estudanteAutenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
-        this.estudanteAutenticacaoService = estudanteAutenticacaoService;
+    public EstudanteAutenticacaoFilter(AutenticacaoService autenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
+        this.autenticacaoService = autenticacaoService;
         this.jwtTokenManager = jwtTokenManager;
     }
 
@@ -64,7 +67,7 @@ public class EstudanteAutenticacaoFilter extends OncePerRequestFilter {
 
     private void addUsernameInContext(HttpServletRequest request, String username, String jwtToken) {
 
-        UserDetails userDetails = estudanteAutenticacaoService.loadUserByUsername(username);
+        EstudanteDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username, "estudante");
 
         if (jwtTokenManager.validateToken(jwtToken, userDetails)) {
 

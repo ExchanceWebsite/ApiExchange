@@ -2,11 +2,9 @@ package exchance.grupo.apiexchance.security;
 
 import exchance.grupo.apiexchance.security.estudante.EstudanteAutenticacaoFilter;
 import exchance.grupo.apiexchance.security.estudante.EstudanteAutenticacaoProvider;
-/*import exchance.grupo.apiexchance.security.hostFamily.HostFamilyAutenticacaoFilter;
-import exchance.grupo.apiexchance.security.hostFamily.HostFamilyAutenticacaoProvider;*/
+import exchance.grupo.apiexchance.security.hostFamily.HostFamilyAutenticacaoFilter;
+import exchance.grupo.apiexchance.security.hostFamily.HostFamilyAutenticacaoProvider;
 import exchance.grupo.apiexchance.security.jwt.GerenciadorTokenJwt;
-import exchance.grupo.apiexchance.service.Estudante.autenticacao.EstudanteAutenticacaoService;
-/*import exchance.grupo.apiexchance.service.hostFamily.autenticacao.HostFamilyAutenticacaoService;*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,11 +32,8 @@ import java.util.Collections;
 public class SecurityConfiguracao {
     private static final String ORIGENS_PERMITIDAS = "*";
 
-   /* @Autowired
-    private HostFamilyAutenticacaoService hostFamilyAutenticacaoService;*/
-
     @Autowired
-    private EstudanteAutenticacaoService estudanteAutenticacaoService;
+    private AutenticacaoService autenticacaoService;
 
     @Autowired
     private AutenticacaoEntryPoint autenticacaoJwtEntryPoint;
@@ -91,7 +86,7 @@ public class SecurityConfiguracao {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
-       /* http.addFilterBefore(jwtAuthenticationFilterBean2(), UsernamePasswordAuthenticationFilter.class);*/
+        http.addFilterBefore(jwtAuthenticationFilterBean2(), UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();
@@ -101,10 +96,9 @@ public class SecurityConfiguracao {
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
-/*
-        authenticationManagerBuilder.authenticationProvider(new HostFamilyAutenticacaoProvider(hostFamilyAutenticacaoService, passwordEncoder()));
-*/
-        authenticationManagerBuilder.authenticationProvider(new EstudanteAutenticacaoProvider(estudanteAutenticacaoService, passwordEncoder()));
+
+        authenticationManagerBuilder.authenticationProvider(new HostFamilyAutenticacaoProvider(autenticacaoService, passwordEncoder()));
+        authenticationManagerBuilder.authenticationProvider(new EstudanteAutenticacaoProvider(autenticacaoService, passwordEncoder()));
         return authenticationManagerBuilder.build();
     }
 
@@ -115,13 +109,13 @@ public class SecurityConfiguracao {
 
     @Bean
     public EstudanteAutenticacaoFilter jwtAuthenticationFilterBean() {
-        return new EstudanteAutenticacaoFilter(estudanteAutenticacaoService, jwtAuthenticationUtilBean());
+        return new EstudanteAutenticacaoFilter(autenticacaoService, jwtAuthenticationUtilBean());
     }
 
-   /* @Bean
+    @Bean
     public HostFamilyAutenticacaoFilter jwtAuthenticationFilterBean2() {
-        return new HostFamilyAutenticacaoFilter(hostFamilyAutenticacaoService, jwtAuthenticationUtilBean());
-    }*/
+        return new HostFamilyAutenticacaoFilter(autenticacaoService, jwtAuthenticationUtilBean());
+    }
 
     @Bean
     public GerenciadorTokenJwt jwtAuthenticationUtilBean() {
