@@ -48,6 +48,7 @@ public class Estudante {
     private List<Comentario> comentarios;
 
 
+
     public Integer getIdEstudante() {
         return idEstudante;
     }
