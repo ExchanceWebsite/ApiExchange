@@ -1,3 +1,4 @@
+/*
 package exchance.grupo.apiexchance.service.CSV;
 
 import exchance.grupo.apiexchance.repositorio.CsvRepository;
@@ -12,9 +13,10 @@ public class CsvService {
     CsvRepository csvRepository;
 
     public List<EstudanteDTO> load(){
-        List<EstudanteDTO> reservas = csvRepository.findAll();
+      final List<EstudanteDTO> reservas = csvRepository.findAll();
 
         return reservas;
     }
 
 }
+*/

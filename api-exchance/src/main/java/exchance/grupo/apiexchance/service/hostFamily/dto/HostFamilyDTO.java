@@ -9,26 +9,26 @@ import jakarta.validation.constraints.Size;
 public class HostFamilyDTO {
 
 
-    @NotBlank
+
     @Size(min = 3)
     private String nome;
 
-    @NotBlank
+
     @Size(max = 25)
     private String verificado;
 
-    @NotBlank
+
     private String descricao;
 
-    @NotBlank
+
     @Email
     private String email;
 
-    @NotBlank
+
     @Size(min = 8)
     private String senha;
 
-    @NotBlank
+
     private Localidade localidade;
 
 

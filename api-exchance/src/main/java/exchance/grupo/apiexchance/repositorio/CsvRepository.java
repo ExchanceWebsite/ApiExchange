@@ -1,4 +1,4 @@
-package exchance.grupo.apiexchance.repositorio;
+/*package exchance.grupo.apiexchance.repositorio;
 
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
 import exchance.grupo.apiexchance.service.Reserva.dto.ReservaDTO;
@@ -8,4 +8,4 @@ public interface CsvRepository extends JpaRepository<EstudanteDTO, Integer> {
 
 
 
-}
+}*/
