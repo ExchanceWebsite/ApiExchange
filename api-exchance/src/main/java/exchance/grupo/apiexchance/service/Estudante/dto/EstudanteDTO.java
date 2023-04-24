@@ -40,6 +40,16 @@ public class EstudanteDTO {
     @NotBlank
     private Localidade localidade;
 
+    public EstudanteDTO(String nome, Integer idade, String descricao, String email, String senha, String telefone, String cpf) {
+        this.nome = nome;
+        this.idade = idade;
+        this.descricao = descricao;
+        this.email = email;
+        this.senha = senha;
+        this.telefone = telefone;
+        this.cpf = cpf;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -98,5 +108,19 @@ public class EstudanteDTO {
 
     public Localidade getLocalidade() {
         return localidade;
+    }
+
+    @Override
+    public String toString() {
+        return "EstudanteDTO{" +
+                "nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", descricao='" + descricao + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", localidade=" + localidade +
+                '}';
     }
 }
