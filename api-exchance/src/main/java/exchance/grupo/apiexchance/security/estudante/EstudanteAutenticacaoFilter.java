@@ -18,15 +18,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Objects;
 
-public class AutenticacaoFilter extends OncePerRequestFilter {
+public class EstudanteAutenticacaoFilter extends OncePerRequestFilter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AutenticacaoFilter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EstudanteAutenticacaoFilter.class);
 
     private final EstudanteAutenticacaoService estudanteAutenticacaoService;
 
     private final GerenciadorTokenJwt jwtTokenManager;
 
-    public AutenticacaoFilter(EstudanteAutenticacaoService estudanteAutenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
+    public EstudanteAutenticacaoFilter(EstudanteAutenticacaoService estudanteAutenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
         this.estudanteAutenticacaoService = estudanteAutenticacaoService;
         this.jwtTokenManager = jwtTokenManager;
     }

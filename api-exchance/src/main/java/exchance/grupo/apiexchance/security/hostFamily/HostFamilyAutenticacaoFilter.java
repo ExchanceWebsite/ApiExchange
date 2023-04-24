@@ -1,3 +1,4 @@
+/*
 package exchance.grupo.apiexchance.security.hostFamily;
 
 import exchance.grupo.apiexchance.security.jwt.GerenciadorTokenJwt;
@@ -18,15 +19,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Objects;
 
-public class AutenticacaoFilter extends OncePerRequestFilter {
+public class HostFamilyAutenticacaoFilter extends OncePerRequestFilter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AutenticacaoFilter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(HostFamilyAutenticacaoFilter.class);
 
     private final HostFamilyAutenticacaoService hostFamilyAutenticacaoService;
 
     private final GerenciadorTokenJwt jwtTokenManager;
 
-    public AutenticacaoFilter(HostFamilyAutenticacaoService hostFamilyAutenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
+    public HostFamilyAutenticacaoFilter(HostFamilyAutenticacaoService hostFamilyAutenticacaoService, GerenciadorTokenJwt jwtTokenManager) {
         this.hostFamilyAutenticacaoService = hostFamilyAutenticacaoService;
         this.jwtTokenManager = jwtTokenManager;
     }
@@ -77,4 +78,4 @@ public class AutenticacaoFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
     }
-}
+}*/

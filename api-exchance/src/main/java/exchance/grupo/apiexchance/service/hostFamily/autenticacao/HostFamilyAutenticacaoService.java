@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+/*@Service
 public class HostFamilyAutenticacaoService implements UserDetailsService {
 
   @Autowired
   private HostFamilyRepository hostFamilyRepository;
 
   // Método da interface implementada
-  @Override
+ *//* @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
     Optional<HostFamily> hostFamilyOpt = hostFamilyRepository.findByEmail(username);
@@ -29,5 +29,5 @@ public class HostFamilyAutenticacaoService implements UserDetailsService {
     }
 
     return new HostFamilyDetalhesDto(hostFamilyOpt.get());
-  }
-}
+  }*//*
+}*/

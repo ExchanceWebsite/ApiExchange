@@ -7,37 +7,36 @@ import org.hibernate.validator.constraints.br.CPF;
 public class EstudanteDTO {
 
 
-    @NotBlank
+
     @Size(min = 3)
     private String nome;
 
-    @NotBlank
     @Min(13)
     @Positive
     private Integer idade;
 
-    @NotBlank
+
     private String descricao;
 
 
-    @NotBlank
+
     @Email
     private String email;
 
 
-    @NotBlank
+
     @Size(min = 8)
     private String senha;
 
-    @NotBlank
+
     @Size(max = 14)
     private String telefone;
 
-    @NotBlank
+
     @CPF
     private String cpf;
 
-    @NotBlank
+
     private Localidade localidade;
 
     public void setNome(String nome) {

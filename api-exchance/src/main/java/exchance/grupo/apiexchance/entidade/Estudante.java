@@ -47,6 +47,7 @@ public class Estudante {
     @OneToMany(mappedBy = "proprietario")
     private List<Comentario> comentarios;
 
+
     public Integer getIdEstudante() {
         return idEstudante;
     }

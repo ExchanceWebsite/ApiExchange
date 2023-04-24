@@ -1,10 +1,8 @@
 package exchance.grupo.apiexchance.controle;
 
 
-import exchance.grupo.apiexchance.entidade.Comentario;
+
 import exchance.grupo.apiexchance.entidade.Estudante;
-import exchance.grupo.apiexchance.entidade.HostFamily;
-import exchance.grupo.apiexchance.repositorio.ComentarioRepository;
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
 import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
@@ -48,10 +46,25 @@ public class EstudanteController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<EstudanteTokenDto> login(@RequestBody EstudanteLoginDto estudanteLoginDto) {
         EstudanteTokenDto estudanteTokenDto = this.estudanteService.autenticar(estudanteLoginDto);
 
         return ResponseEntity.status(200).body(estudanteTokenDto);
     }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> deletar(@RequestBody String ID) {
+
+
+        return ResponseEntity.status(404).build();
+    }
+
+    @PutMapping()
+    public ResponseEntity<Void> atualizar(@RequestBody EstudanteDTO estudanteDTO) {
+
+
+        return ResponseEntity.status(200).build();
+    }
+
 }

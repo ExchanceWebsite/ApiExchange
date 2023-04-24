@@ -53,4 +53,18 @@ public class HostFamilyController {
 
         return ResponseEntity.status(200).body(hostFamilyTokenDto);
     }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> deletar(@RequestBody String ID) {
+
+
+        return ResponseEntity.status(404).build();
+    }
+
+    @PutMapping()
+    public ResponseEntity<Void> atualizar(@RequestBody HostFamilyDTO hostFamilyDTO) {
+
+
+        return ResponseEntity.status(200).build();
+    }
 }

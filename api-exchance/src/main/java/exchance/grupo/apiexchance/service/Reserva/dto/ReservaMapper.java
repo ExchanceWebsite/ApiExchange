@@ -10,7 +10,6 @@ public class ReservaMapper {
 
     reserva.setAcomodacao(reservaDTO.getAcomodacao());
     reserva.setEntrada(reservaDTO.getEntrada());
-    reserva.setEstudante(reservaDTO.getEstudantee());
     reserva.setHost(reservaDTO.getHost());
     reserva.setSaida(reservaDTO.getSaida());
     reserva.setFormaPagamento(reservaDTO.getFormaPagamento());

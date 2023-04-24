@@ -9,24 +9,24 @@ import java.time.LocalDate;
 
 public class AcomodacaoDTO {
 
-    @NotBlank
+
     private HostFamily host;
 
-    @NotBlank
+
     private String descricao;
 
-    @NotBlank
+
     @PastOrPresent
     private LocalDate inicioDisponibilidade;
 
-    @NotBlank
+
     @PastOrPresent
     private LocalDate fimDisponibilidade;
 
-    @NotBlank
+
     private Double valorDiaria;
 
-    @NotBlank
+
     private String regras;
 
 

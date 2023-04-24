@@ -14,17 +14,17 @@ public class ComentarioDTO {
     private Integer idComentario;
 
 
-    @NotBlank
+
     private Estudante proprietario;
 
-    @NotBlank
+
     private HostFamily destinatario;
 
-    @NotBlank
+
     @Size(min = 10)
     private String Comentario;
 
-    @NotBlank
+
     @PastOrPresent
     private LocalDate dataPostagem;
 

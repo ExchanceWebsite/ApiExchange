@@ -11,23 +11,23 @@ import java.time.LocalDate;
 
 public class ReservaDTO {
 
-    @NotBlank
+
     private Estudante estudantee;
 
-    @NotBlank
+
     @FutureOrPresent
     private LocalDate entrada;
 
-    @NotBlank
+
     @FutureOrPresent
     private LocalDate saida;
 
     private String formaPagamento;
 
-    @NotBlank
+
     private Acomodacao acomodacao;
 
-    @NotBlank
+
     private HostFamily host;
 
 

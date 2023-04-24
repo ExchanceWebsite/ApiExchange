@@ -1,6 +1,7 @@
-package exchance.grupo.apiexchance.security.estudante;
+/*
+package exchance.grupo.apiexchance.security.hostFamily;
 
-import exchance.grupo.apiexchance.service.Estudante.autenticacao.EstudanteAutenticacaoService;
+import exchance.grupo.apiexchance.service.hostFamily.autenticacao.HostFamilyAutenticacaoService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,13 +12,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 
-public class AutenticacaoProvider implements AuthenticationProvider {
+public class HostFamilyAutenticacaoProvider implements AuthenticationProvider {
 
-  private final EstudanteAutenticacaoService estudanteAutenticacaoService;
+  private final HostFamilyAutenticacaoService hostFamilyAutenticacaoService;
   private final PasswordEncoder passwordEncoder;
 
-  public AutenticacaoProvider(EstudanteAutenticacaoService estudanteAutenticacaoService, PasswordEncoder passwordEncoder) {
-    this.estudanteAutenticacaoService = estudanteAutenticacaoService;
+  public HostFamilyAutenticacaoProvider(HostFamilyAutenticacaoService hostFamilyAutenticacaoService, PasswordEncoder passwordEncoder) {
+    this.hostFamilyAutenticacaoService = hostFamilyAutenticacaoService;
     this.passwordEncoder = passwordEncoder;
   }
 
@@ -27,7 +28,7 @@ public class AutenticacaoProvider implements AuthenticationProvider {
     final String username = authentication.getName();
     final String password = authentication.getCredentials().toString();
 
-    UserDetails userDetails = this.estudanteAutenticacaoService.loadUserByUsername(username);
+    UserDetails userDetails = this.hostFamilyAutenticacaoService.loadUserByUsername(username);
 
     if (this.passwordEncoder.matches(password, userDetails.getPassword())) {
       return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -41,3 +42,4 @@ public class AutenticacaoProvider implements AuthenticationProvider {
     return authentication.equals(UsernamePasswordAuthenticationToken.class);
   }
 }
+*/

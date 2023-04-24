@@ -19,7 +19,7 @@ public class EstudanteAutenticacaoService implements UserDetailsService {
 
   // Método da interface implementada
   @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+  public EstudanteDetalhesDto loadUserByUsername(String username) throws UsernameNotFoundException {
 
     Optional<Estudante> estudanteOpt = estudanteRepository.findByEmail(username);
 

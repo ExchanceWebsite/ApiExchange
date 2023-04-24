@@ -11,18 +11,18 @@ public class IntegranteDTO {
     private Integer idIntegrante;
 
 
-    @NotBlank
+
     @Size(min = 3)
     private String nome;
 
-    @NotBlank
+
     private String parentesco;
 
-    @NotBlank
+
     @Positive
     private Integer idade;
 
-    @NotBlank
+
     private HostFamily host;
 
 

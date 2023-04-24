@@ -9,19 +9,19 @@ public class LocalidadeDTO {
     private Integer idLocalidade;
 
 
-    @NotBlank
+
     @Size(min = 3)
     private String pais;
 
-    @NotBlank
+
     @Size(min = 3)
     private String cidade;
 
-    @NotBlank
+
     @Size(min = 10)
     private String endereco;
 
-    @NotBlank
+
     @Size(min = 3)
     private String cep;
 

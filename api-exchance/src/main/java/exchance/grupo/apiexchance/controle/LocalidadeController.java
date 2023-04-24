@@ -38,6 +38,6 @@ public class LocalidadeController {
     @PostMapping
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid LocalidadeDTO localidadeDTO) {
         this.localidadeService.criar(localidadeDTO);
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
     }
 }

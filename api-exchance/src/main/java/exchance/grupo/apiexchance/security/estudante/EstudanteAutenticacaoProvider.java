@@ -1,6 +1,7 @@
-package exchance.grupo.apiexchance.security.hostFamily;
+package exchance.grupo.apiexchance.security.estudante;
 
-import exchance.grupo.apiexchance.service.hostFamily.autenticacao.HostFamilyAutenticacaoService;
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.EstudanteAutenticacaoService;
+import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteDetalhesDto;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,13 +12,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 
-public class AutenticacaoProvider implements AuthenticationProvider {
+public class EstudanteAutenticacaoProvider implements AuthenticationProvider {
 
-  private final HostFamilyAutenticacaoService hostFamilyAutenticacaoService;
+  private final EstudanteAutenticacaoService estudanteAutenticacaoService;
   private final PasswordEncoder passwordEncoder;
 
-  public AutenticacaoProvider(HostFamilyAutenticacaoService hostFamilyAutenticacaoService, PasswordEncoder passwordEncoder) {
-    this.hostFamilyAutenticacaoService = hostFamilyAutenticacaoService;
+  public EstudanteAutenticacaoProvider(EstudanteAutenticacaoService estudanteAutenticacaoService, PasswordEncoder passwordEncoder) {
+    this.estudanteAutenticacaoService = estudanteAutenticacaoService;
     this.passwordEncoder = passwordEncoder;
   }
 
@@ -27,7 +28,7 @@ public class AutenticacaoProvider implements AuthenticationProvider {
     final String username = authentication.getName();
     final String password = authentication.getCredentials().toString();
 
-    UserDetails userDetails = this.hostFamilyAutenticacaoService.loadUserByUsername(username);
+    EstudanteDetalhesDto userDetails = this.estudanteAutenticacaoService.loadUserByUsername(username);
 
     if (this.passwordEncoder.matches(password, userDetails.getPassword())) {
       return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
