@@ -1,18 +1,16 @@
 package exchance.grupo.apiexchance.lista;
 
-import java.util.List;
+public class ListaObj <T> {
 
-public class ListaObj <Estudantes> {
-
-    private Estudantes[] vetor;
+    private T[] vetor;
     private int nroElem;
 
     public ListaObj(int tamanho) {
-        vetor = (Estudantes[]) new Object[tamanho];
+        vetor = (T[]) new Object[tamanho];
         nroElem = 0;
     }
 
-    public void adiciona(Estudantes elemento) {
+    public void adiciona(T elemento) {
         if (nroElem >= vetor.length) {
             System.out.println("Lista cheia!");;
         }
@@ -21,7 +19,7 @@ public class ListaObj <Estudantes> {
         }
     }
 
-    public int busca(Estudantes elementoBuscado) {
+    public int busca(T elementoBuscado) {
         for (int i = 0; i < nroElem; i++) {
             if (vetor[i].equals(elementoBuscado)) {
                 return i;
@@ -44,7 +42,7 @@ public class ListaObj <Estudantes> {
         return true;
     }
 
-    public boolean removeElemento(Estudantes elementoARemover) {
+    public boolean removeElemento(T elementoARemover) {
         return removePeloIndice(busca(elementoARemover));
     }
 
@@ -52,13 +50,20 @@ public class ListaObj <Estudantes> {
         return nroElem;
     }
 
-    public Estudantes getElemento(int indice) {
+    public T getElemento(int indice) {
         if (indice < 0 || indice >= nroElem) {
             return null;
         }
         else {
             return vetor[indice];
         }
+    }
+
+    public void setElemento(int index, T elemento){
+        if (index >= nroElem || index < 0){
+            return;
+        }
+        vetor[index] = elemento;
     }
 
     public void limpa() {
@@ -76,5 +81,4 @@ public class ListaObj <Estudantes> {
             }
         }
     }
-
 }
