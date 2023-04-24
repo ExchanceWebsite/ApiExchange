@@ -64,7 +64,7 @@ public class HostFamilyAutenticacaoFilter extends OncePerRequestFilter {
 
     private void addUsernameInContext(HttpServletRequest request, String username, String jwtToken) {
 
-        HostFamilyDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username);
+     HostFamilyDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username);
 
         if (jwtTokenManager.validateToken(jwtToken, userDetails)) {
 
@@ -72,9 +72,8 @@ public class HostFamilyAutenticacaoFilter extends OncePerRequestFilter {
                     userDetails, null, userDetails.getAuthorities());
 
             usernamePasswordAuthenticationToken
-                    .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-        }
+           SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);     }
     }
 }

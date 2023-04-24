@@ -7,7 +7,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
@@ -28,7 +27,7 @@ public class EstudanteAutenticacaoProvider implements AuthenticationProvider {
     final String username = authentication.getName();
     final String password = authentication.getCredentials().toString();
 
-    EstudanteDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username, "estudante");
+    EstudanteDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username, "Estudante");
 
     if (this.passwordEncoder.matches(password, userDetails.getPassword())) {
       return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

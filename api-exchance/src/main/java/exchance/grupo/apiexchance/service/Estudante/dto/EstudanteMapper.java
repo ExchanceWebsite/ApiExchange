@@ -12,7 +12,7 @@ public class EstudanteMapper {
     estudante.setCpf(estudanteDTO.getCpf());
     estudante.setEmail(estudanteDTO.getEmail());
     estudante.setNome(estudanteDTO.getNome());
-    estudante.setSenha(estudanteDTO.getCpf());
+    estudante.setSenha(estudanteDTO.getSenha());
     estudante.setDescricao(estudanteDTO.getDescricao());
     estudante.setIdade(estudanteDTO.getIdade());
     estudante.setLocalidade(estudanteDTO.getLocalidade());
