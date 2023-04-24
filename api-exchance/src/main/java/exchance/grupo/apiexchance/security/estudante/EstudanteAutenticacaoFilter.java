@@ -2,7 +2,6 @@ package exchance.grupo.apiexchance.security.estudante;
 
 import exchance.grupo.apiexchance.security.AutenticacaoService;
 import exchance.grupo.apiexchance.security.jwt.GerenciadorTokenJwt;
-
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteDetalhesDto;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -67,7 +65,7 @@ public class EstudanteAutenticacaoFilter extends OncePerRequestFilter {
 
     private void addUsernameInContext(HttpServletRequest request, String username, String jwtToken) {
 
-        EstudanteDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username, "estudante");
+        EstudanteDetalhesDto userDetails = this.autenticacaoService.loadUserByUsername(username, "Estudante");
 
         if (jwtTokenManager.validateToken(jwtToken, userDetails)) {
 

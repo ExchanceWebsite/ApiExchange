@@ -56,6 +56,10 @@ public class HostFamilyDTO {
         this.nome = nome;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     public void setVerificado(String verificado) {
         this.verificado = verificado;
     }

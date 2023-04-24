@@ -109,6 +109,10 @@ public class EstudanteDTO {
         return localidade;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     @Override
     public String toString() {
         return "EstudanteDTO{" +

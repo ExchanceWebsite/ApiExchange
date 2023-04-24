@@ -12,7 +12,7 @@ public class HostFamilyMapper {
    hostFamily.setDescricao(hostFamilyDTO.getDescricao());
    hostFamily.setEmail(hostFamilyDTO.getEmail());
    hostFamily.setNome(hostFamilyDTO.getNome());
-   hostFamily.setSenha(hostFamilyDTO.getDescricao());
+   hostFamily.setSenha(hostFamilyDTO.getSenha());
    hostFamily.setLocalidade(hostFamilyDTO.getLocalidade());
    hostFamily.setVerificado(hostFamilyDTO.getVerificado());
 
