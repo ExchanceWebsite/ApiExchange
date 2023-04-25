@@ -22,53 +22,48 @@ import java.util.Scanner;
 @RequestMapping("/api/csv")
 public class CsvController {
 
-    public static byte[] gravaArquivoCsv(ListaObj<Estudante> lista, String nomeArq){
+    public static void gravarCSV (ListaObj<Estudante> estudantes, String nomeArquivo) {
+
         FileWriter arq = null;
         Formatter saida = null;
-        Boolean deuRuim = false;
+        nomeArquivo += ".csv";
 
-        nomeArq += ".csv";
-
-        try{
-            arq = new FileWriter(nomeArq,false);
+        // Bloco try-catch para abrir o arquivo
+        try {
+            arq = new FileWriter(nomeArquivo);
             saida = new Formatter(arq);
         }
-        catch (IOException erro){
+        catch (IOException erro) {
             System.out.println("Erro ao abrir o arquivo");
-            System.exit(1);
         }
+
+        // Bloco try-catch para gravar o arquivo
         try {
-            for (int i=0; i < lista.getTamanho(); i++){
-                Estudante estudantes = lista.getElemento(i);
-                saida.format("%d;%s;%d;%s;%s;%s;%s;%s\n",
-                        estudantes.getIdEstudante(),
-                        estudantes.getNome(),
-                        estudantes.getIdade(),
-                        estudantes.getDescricao(),
-                        estudantes.getEmail(),
-                        estudantes.getSenha(),
-                        estudantes.getTelefone(),
-                        estudantes.getCpf());
+            for (int i = 0; i < estudantes.getTamanho(); i++) {
+                saida.format("%s;%d;%s;%s;%s;%s;%s;\n",
+                        estudantes.getElemento(i).getNome(),
+                        estudantes.getElemento(i).getIdade(),
+                        estudantes.getElemento(i).getDescricao(),
+                        estudantes.getElemento(i).getEmail(),
+                        estudantes.getElemento(i).getSenha(),
+                        estudantes.getElemento(i).getTelefone(),
+                        estudantes.getElemento(i).getCpf()
+                );
             }
         }
-        catch (FormatterClosedException erro){
+        catch (FormatterClosedException erro) {
             System.out.println("Erro ao gravar o arquivo");
-            deuRuim = true;
+            erro.printStackTrace();
         }
         finally {
             saida.close();
             try {
                 arq.close();
             }
-            catch (IOException erro){
+            catch (IOException erro) {
                 System.out.println("Erro ao fechar o arquivo");
-                deuRuim=true;
-            }
-            if (deuRuim){
-                System.exit(1);
             }
         }
-        return nomeArq.getBytes();
     }
 
 //    public static byte[] leArquivoCsv(String nomeArq){
@@ -128,15 +123,39 @@ public class CsvController {
 //        return nomeArq.getBytes();
 //    }
 
-    ListaObj<Estudante> arquivoEstudantes = new ListaObj<>(5);
+    ListaObj<Estudante> arquivoEstudantes = new ListaObj<>(2);
+
+
+
 
 
     @GetMapping("/download")
-    public ResponseEntity<byte[]> getFile() {
-     byte[] arquivoCsv = gravaArquivoCsv(arquivoEstudantes, "arquivo");
+    public ResponseEntity<Void> getFile() {
+
+        Estudante estudante1 = new Estudante();
+
+        estudante1.setNome("Felipe");
+        estudante1.setTelefone("11980928183");
+        estudante1.setIdade(15);
+        estudante1.setSenha("123456789");
+        estudante1.setDescricao("Estudioso e curioso");
+        estudante1.setCpf("47885458881");
+        estudante1.setEmail("felipe@gmail.com");
+
+        Estudante estudante2 = new Estudante();
+
+        estudante2.setCpf("14346887778");
+        estudante2.setNome("Marcio");
+        estudante2.setTelefone("11930495969");
+        estudante2.setIdade(22);
+        estudante2.setSenha("123456789");
+        estudante2.setDescricao("Estudioso e valente");
+        estudante2.setEmail("marcio@gmail.com");
+
+        gravarCSV(arquivoEstudantes, "arquivo");
     // byte[] leArquivo = leArquivoCsv(estudantes.toString());
 
-        return ResponseEntity.status(200).body(arquivoCsv);
+        return ResponseEntity.status(200).build();
     }
 }
 

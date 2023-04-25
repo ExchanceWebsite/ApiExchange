@@ -55,16 +55,24 @@ public class HostFamilyController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Void> deletar(@RequestBody String ID) {
+    public ResponseEntity<Void> deletar(@RequestParam Integer id) {
 
 
-        return ResponseEntity.status(404).build();
+        if(this.hostFamilyService.deletar(id)){
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.status(400).build();
     }
 
     @PutMapping()
-    public ResponseEntity<Void> atualizar(@RequestBody HostFamilyDTO hostFamilyDTO) {
+    public ResponseEntity<HostFamily> atualizar(@RequestParam Integer id ,@RequestBody HostFamilyDTO hostFamilyDTO) {
 
 
-        return ResponseEntity.status(200).build();
+        if(this.hostFamilyService.atualizar(id, hostFamilyDTO) == null){
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.status(200).body(this.hostFamilyService.atualizar(id, hostFamilyDTO));
     }
 }

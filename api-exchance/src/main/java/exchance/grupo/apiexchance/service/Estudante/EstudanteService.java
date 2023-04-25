@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 
 @Service
 public class EstudanteService {
@@ -39,6 +41,45 @@ public class EstudanteService {
     novoEstudante.setSenha(senhaCriptografada);
 
     this.estudanteRepository.save(novoEstudante);
+  }
+
+  public Boolean deletar(Integer id){
+
+
+    Optional<Estudante> estudanteEncontrado = this.estudanteRepository.findById(id);
+
+    if(estudanteEncontrado.isEmpty()){
+      return false;
+    }
+
+    this.estudanteRepository.delete(estudanteEncontrado.get());
+    return true;
+  }
+
+  public Estudante atualizar(Integer id, EstudanteDTO estudanteDTO){
+
+    Optional<Estudante> estudanteEncontrado = this.estudanteRepository.findById(id);
+
+    if(estudanteEncontrado.isEmpty()){
+      return null;
+    }
+
+
+
+    estudanteEncontrado.get().setEmail(estudanteDTO.getEmail());
+    estudanteEncontrado.get().setCpf(estudanteDTO.getCpf());
+    estudanteEncontrado.get().setDescricao(estudanteDTO.getDescricao());
+    estudanteEncontrado.get().setIdade(estudanteDTO.getIdade());
+    estudanteEncontrado.get().setNome(estudanteDTO.getNome());
+    estudanteEncontrado.get().setSenha(passwordEncoder.encode(estudanteDTO.getSenha()));
+    estudanteEncontrado.get().setTelefone(estudanteDTO.getTelefone());
+    estudanteEncontrado.get().setIdEstudante(id);
+    estudanteEncontrado.get().setLocalidade(estudanteDTO.getLocalidade());
+
+    this.estudanteRepository.save(estudanteEncontrado.get());
+
+    return estudanteEncontrado.get();
+
   }
 
   public EstudanteTokenDto autenticar(EstudanteLoginDto estudanteLoginDto) {

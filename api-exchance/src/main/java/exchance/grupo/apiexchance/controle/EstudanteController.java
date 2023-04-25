@@ -3,6 +3,7 @@ package exchance.grupo.apiexchance.controle;
 
 
 import exchance.grupo.apiexchance.entidade.Estudante;
+import exchance.grupo.apiexchance.entidade.Integrante;
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
 import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
@@ -54,17 +55,23 @@ public class EstudanteController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Void> deletar(@RequestBody String ID) {
+    public ResponseEntity<Void> deletar(@RequestParam Integer id) {
 
+       if(this.estudanteService.deletar(id)){
+           return ResponseEntity.status(404).build();
+       }
 
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.status(400).build();
     }
 
     @PutMapping()
-    public ResponseEntity<Void> atualizar(@RequestBody EstudanteDTO estudanteDTO) {
+    public ResponseEntity<Estudante> atualizar(@RequestParam Integer id ,@RequestBody EstudanteDTO estudanteDTO) {
 
+        if(this.estudanteService.atualizar(id, estudanteDTO) == null){
+            return ResponseEntity.status(400).build();
+        }
 
-        return ResponseEntity.status(200).build();
+        return ResponseEntity.status(200).body(this.estudanteService.atualizar(id, estudanteDTO));
     }
 
 }
