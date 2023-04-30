@@ -66,63 +66,6 @@ public class CsvController {
         }
     }
 
-//    public static byte[] leArquivoCsv(String nomeArq){
-//        FileReader arq = null;
-//        Scanner entrada = null;
-//        Boolean deuRuim = false;
-//
-//        nomeArq += ".csv";
-//
-//        try{
-//            arq = new FileReader(nomeArq);
-//            System.out.println(arq);
-//            entrada = new Scanner(arq).useDelimiter(";|\\n");
-//        }
-//        catch (FileNotFoundException erro){
-//            System.out.println("Arquivo não encontrado");
-//            System.exit(1);
-//        }
-//
-//        try{
-//            System.out.printf("%-10S %4S %13S %15S %15S %15S %12S\n", "nome",
-//                    "idade","descricao","email",
-//                    "telefone","cpf");
-//            while (entrada.hasNext()){
-//                String nome = entrada.next();
-//                int idade = entrada.nextInt();
-//                String descricao = entrada.next();
-//                String email = entrada.next();
-//                String telefone = entrada.next();
-//                String cpf = entrada.next();
-//                System.out.printf("%-10s %4d %13d %15s %-15s %15s %12s\n",
-//                        nome,idade,descricao,email,telefone,cpf);
-//            }
-//        }
-//        catch (NoSuchElementException erro){
-//            System.out.println("Arquivo com problemas");
-//            deuRuim=true;
-//        }
-//        catch (IllegalStateException erro){
-//            System.out.println("Erro na leitura do arquivo");
-//            deuRuim=true;
-//        }
-//        finally {
-//            entrada.close();
-//            try{
-//                arq.close();
-//            }
-//            catch (IOException erro){
-//                System.out.println("Erro ao fechar o arquivo");
-//                deuRuim=true;
-//            }
-//            if (deuRuim){
-//                System.exit(1);
-//            }
-//
-//        }
-//        return nomeArq.getBytes();
-//    }
-
     ListaObj<Estudante> arquivoEstudantes = new ListaObj<>(2);
 
 
@@ -152,8 +95,10 @@ public class CsvController {
         estudante2.setDescricao("Estudioso e valente");
         estudante2.setEmail("marcio@gmail.com");
 
+        arquivoEstudantes.adiciona(estudante1);
+        arquivoEstudantes.adiciona(estudante2);
+
         gravarCSV(arquivoEstudantes, "arquivo");
-    // byte[] leArquivo = leArquivoCsv(estudantes.toString());
 
         return ResponseEntity.status(200).build();
     }
