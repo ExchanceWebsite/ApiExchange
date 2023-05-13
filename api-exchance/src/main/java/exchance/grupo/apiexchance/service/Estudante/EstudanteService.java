@@ -64,8 +64,6 @@ public class EstudanteService {
       return null;
     }
 
-
-
     estudanteEncontrado.get().setEmail(estudanteDTO.getEmail());
     estudanteEncontrado.get().setCpf(estudanteDTO.getCpf());
     estudanteEncontrado.get().setDescricao(estudanteDTO.getDescricao());

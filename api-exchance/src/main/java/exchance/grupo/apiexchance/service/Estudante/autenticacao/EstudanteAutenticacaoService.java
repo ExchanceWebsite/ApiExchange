@@ -1,4 +1,3 @@
-/*
 package exchance.grupo.apiexchance.service.Estudante.autenticacao;
 
 import exchance.grupo.apiexchance.entidade.Estudante;
@@ -34,4 +33,4 @@ public class EstudanteAutenticacaoService implements UserDetailsService {
     return new EstudanteDetalhesDto(estudanteOpt.get());
   }
 }
-*/
+
