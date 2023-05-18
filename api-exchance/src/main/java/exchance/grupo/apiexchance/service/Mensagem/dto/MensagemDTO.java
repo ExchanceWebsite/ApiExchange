@@ -7,6 +7,8 @@ import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MensagemDTO {
     private Integer idMensagem;
@@ -21,7 +23,7 @@ public class MensagemDTO {
     private String texto;
 
     @PastOrPresent
-    private LocalDate dataMensagem;
+    private LocalDateTime dataMensagem;
 
     public Integer getIdMensagem() {
         return idMensagem;
@@ -55,11 +57,12 @@ public class MensagemDTO {
         this.texto = texto;
     }
 
-    public LocalDate getDataMensagem() {
-        return dataMensagem;
+    public LocalDateTime getDataMensagem() {
+        return LocalDateTime.parse(dataMensagem.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
     }
 
-    public void setDataMensagem(LocalDate dataMensagem) {
-        this.dataMensagem = dataMensagem;
+    public void setDataMensagem(LocalDateTime dataMensagem) {
+        LocalDateTime datahora = LocalDateTime.now();
+        this.dataMensagem = datahora;
     }
 }

@@ -3,6 +3,7 @@ package exchance.grupo.apiexchance.entidade;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Mensagem {
@@ -21,7 +22,7 @@ public class Mensagem {
     private String texto;
 
 
-    private LocalDate dataMensagem;
+    private LocalDateTime dataMensagem;
 
     public Integer getIdMensagem() {
         return idMensagem;
@@ -55,11 +56,11 @@ public class Mensagem {
         this.texto = texto;
     }
 
-    public LocalDate getDataMensagem() {
+    public LocalDateTime getDataMensagem() {
         return dataMensagem;
     }
 
-    public void setDataMensagem(LocalDate dataMensagem) {
+    public void setDataMensagem(LocalDateTime dataMensagem) {
         this.dataMensagem = dataMensagem;
     }
 }
