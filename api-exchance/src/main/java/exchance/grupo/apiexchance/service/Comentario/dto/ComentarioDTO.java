@@ -14,7 +14,6 @@ public class ComentarioDTO {
     private Integer idComentario;
 
 
-
     private Estudante proprietario;
 
 

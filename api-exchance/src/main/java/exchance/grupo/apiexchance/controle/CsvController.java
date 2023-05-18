@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,10 +19,9 @@ import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-@Controller
+@RestController
 @RequestMapping("/api/csv")
 public class CsvController {
-
     public static void gravarCSV (ListaObj<Estudante> estudantes, String nomeArquivo) {
 
         FileWriter arq = null;

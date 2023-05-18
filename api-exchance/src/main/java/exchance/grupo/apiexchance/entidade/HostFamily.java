@@ -41,6 +41,9 @@ public class HostFamily {
     @OneToMany(mappedBy = "destinatario")
     private List<Comentario> comentarios;
 
+    @OneToMany(mappedBy = "destinatario")
+    private List<Mensagem> mensagens;
+
     public Integer getIdHostFamily() {
         return idHostFamily;
     }
