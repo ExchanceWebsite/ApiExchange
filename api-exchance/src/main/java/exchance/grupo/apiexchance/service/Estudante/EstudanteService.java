@@ -80,6 +80,13 @@ public class EstudanteService {
 
   }
 
+  public Integer encontrarId(String email, String senha){
+    Optional<Integer> idEstudante = this.estudanteRepository.findIdEstudanteBySenhaAndEmail(senha, email);
+
+    return idEstudante.orElse(null);
+
+  }
+
   public EstudanteTokenDto autenticar(EstudanteLoginDto estudanteLoginDto) {
 
     final UsernamePasswordAuthenticationToken credentials = new UsernamePasswordAuthenticationToken(

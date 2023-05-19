@@ -74,4 +74,17 @@ public class EstudanteController {
         return ResponseEntity.status(200).body(this.estudanteService.atualizar(id, estudanteDTO));
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<Integer> buscarIdEstudantePorEmailSenha(@RequestParam String email, @RequestParam String senha) {
+
+
+        return ResponseEntity.status(200).build();
+    }
+
+    @GetMapping("/estudante")
+    public ResponseEntity<Estudante> buscarEstudantePorId(@RequestParam Integer id){
+
+        return ResponseEntity.status(200).build();
+    }
+
 }
