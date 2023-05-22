@@ -40,4 +40,30 @@ public class ReservaController {
         this.reservaService.criar(reservaDTO);
         return ResponseEntity.status(201).build();
     }
+
+    @GetMapping("/reservas-estudante")
+    public ResponseEntity<List<Reserva>> listarReservasEstudante(@RequestParam Integer idEstudante){
+        List<Reserva> reservas = this.reservaService.listarReservasEstudante(idEstudante);
+
+        if(reservas.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }else if(reservas == null){
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.ok(reservas);
+    }
+
+    @GetMapping("/reservas-host")
+    public ResponseEntity<List<Reserva>> listarReservasHost(@RequestParam Integer idHost){
+        List<Reserva> reservas = this.reservaService.listarReservasHost(idHost);
+
+        if(reservas.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }else if(reservas == null){
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.ok(reservas);
+    }
 }

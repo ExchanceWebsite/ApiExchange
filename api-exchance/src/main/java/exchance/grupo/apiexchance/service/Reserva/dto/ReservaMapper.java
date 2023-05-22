@@ -8,6 +8,7 @@ public class ReservaMapper {
   public static Reserva of(ReservaDTO reservaDTO) {
     Reserva reserva = new Reserva();
 
+    reserva.setEstudante(reservaDTO.getEstudante());
     reserva.setAcomodacao(reservaDTO.getAcomodacao());
     reserva.setEntrada(reservaDTO.getEntrada());
     reserva.setHost(reservaDTO.getHost());

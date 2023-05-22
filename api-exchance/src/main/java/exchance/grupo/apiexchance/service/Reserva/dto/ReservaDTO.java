@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class ReservaDTO {
 
 
-    private Estudante estudantee;
+    private Estudante estudante;
 
 
     @FutureOrPresent
@@ -31,12 +31,12 @@ public class ReservaDTO {
     private HostFamily host;
 
 
-    public Estudante getEstudantee() {
-        return estudantee;
+    public Estudante getEstudante() {
+        return estudante;
     }
 
-    public void setEstudantee(Estudante estudantee) {
-        this.estudantee = estudantee;
+    public void setEstudante(Estudante estudante) {
+        this.estudante = estudante;
     }
 
     public void setEntrada(LocalDate entrada) {
