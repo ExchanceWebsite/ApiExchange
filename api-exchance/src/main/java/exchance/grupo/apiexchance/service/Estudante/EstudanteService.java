@@ -81,10 +81,17 @@ public class EstudanteService {
 
   }
 
-  public Estudante buscar(String email, String nome){
+
+  public Estudante buscar(String email, String nome) {
     Optional<Estudante> estudante = this.estudanteRepository.findByEmailAndNome(email, nome);
 
     return estudante.orElse(null);
+  }
+  public Integer encontrarId(String email, String senha){
+    Optional<Integer> idEstudante = this.estudanteRepository.findIdEstudanteBySenhaAndEmail(senha, email);
+
+    return idEstudante.orElse(null);
+
 
   }
 

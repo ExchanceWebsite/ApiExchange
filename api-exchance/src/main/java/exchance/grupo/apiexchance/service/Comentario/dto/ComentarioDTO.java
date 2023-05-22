@@ -9,6 +9,8 @@ import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ComentarioDTO {
 
@@ -41,7 +43,7 @@ public class ComentarioDTO {
     }
 
     public LocalDate getDataPostagem() {
-        return dataPostagem;
+        return LocalDate.parse(dataPostagem.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
 
@@ -58,6 +60,6 @@ public class ComentarioDTO {
     }
 
     public void setDataPostagem(LocalDate dataPostagem) {
-        this.dataPostagem = dataPostagem;
+        this.dataPostagem = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 }

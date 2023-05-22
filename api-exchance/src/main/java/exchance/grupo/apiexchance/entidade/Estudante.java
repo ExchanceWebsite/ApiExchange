@@ -47,9 +47,12 @@ public class Estudante {
     @OneToMany(mappedBy = "proprietario")
     private List<Comentario> comentarios;
 
+
     @OneToMany(mappedBy = "estudante")
     private List<Imagem> imagens;
 
+    @OneToMany(mappedBy = "proprietario")
+    private List<Mensagem>  mensagens;
 
 
     public Integer getIdEstudante() {
