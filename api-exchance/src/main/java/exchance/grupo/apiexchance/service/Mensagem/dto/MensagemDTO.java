@@ -58,7 +58,7 @@ public class MensagemDTO {
     }
 
     public LocalDateTime getDataMensagem() {
-        return LocalDateTime.parse(dataMensagem.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+        return dataMensagem;
     }
 
     public void setDataMensagem(LocalDateTime dataMensagem) {

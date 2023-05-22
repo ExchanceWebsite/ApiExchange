@@ -41,4 +41,19 @@ public class MensagemController {
         this.mensagemService.criar(mensagemDTO);
         return ResponseEntity.status(201).build();
     }
+
+    @GetMapping("/mensagens-destinatario-proprietario")
+    public ResponseEntity<List<Mensagem>> listarMensagensPorHostEstudante(@RequestParam Integer idHost, @RequestParam Integer idEstudante){
+
+        List<Mensagem> mensagems = this.mensagemService.listarMensagensHostEstudante(idHost, idEstudante);
+
+        if(mensagems.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }else if(mensagems == null){
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.ok(mensagems);
+
+    }
 }

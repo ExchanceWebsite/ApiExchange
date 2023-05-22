@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Mensagem {
@@ -56,8 +57,8 @@ public class Mensagem {
         this.texto = texto;
     }
 
-    public LocalDateTime getDataMensagem() {
-        return dataMensagem;
+    public String getDataMensagem() {
+        return dataMensagem.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public void setDataMensagem(LocalDateTime dataMensagem) {

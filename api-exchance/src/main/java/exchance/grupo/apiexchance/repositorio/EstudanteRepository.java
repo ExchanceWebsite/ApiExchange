@@ -10,10 +10,9 @@ public interface EstudanteRepository extends JpaRepository<Estudante, Integer > 
 
     Optional<Estudante> findByEmail(String username);
 
-<<<<<<< HEAD
+
     Optional<Estudante> findByEmailAndNome(String emai, String nome);
-=======
+
     Optional<Integer> findIdEstudanteBySenhaAndEmail(String senha, String email);
 
->>>>>>> 69206142dccc965efd966af3183b4686d5bb34ae
 }

@@ -7,6 +7,7 @@ import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLo
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteMapper;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -87,6 +88,14 @@ public class EstudanteService {
 
     return estudante.orElse(null);
   }
+
+  public Estudante buscarPorId(Integer id) {
+    Optional<Estudante> estudante = this.estudanteRepository.findById(id);
+
+    return estudante.orElse(null);
+  }
+
+
   public Integer encontrarId(String email, String senha){
     Optional<Integer> idEstudante = this.estudanteRepository.findIdEstudanteBySenhaAndEmail(senha, email);
 
