@@ -16,10 +16,15 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 
+
+
 @Service
 public class ImagemService {
     @Autowired
     private ImagemRepository imagemRepository;
+
+    private static final String CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=storageexchance;AccountKey=NPPjOKw6fSiniwyQNoPV9lY/2W4SK0LknKa0tj9tls7Rio+fIEMja+En2bWK4ZJ8C4WncOUmn4a9+ASt7JntaQ==;EndpointSuffix=core.windows.net";
+    private static final String CONTAINER_NAME = "imagens-teste";
 
     public void criarFoto(Estudante estudante, HostFamily hostFamily) throws IOException {
         final Imagem imagem = new Imagem();
@@ -57,20 +62,23 @@ public class ImagemService {
         imagem.setEstudante(estudante);
         imagem.setHostFamily(hostFamily);
 
+        try {
         // upload da imagem para o Azure Blob Storage
-        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
-                .endpoint("https://storageexchance.blob.core.windows.net/")
-                .credential(new StorageSharedKeyCredential("storageexchance", "NPPjOKw6fSiniwyQNoPV9lY/2W4SK0LknKa0tj9tls7Rio+fIEMja+En2bWK4ZJ8C4WncOUmn4a9+ASt7JntaQ=="))
-                .buildClient();
+        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(CONNECTION_STRING).buildClient();
 
-        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient("imagens-teste");
-        BlobClient blobClient = containerClient.getBlobClient(UUID.randomUUID() + file.getContentType());
+        // Obtém uma referência para o blob
+        BlobClient blobClient = blobServiceClient.getBlobContainerClient(CONTAINER_NAME)
+                .getBlobClient(file.getOriginalFilename());
 
         blobClient.upload(file.getInputStream(), file.getSize(), true);
         String url = blobClient.getBlobUrl();
 
         // set caminho da imagem na tabela Imagem
         imagem.setCaminho(url);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         this.imagemRepository.save(imagem);
     }

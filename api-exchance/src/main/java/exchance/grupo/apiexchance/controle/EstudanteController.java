@@ -3,20 +3,26 @@ package exchance.grupo.apiexchance.controle;
 
 
 import exchance.grupo.apiexchance.entidade.Estudante;
-import exchance.grupo.apiexchance.entidade.Integrante;
+
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
 import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
 import exchance.grupo.apiexchance.service.Imagem.ImagemService;
-import exchance.grupo.apiexchance.service.Imagem.dto.ImagemDTO;
+
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
 
 import java.io.IOException;
 import java.util.List;
