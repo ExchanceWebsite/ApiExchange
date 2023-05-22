@@ -11,4 +11,6 @@ public interface HostFamilyRepository extends JpaRepository<HostFamily, Integer>
     Optional<HostFamily> findBySenhaAndEmail(String senha, String email);
 
     Optional<HostFamily> findByEmail(String email);
+
+    Optional<HostFamily> findByEmailAndNome(String email, String nome);
 }

@@ -8,6 +8,7 @@ import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTo
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -77,6 +78,13 @@ public class EstudanteService {
     this.estudanteRepository.save(estudanteEncontrado.get());
 
     return estudanteEncontrado.get();
+
+  }
+
+  public Estudante buscar(String email, String nome){
+    Optional<Estudante> estudante = this.estudanteRepository.findByEmailAndNome(email, nome);
+
+    return estudante.orElse(null);
 
   }
 

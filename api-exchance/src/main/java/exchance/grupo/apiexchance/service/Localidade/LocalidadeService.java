@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 
 
 @Service
@@ -25,5 +26,18 @@ public class LocalidadeService {
 
 
     this.localidadeRepository.save(novaLocalidade);
+  }
+
+
+  public Localidade buscarLocalidadePorEndereco(String endereco){
+
+    Optional<Localidade> enderecoEncontrado = this.localidadeRepository.findByEndereco(endereco);
+
+    if(enderecoEncontrado.isEmpty()){
+      return null;
+    }
+
+    return enderecoEncontrado.get();
+
   }
 }

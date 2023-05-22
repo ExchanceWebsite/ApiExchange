@@ -41,6 +41,13 @@ public class HostFamily {
     @OneToMany(mappedBy = "destinatario")
     private List<Comentario> comentarios;
 
+    @OneToMany(mappedBy = "hostFamily")
+    private List<Imagem> imagens;
+
+    public List<Integrante> pegarIntegrantes(){
+        return this.integrantes;
+    }
+
     public Integer getIdHostFamily() {
         return idHostFamily;
     }

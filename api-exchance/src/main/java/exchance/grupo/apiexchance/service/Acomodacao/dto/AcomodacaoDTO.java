@@ -2,6 +2,7 @@ package exchance.grupo.apiexchance.service.Acomodacao.dto;
 
 import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.entidade.HostFamily;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -20,7 +21,7 @@ public class AcomodacaoDTO {
     private LocalDate inicioDisponibilidade;
 
 
-    @PastOrPresent
+    @FutureOrPresent
     private LocalDate fimDisponibilidade;
 
 

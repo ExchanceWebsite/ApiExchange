@@ -8,10 +8,6 @@ import jakarta.validation.constraints.Size;
 
 public class IntegranteDTO {
 
-    private Integer idIntegrante;
-
-
-
     @Size(min = 3)
     private String nome;
 
@@ -25,10 +21,6 @@ public class IntegranteDTO {
 
     private HostFamily host;
 
-
-    public Integer getIdIntegrante() {
-        return idIntegrante;
-    }
 
     public String getNome() {
         return nome;

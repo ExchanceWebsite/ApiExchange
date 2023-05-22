@@ -9,6 +9,7 @@ import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamily
 import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyTokenDto;
 import exchance.grupo.apiexchance.service.hostFamily.dto.HostFamilyDTO;
 import exchance.grupo.apiexchance.service.hostFamily.dto.HostFamilyMapper;
+import org.hibernate.id.IncrementGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -78,6 +79,20 @@ public class HostFamilyService {
         this.hostFamilyRepository.save(hostEncontrado.get());
 
         return hostEncontrado.get();
+
+    }
+
+    public HostFamily buscar(String email, String nome){
+        Optional<HostFamily> hostFamily = this.hostFamilyRepository.findByEmailAndNome(email, nome);
+
+        return hostFamily.orElse(null);
+
+    }
+
+    public HostFamily buscarPorID(Integer id){
+        Optional<HostFamily> hostFamily = this.hostFamilyRepository.findById(id);
+
+        return hostFamily.orElse(null);
 
     }
 

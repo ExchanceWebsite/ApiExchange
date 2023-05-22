@@ -1,6 +1,8 @@
 package exchance.grupo.apiexchance.controle;
 
+import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
+import exchance.grupo.apiexchance.entidade.Integrante;
 import exchance.grupo.apiexchance.repositorio.HostFamilyRepository;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,4 +78,53 @@ public class HostFamilyController {
 
         return ResponseEntity.status(200).body(this.hostFamilyService.atualizar(id, hostFamilyDTO));
     }
+
+    @GetMapping("/host")
+    public ResponseEntity<HostFamily> buscar(@RequestParam String emai, @RequestParam String nome){
+
+       HostFamily hostFamily = this.hostFamilyService.buscar(emai, nome);
+
+
+        if(hostFamily == null){
+            return  ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.ok(hostFamily);
+    }
+
+    @GetMapping("/id")
+    public ResponseEntity<Integer> buscarId(@RequestParam String emai, @RequestParam String nome){
+
+        HostFamily hostFamily = this.hostFamilyService.buscar(emai, nome);
+
+
+        if(hostFamily == null){
+            return  ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.ok(hostFamily.getIdHostFamily());
+    }
+
+
+    @GetMapping("/integrantes-nomes")
+    public ResponseEntity<List<String>> buscrIntegrantesNomes(@RequestParam Integer idHost){
+
+        Optional<HostFamily> hostFamily = Optional.ofNullable(this.hostFamilyService.buscarPorID(idHost));
+
+        List<Integrante> integrantes = hostFamily.get().pegarIntegrantes();
+
+        if(hostFamily.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+
+        List<String> nomes = new ArrayList<>();
+
+        for (int i = 0; i < integrantes.size(); i++ ){
+            nomes.add(integrantes.get(i).getNome());
+        }
+
+        return ResponseEntity.ok(nomes);
+
+    }
+
 }

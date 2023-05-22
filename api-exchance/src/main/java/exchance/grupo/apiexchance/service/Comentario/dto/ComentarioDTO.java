@@ -1,5 +1,6 @@
 package exchance.grupo.apiexchance.service.Comentario.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import exchance.grupo.apiexchance.entidade.Comentario;
 import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
@@ -12,8 +13,6 @@ import java.time.LocalDate;
 public class ComentarioDTO {
 
     private Integer idComentario;
-
-
 
     private Estudante proprietario;
 

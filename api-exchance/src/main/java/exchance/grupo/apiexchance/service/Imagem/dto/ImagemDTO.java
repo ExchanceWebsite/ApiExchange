@@ -1,52 +1,29 @@
-package exchance.grupo.apiexchance.entidade;
+package exchance.grupo.apiexchance.service.Imagem.dto;
 
-
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
+import exchance.grupo.apiexchance.entidade.Estudante;
+import exchance.grupo.apiexchance.entidade.HostFamily;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.boot.autoconfigure.web.WebProperties;
+import jakarta.validation.constraints.NotNull;
 
-import java.sql.Blob;
-import java.util.Scanner;
-
-
-@Entity
-public class Imagem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idImagem;
-
+public class ImagemDTO {
 
     private String nome;
 
-
+    @NotBlank
     private String caminho;
 
-
+    @NotNull
     private boolean isDocumento;
 
-
+    @NotNull
     private boolean isFoto;
 
-    @ManyToOne
+
     private Estudante estudante;
 
-    @ManyToOne
+
     private HostFamily hostFamily;
-
-    // getters e setters
-
-    // outros métodos, se necessário
-
-
-    public Integer getIdImagem() {
-        return idImagem;
-    }
-
-    public void setIdImagem(Integer idImagem) {
-        this.idImagem = idImagem;
-    }
 
     public String getNome() {
         return nome;
