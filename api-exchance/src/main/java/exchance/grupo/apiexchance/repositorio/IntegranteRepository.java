@@ -8,4 +8,7 @@ import java.util.Optional;
 
 public interface IntegranteRepository extends JpaRepository<Integrante, Integer> {
     Optional<Integrante> findIdIntegranteByNome(String nome);
+
+    Optional<Integrante> findIdIntegranteByNomeAndHost(String nome, Integer idHost);
+
 }

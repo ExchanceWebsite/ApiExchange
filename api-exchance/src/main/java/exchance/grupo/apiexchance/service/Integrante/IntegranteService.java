@@ -37,6 +37,18 @@ public class IntegranteService {
 
   }
 
+  public Integrante buscarIdPorNomeHost(String nome, Integer idHost){
+
+    Optional<Integrante> integrante = this.integranteRepository.findIdIntegranteByNomeAndHost(nome, idHost);
+
+    if(integrante.isEmpty()){
+      return null;
+    }
+
+    return integrante.get();
+
+  }
+
 
   public void remover(Integrante integrante){
 

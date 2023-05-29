@@ -17,8 +17,6 @@ import java.util.List;
 @RequestMapping("/integrantes")
 public class IntegranteController {
 
-    private FilaObj filaObj = new FilaObj<>(15);
-
     @Autowired
     private IntegranteRepository integranteRepository;
 
@@ -37,27 +35,11 @@ public class IntegranteController {
         return ResponseEntity.status(200).body(integrantes);
     }
 
-    @PostMapping
+    @PostMapping("/add-integrante")
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid IntegranteDTO integranteDTO) {
         this.integranteService.criar(integranteDTO);
 
-        this.filaObj.insert(integranteDTO);
 
         return ResponseEntity.status(201).build();
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Void> remover(@RequestParam String nome){
-        Integrante integrante = this.integranteService.buscarIdPorNome(nome);
-
-        this.filaObj.poll();
-
-        if(integrante == null){
-            return ResponseEntity.status(400).build();
-        }
-
-        this.integranteService.remover(integrante);
-
-        return ResponseEntity.ok().build();
     }
 }

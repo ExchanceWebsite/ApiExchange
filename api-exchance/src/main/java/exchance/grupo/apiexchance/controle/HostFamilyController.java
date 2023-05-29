@@ -3,10 +3,13 @@ package exchance.grupo.apiexchance.controle;
 import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.entidade.Integrante;
+import exchance.grupo.apiexchance.lista.FilaObj;
 import exchance.grupo.apiexchance.repositorio.HostFamilyRepository;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
+import exchance.grupo.apiexchance.service.Integrante.IntegranteService;
+import exchance.grupo.apiexchance.service.Integrante.dto.IntegranteDTO;
 import exchance.grupo.apiexchance.service.hostFamily.HostFamilyService;
 import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyLoginDto;
 import exchance.grupo.apiexchance.service.hostFamily.autenticacao.dto.HostFamilyTokenDto;
@@ -25,11 +28,17 @@ import java.util.Optional;
 @RequestMapping("/hosts")
 public class HostFamilyController {
 
+    private FilaObj<Integrante> filaObj = new FilaObj<>(20);
+
+
     @Autowired
     private HostFamilyRepository hostFamilyRepository;
 
     @Autowired
     private HostFamilyService hostFamilyService;
+
+    @Autowired
+    private IntegranteService integranteService;
 
     @GetMapping
     public ResponseEntity<List<HostFamily>> listar() {
@@ -120,11 +129,23 @@ public class HostFamilyController {
         List<String> nomes = new ArrayList<>();
 
         for (int i = 0; i < integrantes.size(); i++ ){
+            if(filaObj.isEmpty()){
+                nomes.add(integrantes.get(i).getNome());
+                filaObj.insert(integrantes.get(i));
+            }
             nomes.add(integrantes.get(i).getNome());
         }
 
         return ResponseEntity.ok(nomes);
 
+    }
+
+    @DeleteMapping("remove-integrante")
+    public ResponseEntity<Void> remover(){
+
+        this.integranteService.remover(filaObj.poll());
+
+        return ResponseEntity.ok().build();
     }
 
 }
