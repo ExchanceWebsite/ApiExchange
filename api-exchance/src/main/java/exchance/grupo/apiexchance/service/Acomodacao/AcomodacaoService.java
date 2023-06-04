@@ -17,9 +17,11 @@ import java.util.List;
 @Service
 public class AcomodacaoService {
 
-  @Autowired
-  private AcomodacaoRepository acomodacaoRepository;
+  private final AcomodacaoRepository acomodacaoRepository;
 
+  public AcomodacaoService(AcomodacaoRepository acomodacaoRepository) {
+    this.acomodacaoRepository = acomodacaoRepository;
+  }
 
   public void criar(AcomodacaoDTO acomodacaoDTO) {
     final Acomodacao novaAcomodacao = AcomodacaoMapper.of(acomodacaoDTO);

@@ -18,14 +18,15 @@ import java.util.Optional;
 @Service
 public class ReservaService {
 
-  @Autowired
-  private ReservaRepository reservaRepository;
+  private final ReservaRepository reservaRepository;
+  private final EstudanteService estudanteService;
+  private final HostFamilyService hostFamilyService;
 
-  @Autowired
-  private EstudanteService estudanteService;
-
-  @Autowired
-  private HostFamilyService hostFamilyService;
+  public ReservaService(ReservaRepository reservaRepository, EstudanteService estudanteService, HostFamilyService hostFamilyService) {
+    this.reservaRepository = reservaRepository;
+    this.estudanteService = estudanteService;
+    this.hostFamilyService = hostFamilyService;
+  }
 
 
   public void criar(ReservaDTO reservaDTO) {

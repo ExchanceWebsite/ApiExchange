@@ -43,7 +43,7 @@ public class ComentarioDTO {
     }
 
     public LocalDate getDataPostagem() {
-        return LocalDate.parse(dataPostagem.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        return dataPostagem;
     }
 
 
@@ -60,6 +60,7 @@ public class ComentarioDTO {
     }
 
     public void setDataPostagem(LocalDate dataPostagem) {
-        this.dataPostagem = LocalDate.parse(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+        this.dataPostagem = dataPostagem;
     }
 }

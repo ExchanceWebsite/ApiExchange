@@ -24,18 +24,21 @@ import java.util.Optional;
 @Service
 public class EstudanteService {
 
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+  private final PasswordEncoder passwordEncoder;
+  private final EstudanteRepository estudanteRepository;
+  private final GerenciadorTokenJwt gerenciadorTokenJwt;
+  private final AuthenticationManager authenticationManager;
 
-  @Autowired
-  private EstudanteRepository estudanteRepository;
-
-  @Autowired
-  private GerenciadorTokenJwt gerenciadorTokenJwt;
-
-  @Autowired
-  private AuthenticationManager authenticationManager;
-
+  public EstudanteService(
+          PasswordEncoder passwordEncoder,
+          EstudanteRepository estudanteRepository,
+          GerenciadorTokenJwt gerenciadorTokenJwt,
+          AuthenticationManager authenticationManager) {
+    this.passwordEncoder = passwordEncoder;
+    this.estudanteRepository = estudanteRepository;
+    this.gerenciadorTokenJwt = gerenciadorTokenJwt;
+    this.authenticationManager = authenticationManager;
+  }
   public void criar(EstudanteDTO estudanteDTO) {
     final Estudante novoEstudante = EstudanteMapper.of(estudanteDTO);
 
@@ -108,6 +111,7 @@ public class EstudanteService {
 
     final UsernamePasswordAuthenticationToken credentials = new UsernamePasswordAuthenticationToken(
             estudanteLoginDto.getEmail(), estudanteLoginDto.getSenha());
+
 
     final Authentication authentication = this.authenticationManager.authenticate(credentials);
 

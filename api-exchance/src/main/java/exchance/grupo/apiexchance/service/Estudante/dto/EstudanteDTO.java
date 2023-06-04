@@ -49,6 +49,10 @@ public class EstudanteDTO {
         this.cpf = cpf;
     }
 
+    public EstudanteDTO() {
+
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }

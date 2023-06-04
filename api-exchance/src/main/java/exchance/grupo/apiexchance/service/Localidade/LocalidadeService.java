@@ -16,9 +16,11 @@ import java.util.Optional;
 public class LocalidadeService {
 
 
-  @Autowired
-  private LocalidadeRepository localidadeRepository;
+  private final LocalidadeRepository localidadeRepository;
 
+  public LocalidadeService(LocalidadeRepository localidadeRepository) {
+    this.localidadeRepository = localidadeRepository;
+  }
 
 
   public void criar(LocalidadeDTO localidadeDTO) {

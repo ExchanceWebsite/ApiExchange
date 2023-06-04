@@ -1,6 +1,5 @@
 package exchance.grupo.apiexchance.service.Integrante;
 
-import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.Integrante;
 import exchance.grupo.apiexchance.repositorio.IntegranteRepository;
 import exchance.grupo.apiexchance.service.Integrante.dto.IntegranteDTO;
@@ -15,9 +14,11 @@ import java.util.Optional;
 public class IntegranteService {
 
 
-  @Autowired
-  private IntegranteRepository integranteRepository;
+  private final IntegranteRepository integranteRepository;
 
+  public IntegranteService(IntegranteRepository integranteRepository) {
+    this.integranteRepository = integranteRepository;
+  }
 
   public void criar(IntegranteDTO integranteDTO) {
     final Integrante novoIntegrante = IntegranteMapper.of(integranteDTO);

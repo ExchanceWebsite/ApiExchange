@@ -22,12 +22,16 @@ import java.util.Optional;
 @Service
 public class MensagemService {
 
+    private final MensagemRepository mensagemRepository;
+    private final EstudanteService estudanteService;
+    private final HostFamilyService hostFamilyService;
+
     @Autowired
-    MensagemRepository mensagemRepository;
-    @Autowired
-    EstudanteService estudanteService;
-    @Autowired
-    HostFamilyService hostFamilyService;
+    public MensagemService(MensagemRepository mensagemRepository, EstudanteService estudanteService, HostFamilyService hostFamilyService) {
+        this.mensagemRepository = mensagemRepository;
+        this.estudanteService = estudanteService;
+        this.hostFamilyService = hostFamilyService;
+    }
 
     public void criar(MensagemDTO mensagemDTO) {
         final Mensagem novaMensagem = MensagemMapper.of(mensagemDTO);
