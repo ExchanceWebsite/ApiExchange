@@ -42,7 +42,7 @@ public class Estudante {
     private Localidade localidade;
 
     @OneToMany(mappedBy = "estudante")
-    private List<Reserva> reservas;
+    private List<Reserva> reserva;
 
     @OneToMany(mappedBy = "proprietario")
     private List<Comentario> comentarios;

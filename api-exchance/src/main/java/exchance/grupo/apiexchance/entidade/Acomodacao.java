@@ -16,6 +16,9 @@ public class Acomodacao {
     @ManyToOne
     private HostFamily host;
 
+    @OneToOne(mappedBy = "acomodacao")
+    private Reserva reserva;
+
 
     private String descricao;
 
@@ -30,6 +33,14 @@ public class Acomodacao {
 
 
     private String regras;
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
 
     public Integer getIdAcomodacao() {
         return idAcomodacao;

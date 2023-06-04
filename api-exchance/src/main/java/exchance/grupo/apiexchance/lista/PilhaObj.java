@@ -1,11 +1,16 @@
 package exchance.grupo.apiexchance.lista;
 
+import exchance.grupo.apiexchance.entidade.Reserva;
+import org.springframework.stereotype.Component;
+
+@Component
 public class PilhaObj<T> {
 
+    private static final int capacidade = 50;
     private T[] pilha;
     private int topo;
 
-    public PilhaObj(int capacidade) {
+    public PilhaObj() {
         this.topo = -1;
         this.pilha = (T[]) new Object[capacidade];
 
@@ -27,11 +32,13 @@ public class PilhaObj<T> {
 
     }
 
-    public T pop() {
+    public T  pop() {
         if (isEmpty()){
-            System.out.println("Pilha vazia!");
+            throw new RuntimeException("A pilha está vazia!");
         }
-        return pilha[topo--];
+        T elemento = pilha[topo];
+        topo--;
+        return elemento;
 
     }
 

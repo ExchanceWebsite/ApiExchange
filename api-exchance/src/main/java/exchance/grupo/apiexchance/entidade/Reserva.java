@@ -28,7 +28,8 @@ public class Reserva {
     private String formaPagamento;
 
 
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "acomodacao")
     private Acomodacao acomodacao;
 
     @ManyToOne
