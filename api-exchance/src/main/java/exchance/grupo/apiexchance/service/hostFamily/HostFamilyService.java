@@ -89,10 +89,10 @@ public class HostFamilyService {
 
     }
 
-    public HostFamily buscarPorID(Integer id){
+    public Optional<HostFamily> buscarPorID(Integer id){
         Optional<HostFamily> hostFamily = this.hostFamilyRepository.findById(id);
 
-        return hostFamily.orElse(null);
+        return hostFamily;
 
     }
 

@@ -118,34 +118,40 @@ public class HostFamilyController {
     @GetMapping("/integrantes-nomes")
     public ResponseEntity<List<String>> buscrIntegrantesNomes(@RequestParam Integer idHost){
 
-        Optional<HostFamily> hostFamily = Optional.ofNullable(this.hostFamilyService.buscarPorID(idHost));
+        Optional<HostFamily> hostFamily = this.hostFamilyService.buscarPorID(idHost);
 
         List<Integrante> integrantes = hostFamily.get().pegarIntegrantes();
 
         if(hostFamily.isEmpty()) {
-            return ResponseEntity.status(204).build();
+            return ResponseEntity.status(400).build();
         }
 
         List<String> nomes = new ArrayList<>();
 
         for (int i = 0; i < integrantes.size(); i++ ){
-            if(filaObj.isEmpty()){
+            if(filaObj.isEmpty()) {
                 nomes.add(integrantes.get(i).getNome());
                 filaObj.insert(integrantes.get(i));
             }
-            nomes.add(integrantes.get(i).getNome());
         }
 
-        return ResponseEntity.ok(nomes);
+        if(nomes.size() >= 1){
+            return ResponseEntity.ok(nomes);
+        }
 
+       return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("remove-integrante")
     public ResponseEntity<Void> remover(){
 
-        this.integranteService.remover(filaObj.poll());
+        if(filaObj.getTamanho() == 1){
+            this.integranteService.remover(filaObj.poll());
+            return ResponseEntity.ok().build();
+        }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
+
     }
 
 }

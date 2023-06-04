@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -50,11 +51,11 @@ public class ReservaService {
 
   public List<Reserva> listarReservasHost(Integer idHost){
 
-    HostFamily hostFamily = this.hostFamilyService.buscarPorID(idHost);
+    Optional<HostFamily> hostFamily = this.hostFamilyService.buscarPorID(idHost);
 
-    List<Reserva> Reservas = this.reservaRepository.findAllByHost(hostFamily);
+    List<Reserva> Reservas = this.reservaRepository.findAllByHost(hostFamily.get());
 
-    if(hostFamily == null || Reservas.isEmpty()){
+    if(hostFamily.isEmpty() || Reservas.isEmpty()){
       return null;
     }
 

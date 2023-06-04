@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MensagemService {
@@ -36,15 +37,15 @@ public class MensagemService {
 
     public List<Mensagem> listarMensagensHostEstudante(Integer idHost, Integer idEstudante){
 
-        HostFamily hostEncontrada = this.hostFamilyService.buscarPorID(idHost);
+        Optional<HostFamily> hostEncontrada = this.hostFamilyService.buscarPorID(idHost);
 
         Estudante estudanteEncontrado = this.estudanteService.buscarPorId(idEstudante);
 
-        if(hostEncontrada == null || estudanteEncontrado == null){
+        if(hostEncontrada.isEmpty() || estudanteEncontrado == null){
             return null;
         }
 
-        List<Mensagem> Mensagens = this.mensagemRepository.findAllByDestinatarioAndProprietario(hostEncontrada, estudanteEncontrado);
+        List<Mensagem> Mensagens = this.mensagemRepository.findAllByDestinatarioAndProprietario(hostEncontrada.get(), estudanteEncontrado);
 
         return Mensagens;
     }

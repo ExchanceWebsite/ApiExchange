@@ -122,8 +122,8 @@ public class EstudanteController {
 
 
     @PostMapping("/upload-documento")
-    public ResponseEntity<Void> uploadDocumento(@RequestParam("file") MultipartFile file) throws IOException {
-        this.imagemService.criarDocumento(file, null, null);
+    public ResponseEntity<Void> uploadDocumento(@RequestParam MultipartFile image) throws IOException {
+        this.imagemService.criarDocumento(image, null, null);
 
 
         return ResponseEntity.ok().build();

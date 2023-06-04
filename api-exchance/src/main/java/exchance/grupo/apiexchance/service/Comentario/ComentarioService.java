@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -30,11 +31,11 @@ public class ComentarioService {
 
   public List<Comentario> listarComentariosHost(Integer idHost){
 
-    HostFamily hostEncontrada = this.hostFamilyService.buscarPorID(idHost);
+    Optional<HostFamily> hostEncontrada = this.hostFamilyService.buscarPorID(idHost);
 
-    List<Comentario> Comentarios = this.comentarioRepository.findAllByDestinatario(hostEncontrada);
+    List<Comentario> Comentarios = this.comentarioRepository.findAllByDestinatario(hostEncontrada.get());
 
-    if(Comentarios.isEmpty() || hostEncontrada == null){
+    if(Comentarios.isEmpty() || hostEncontrada.isEmpty()){
       return null;
     }
 

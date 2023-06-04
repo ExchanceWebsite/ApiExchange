@@ -1,9 +1,9 @@
 package exchance.grupo.apiexchance.service.Imagem;
 
-import com.azure.storage.blob.BlobClient;
-import com.azure.storage.blob.BlobContainerClient;
-import com.azure.storage.blob.BlobServiceClient;
-import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.core.http.rest.Response;
+import com.azure.storage.blob.*;
+import com.azure.storage.blob.models.BlockBlobItem;
+import com.azure.storage.blob.options.BlobParallelUploadOptions;
 import com.azure.storage.common.StorageSharedKeyCredential;
 import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
@@ -12,7 +12,11 @@ import exchance.grupo.apiexchance.repositorio.ImagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -53,32 +57,47 @@ public class ImagemService {
         this.imagemRepository.save(imagem);
     }
 
-    public void criarDocumento(MultipartFile file, Estudante estudante, HostFamily hostFamily) throws IOException {
+    public void criarDocumento(MultipartFile image, Estudante estudante, HostFamily hostFamily) throws IOException {
+        byte[] bytes = image.getBytes();
+        if (bytes.length == 0) {
+            throw new IOException("Imagen not content blob");
+        }
+
+        String fileName = LocalDateTime.now() + image.getOriginalFilename();
+
+        String constr = "DefaultEndpointsProtocol=https;" +
+                "AccountName=storageexchance;" +
+                "AccountKey=NPPjOKw6fSiniwyQNoPV9lY/2W4SK0LknKa0tj9tls7Rio+fIEMja+En2bWK4ZJ8C4WncOUmn4a9+ASt7JntaQ==;" +
+                "EndpointSuffix=core.windows.net";
+
         final Imagem imagem = new Imagem();
 
-        imagem.setNome(file.getName());
+        imagem.setNome(image.getOriginalFilename());
         imagem.setDocumento(true);
         imagem.setFoto(false);
         imagem.setEstudante(estudante);
         imagem.setHostFamily(hostFamily);
 
-        try {
-        // upload da imagem para o Azure Blob Storage
-        BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(CONNECTION_STRING).buildClient();
+        BlobContainerClient container = new BlobContainerClientBuilder()
+                .connectionString(constr)
+                .containerName("ezschedules")
+                .buildClient();
 
-        // Obtém uma referência para o blob
-        BlobClient blobClient = blobServiceClient.getBlobContainerClient(CONTAINER_NAME)
-                .getBlobClient(file.getOriginalFilename());
+        BlobClient blob = container.getBlobClient(fileName);
 
-        blobClient.upload(file.getInputStream(), file.getSize(), true);
-        String url = blobClient.getBlobUrl();
+        Response<BlockBlobItem> response =
+                blob.uploadWithResponse(
+                        new BlobParallelUploadOptions(new ByteArrayInputStream(bytes), bytes.length),
+                        Duration.ofHours(5),
+                        null);
 
-        // set caminho da imagem na tabela Imagem
-        imagem.setCaminho(url);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (response.getStatusCode() != 201) {
+            throw new IOException("request failed");
         }
+
+        String url = blob.getBlobUrl();
+
+        imagem.setCaminho(url);
 
         this.imagemRepository.save(imagem);
     }
