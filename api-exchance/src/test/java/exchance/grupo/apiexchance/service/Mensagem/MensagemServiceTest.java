@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,9 +44,11 @@ class MensagemServiceTest {
     void testCriarMensagem() {
         MensagemDTO mensagemDTO = new MensagemDTO();
         mensagemDTO.setTexto("Hello");
+        mensagemDTO.setDataMensagem(LocalDate.now().atStartOfDay());
 
         Mensagem mensagem = new Mensagem();
         mensagem.setTexto("Hello");
+        mensagem.setDataMensagem(LocalDate.now().atStartOfDay());
 
         when(mensagemRepository.save(any(Mensagem.class))).thenReturn(mensagem);
 

@@ -42,7 +42,9 @@ public class ReservaService {
 
     List<Reserva> Reservas = this.reservaRepository.findAllByEstudante(estudante);
 
-    if(estudante == null || Reservas.isEmpty()){
+    if(Reservas.size() >= 1){
+      return Reservas;
+    }else if(estudante == null){
       return null;
     }
 
@@ -56,7 +58,9 @@ public class ReservaService {
 
     List<Reserva> Reservas = this.reservaRepository.findAllByHost(hostFamily.get());
 
-    if(hostFamily.isEmpty() || Reservas.isEmpty()){
+    if(Reservas.size() >= 1){
+      return Reservas;
+    }else if(hostFamily == null){
       return null;
     }
 
