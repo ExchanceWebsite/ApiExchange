@@ -7,30 +7,32 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
+@Table(name = "Localidade")
 public class Localidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idLocalidade")
     private Integer idLocalidade;
 
-
+    @Column(name = "pais")
     private String pais;
 
-
+    @Column(name = "cidade")
     private String cidade;
 
-
+    @Column(name = "endereco")
     private String endereco;
 
-
+    @Column(name = "cep")
     private String cep;
-
 
     @OneToMany(mappedBy = "localidade")
     private List<Estudante> estudantes;
 
     @OneToMany(mappedBy = "localidade")
     private List<HostFamily> hosts;
+
 
     public Integer getIdLocalidade() {
         return idLocalidade;

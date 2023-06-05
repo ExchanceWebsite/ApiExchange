@@ -10,24 +10,28 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Comentario")
 public class Comentario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idComentario")
     private Integer idComentario;
 
-
     @ManyToOne
+    @JoinColumn(name = "fkProprietario")
     private Estudante proprietario;
 
     @ManyToOne
+    @JoinColumn(name = "fkDestinatario")
     private HostFamily destinatario;
 
-
+    @Column(name = "comentario")
     private String Comentario;
 
-
+    @Column(name = "dataPostagem")
     private LocalDate dataPostagem;
+
 
     public Integer getIdComentario() {
         return idComentario;

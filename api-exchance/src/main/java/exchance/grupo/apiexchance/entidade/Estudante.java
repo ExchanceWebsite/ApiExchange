@@ -7,38 +7,37 @@ import org.hibernate.validator.constraints.br.CPF;
 import java.util.List;
 
 @Entity
+@Table(name = "Estudante")
 public class Estudante {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idEstudante")
     private Integer idEstudante;
 
-
+    @Column(name = "nome")
     private String nome;
 
-
+    @Column(name = "idade")
     private Integer idade;
 
-
+    @Column(name = "descricao")
     private String descricao;
 
-
-
+    @Column(name = "email")
     private String email;
 
-
-
+    @Column(name = "senha")
     private String senha;
 
-
+    @Column(name = "telefone")
     private String telefone;
 
-
+    @Column(name = "cpf")
     private String cpf;
 
-
     @ManyToOne
+    @JoinColumn(name = "fkLocalidade")
     private Localidade localidade;
 
     @OneToMany(mappedBy = "estudante")
@@ -47,12 +46,11 @@ public class Estudante {
     @OneToMany(mappedBy = "proprietario")
     private List<Comentario> comentarios;
 
-
     @OneToMany(mappedBy = "estudante")
     private List<Imagem> imagens;
 
     @OneToMany(mappedBy = "proprietario")
-    private List<Mensagem>  mensagens;
+    private List<Mensagem> mensagens;
 
 
     public Integer getIdEstudante() {

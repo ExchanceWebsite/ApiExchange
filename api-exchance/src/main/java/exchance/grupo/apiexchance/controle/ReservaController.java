@@ -61,26 +61,24 @@ public class ReservaController {
     public ResponseEntity<List<Reserva>> listarReservasEstudante(@RequestParam Integer idEstudante){
         List<Reserva> reservas = this.reservaService.listarReservasEstudante(idEstudante);
 
-        if(reservas.isEmpty()){
-            return ResponseEntity.status(204).build();
-        }else if(reservas == null){
-            return ResponseEntity.status(400).build();
+        if(reservas.size() >= 1){
+            return ResponseEntity.ok(reservas);
+
         }
 
-        return ResponseEntity.ok(reservas);
+        return ResponseEntity.status(204).build();
     }
 
     @GetMapping("/reservas-host")
     public ResponseEntity<List<Reserva>> listarReservasHost(@RequestParam Integer idHost){
         List<Reserva> reservas = this.reservaService.listarReservasHost(idHost);
 
-        if(reservas.isEmpty()){
-            return ResponseEntity.status(204).build();
-        }else if(reservas == null){
-            return ResponseEntity.status(400).build();
+        if(reservas.size() >= 1){
+            return ResponseEntity.ok(reservas);
+
         }
 
-        return ResponseEntity.ok(reservas);
+        return ResponseEntity.status(204).build();
     }
 
     @DeleteMapping("/{id}")

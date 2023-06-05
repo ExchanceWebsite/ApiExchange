@@ -7,23 +7,26 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
+@Table(name = "Mensagem")
 public class Mensagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idMensagem")
     private Integer idMensagem;
 
-
     @ManyToOne
+    @JoinColumn(name = "fkProprietario")
     private Estudante proprietario;
 
     @ManyToOne
+    @JoinColumn(name = "fkDestinatario")
     private HostFamily destinatario;
 
-
+    @Column(name = "texto")
     private String texto;
 
-
-    private LocalDateTime dataMensagem;
+    @Column(name = "dataMensagem")
+    private LocalDate dataMensagem;
 
     public Integer getIdMensagem() {
         return idMensagem;
@@ -62,6 +65,6 @@ public class Mensagem {
     }
 
     public void setDataMensagem(LocalDateTime dataMensagem) {
-        this.dataMensagem = dataMensagem;
+        this.dataMensagem = LocalDate.from(dataMensagem);
     }
 }

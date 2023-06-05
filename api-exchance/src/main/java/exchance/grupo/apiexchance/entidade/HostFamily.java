@@ -8,28 +8,31 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
+@Table(name = "HostFamily")
 public class HostFamily {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idHostFamily")
     private Integer idHostFamily;
 
-
+    @Column(name = "nome")
     private String nome;
 
-
+    @Column(name = "verificado")
     private String verificado;
 
-
+    @Column(name = "descricao")
     private String descricao;
 
-
+    @Column(name = "email")
     private String email;
 
-
+    @Column(name = "senha")
     private String senha;
 
     @ManyToOne
+    @JoinColumn(name = "fkLocalidade")
     private Localidade localidade;
 
     @OneToMany(mappedBy = "host")
@@ -41,16 +44,15 @@ public class HostFamily {
     @OneToMany(mappedBy = "destinatario")
     private List<Comentario> comentarios;
 
-
     @OneToMany(mappedBy = "hostFamily")
     private List<Imagem> imagens;
 
-    public List<Integrante> pegarIntegrantes(){
-        return this.integrantes;
-    }
-
     @OneToMany(mappedBy = "destinatario")
     private List<Mensagem> mensagens;
+
+    public List<Integrante> pegarIntegrantes() {
+        return this.integrantes;
+    }
 
 
     public Integer getIdHostFamily() {

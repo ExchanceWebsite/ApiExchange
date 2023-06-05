@@ -7,22 +7,25 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "Integrante")
 public class Integrante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idIntegrante")
     private Integer idIntegrante;
 
-
+    @Column(name = "nome")
     private String nome;
 
-
+    @Column(name = "parentesco")
     private String parentesco;
 
-
+    @Column(name = "idade")
     private Integer idade;
 
     @ManyToOne
+    @JoinColumn(name = "fkHost")
     private HostFamily host;
 
     public Integer getIdIntegrante() {

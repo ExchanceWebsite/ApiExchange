@@ -7,31 +7,34 @@ import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Acomodacao")
 public class Acomodacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idAcomodacao")
     private Integer idAcomodacao;
 
     @ManyToOne
+    @JoinColumn(name = "fkHost")
     private HostFamily host;
 
     @OneToOne(mappedBy = "acomodacao")
     private Reserva reserva;
 
-
+    @Column(name = "descricao")
     private String descricao;
 
-
+    @Column(name = "inicioDisponibilidade")
     private LocalDate inicioDisponibilidade;
 
-
+    @Column(name = "fimDisponibilidade")
     private LocalDate fimDisponibilidade;
 
-
+    @Column(name = "valorDiaria")
     private Double valorDiaria;
 
-
+    @Column(name = "regras")
     private String regras;
 
     public Reserva getReserva() {

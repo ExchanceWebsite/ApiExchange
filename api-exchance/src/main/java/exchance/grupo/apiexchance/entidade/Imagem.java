@@ -11,34 +11,33 @@ import java.util.Scanner;
 
 
 @Entity
+@Table(name = "Imagem")
 public class Imagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idImagem")
     private Integer idImagem;
 
-
+    @Column(name = "nome")
     private String nome;
 
-
+    @Column(name = "caminho")
     private String caminho;
 
-
+    @Column(name = "isDocumento")
     private boolean isDocumento;
 
-
+    @Column(name = "isFoto")
     private boolean isFoto;
 
     @ManyToOne
+    @JoinColumn(name = "fkEstudante")
     private Estudante estudante;
 
     @ManyToOne
+    @JoinColumn(name = "fkHost")
     private HostFamily hostFamily;
-
-    // getters e setters
-
-    // outros métodos, se necessário
-
 
     public Integer getIdImagem() {
         return idImagem;
