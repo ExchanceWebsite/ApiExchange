@@ -11,6 +11,9 @@ import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTo
 import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
 import exchance.grupo.apiexchance.service.Imagem.ImagemService;
 
+import exchance.grupo.apiexchance.service.Imagem.dto.ImagemDTO;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 
@@ -40,6 +44,9 @@ public class EstudanteController {
 
 
     private ImagemService imagemService;
+    private Path diretorioBase;
+
+    //  private Path diretorioBase = Path.of(System.getProperty("user.dir") + "/Downloads");
 
     public EstudanteController(EstudanteRepository estudanteRepository, EstudanteService estudanteService, ImagemService imagemService) {
         this.estudanteRepository = estudanteRepository;
@@ -120,6 +127,12 @@ public class EstudanteController {
         return ResponseEntity.ok(estudante.getIdEstudante());
     }
 
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Upload concluido."),
+            @ApiResponse(responseCode = "400", description = "Houve um problema na requisição."),
+            @ApiResponse(responseCode = "401", description = "Não autorizado"),
+    })
+
 
     @PostMapping("/upload-documento")
     public ResponseEntity<Void> uploadDocumento(@RequestParam MultipartFile image) throws IOException {
@@ -130,10 +143,19 @@ public class EstudanteController {
     }
 
 
-    @PostMapping("/upload-foto")
-    public ResponseEntity<Void> uploadFoto() throws IOException {
-        this.imagemService.criarFoto( null, null);
-
+    @PostMapping(value = "/upload-foto/{id}",consumes = "multipart/form-data")
+    public ResponseEntity<ImagemDTO> uploadFoto(@RequestParam("arquivo")MultipartFile file, @PathVariable int id){
+        if (file.isEmpty()) {
+            return ResponseEntity.status(400).build();
+        }
+        if (!this.diretorioBase.toFile().exists()) {
+            this.diretorioBase.toFile().mkdir();
+        }
+        if(!this.estudanteRepository.existsById(id)){
+            return ResponseEntity.status(404).build();
+        }
+        file.getOriginalFilename();
+       // formatarNomeArquivo();
 
         return ResponseEntity.ok().build();
     }
