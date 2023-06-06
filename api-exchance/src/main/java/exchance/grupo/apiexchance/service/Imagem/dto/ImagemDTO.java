@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotNull;
 
 public class ImagemDTO {
 
+    private Integer idImagem;
+
     private String nome;
 
     @NotBlank
@@ -24,6 +26,14 @@ public class ImagemDTO {
 
 
     private HostFamily hostFamily;
+
+    public Integer getIdImagem() {
+        return idImagem;
+    }
+
+    public void setIdImagem(Integer idImagem) {
+        this.idImagem = idImagem;
+    }
 
     public String getNome() {
         return nome;

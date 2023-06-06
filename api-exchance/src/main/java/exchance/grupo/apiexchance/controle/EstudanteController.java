@@ -4,7 +4,9 @@ package exchance.grupo.apiexchance.controle;
 
 import exchance.grupo.apiexchance.entidade.Estudante;
 
+import exchance.grupo.apiexchance.entidade.Imagem;
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
+import exchance.grupo.apiexchance.repositorio.ImagemRepository;
 import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteLoginDto;
 import exchance.grupo.apiexchance.service.Estudante.autenticacao.dto.EstudanteTokenDto;
@@ -12,11 +14,13 @@ import exchance.grupo.apiexchance.service.Estudante.dto.EstudanteDTO;
 import exchance.grupo.apiexchance.service.Imagem.ImagemService;
 
 import exchance.grupo.apiexchance.service.Imagem.dto.ImagemDTO;
+import exchance.grupo.apiexchance.service.Imagem.dto.ImagemMapper;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,35 +28,34 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 
-
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 @RestController
 @RequestMapping("/estudantes")
 public class EstudanteController {
 
-
+    @Autowired
     private EstudanteRepository estudanteRepository;
 
-
+    @Autowired
     private EstudanteService estudanteService;
 
-
+    @Autowired
     private ImagemService imagemService;
-    private Path diretorioBase;
+    @Autowired
+    private ImagemRepository imagemRepository;
 
-    //  private Path diretorioBase = Path.of(System.getProperty("user.dir") + "/Downloads");
+    private Path diretorioBase = Path.of(System.getProperty("user.dir") + "/Downloads");
 
-    public EstudanteController(EstudanteRepository estudanteRepository, EstudanteService estudanteService, ImagemService imagemService) {
-        this.estudanteRepository = estudanteRepository;
-        this.estudanteService = estudanteService;
-        this.imagemService = imagemService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Estudante>> listar() {
@@ -143,10 +146,10 @@ public class EstudanteController {
     }
 
 
-    @PostMapping(value = "/upload-foto/{id}",consumes = "multipart/form-data")
-    public ResponseEntity<ImagemDTO> uploadFoto(@RequestParam("arquivo")MultipartFile file, @PathVariable int id){
+  @PostMapping(value = "/upload-foto/{id}",consumes = "multipart/form-data")
+    public ResponseEntity<ImagemDTO> uploadFoto(@RequestParam("imagem")MultipartFile file, @PathVariable int id){
         if (file.isEmpty()) {
-            return ResponseEntity.status(400).build();
+           return ResponseEntity.status(400).build();
         }
         if (!this.diretorioBase.toFile().exists()) {
             this.diretorioBase.toFile().mkdir();
@@ -154,10 +157,74 @@ public class EstudanteController {
         if(!this.estudanteRepository.existsById(id)){
             return ResponseEntity.status(404).build();
         }
-        file.getOriginalFilename();
-       // formatarNomeArquivo();
+        String nome = formatarNomeArquivo(file.getOriginalFilename());
 
-        return ResponseEntity.ok().build();
+        String filePath = this.diretorioBase + "/" + nome;
+
+        File dest = new File(filePath);
+        try{
+            file.transferTo(dest);
+        }catch (IOException erro){
+            erro.printStackTrace();
+            throw new ResponseStatusException(422, "Não foi possivel salvar o arquivo", null);
+
+        }
+
+        Imagem imagem = new Imagem();
+        imagem.setNome(String.valueOf(this.estudanteRepository.findById(id).get()));
+
+        Imagem imagemBanco = imagemRepository.save(imagem);
+
+        ImagemDTO imagemDTO = ImagemMapper.of(imagemBanco);
+
+        return ResponseEntity.status(200).body(imagemDTO);
     }
+
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Download concluido."),
+            @ApiResponse(responseCode = "400", description = "Houve um problema na requisição."),
+            @ApiResponse(responseCode = "401", description = "Não autorizado"),
+    })
+
+    @GetMapping(value = "/download/{idImagem}")
+    public ResponseEntity<byte[]> download(@PathVariable("idImagem") Integer idImagem){
+        Optional<Imagem> imagemOptional = imagemRepository.findById(idImagem);
+        if (imagemOptional.isEmpty()){
+            return ResponseEntity.status(404).build();
+        }
+
+        Imagem imagemBanco = imagemOptional.get();
+
+        File file = this.diretorioBase.resolve(imagemBanco.getCaminho()).toFile();
+
+        try{
+            InputStream fileInputStream = new FileInputStream(file);
+            return ResponseEntity.status(200).header("Content-Disposition","attachment;" +
+                    "fileName =" + imagemBanco.getCaminho()).body(fileInputStream.readAllBytes());
+        }catch (FileNotFoundException erro){
+            erro.printStackTrace();
+            throw new ResponseStatusException(422, "Diretorio nao encontrado", null);
+        }catch (IOException erro){
+            erro.printStackTrace();
+            throw new ResponseStatusException(422, "Não foi possivel converter para byte[]", null);
+        }
+    }
+
+    private String formatarNomeArquivo(String nomeOriginal){
+        return String.format("%s_%s", UUID.randomUUID(),nomeOriginal);
+    }
+
+    @GetMapping("/lista/imagens")
+    public ResponseEntity<List<ImagemDTO>> listarImagens(){
+        List<Imagem> imagens = imagemRepository.findAll();
+        if (imagens.isEmpty()){
+            return ResponseEntity.status(204).build();
+       }
+      List<ImagemDTO> imagemDTOS = new ArrayList<>();
+      for (Imagem imagem : imagens){
+           imagemDTOS.add(ImagemMapper.of(imagem));
+        }
+       return ResponseEntity.status(200).body(imagemDTOS);
+   }
 
 }

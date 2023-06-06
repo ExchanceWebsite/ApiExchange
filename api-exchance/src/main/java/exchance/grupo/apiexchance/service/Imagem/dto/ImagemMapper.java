@@ -5,17 +5,18 @@ import exchance.grupo.apiexchance.entidade.Integrante;
 import exchance.grupo.apiexchance.service.Integrante.dto.IntegranteDTO;
 
 public class ImagemMapper {
-    public static Imagem of(ImagemDTO imagemDTO) {
-        Imagem imagem = new Imagem();
+    public static ImagemDTO of(Imagem imagemDTO) {
+        ImagemDTO imagemDto = new ImagemDTO();
 
-        imagem.setCaminho(imagemDTO.getCaminho());
-        imagem.setNome(imagemDTO.getNome());
-        imagem.setFoto(imagemDTO.isFoto());
-        imagem.setDocumento(imagemDTO.isDocumento());
-        imagem.setEstudante(imagemDTO.getEstudante());
-        imagem.setHostFamily(imagemDTO.getHostFamily());
+        imagemDto.setIdImagem(imagemDTO.getIdImagem());
+        imagemDto.setCaminho(imagemDTO.getCaminho());
+        imagemDto.setNome(imagemDTO.getNome());
+        imagemDto.setFoto(imagemDTO.isFoto());
+        imagemDto.setDocumento(imagemDTO.isDocumento());
+        imagemDto.setEstudante(imagemDTO.getEstudante());
+        imagemDto.setHostFamily(imagemDTO.getHostFamily());
 
-        return imagem;
+        return imagemDto;
 
     }
 }
