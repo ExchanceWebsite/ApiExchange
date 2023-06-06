@@ -87,21 +87,16 @@ public class ReservaController {
         if (optionalReserva.isPresent()){
             Reserva reserva = optionalReserva.get();
             pilhaObj.push(reserva);
-            if (this.reservaRepository.existsByAcomodacaoIdAcomodacao(id)){
-                if (this.hostFamilyRepository.existsByAcomodacoesIdAcomodacao(id)){
-                    this.acomodacaoRepository.update(id);
-                    this.acomodacaoRepository.deleteById(id);
-                    this.reservaRepository.update(id);
-                    this.reservaRepository.deleteById(id);
-                    return ResponseEntity.status(200).body("Reserva Cancelada!");
-                }
-            }else{
-                this.reservaRepository.update(id);
+                this.reservaRepository.updateEstudante(id);
+                this.reservaRepository.updateHost(id);
+                this.reservaRepository.updateAcomodacao(id);
                 this.reservaRepository.deleteById(id);
                 return ResponseEntity.status(200).body("Reserva Cancelada!");
-            }
-            }
-        return ResponseEntity.status(404).build();
+            }else{
+            this.reservaRepository.updateEstudante(id);
+            this.reservaRepository.deleteById(id);
+            return ResponseEntity.status(200).body("Reserva Cancelada!");
+        }
     }
 
     @PostMapping("/{id}/restaurar")

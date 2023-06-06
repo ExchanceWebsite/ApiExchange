@@ -18,7 +18,17 @@ public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Reserva r SET r.estudante = NULL where r.estudante.idEstudante = :id")
-    int update(int id);
+    int updateEstudante(int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Reserva r SET r.acomodacao = NULL where r.acomodacao.idAcomodacao = :id")
+    int updateAcomodacao(int id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Reserva r SET r.host = NULL where r.host.idHostFamily = :id")
+    int updateHost(int id);
 
     @Transactional
     @Modifying

@@ -21,6 +21,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +34,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -187,28 +190,30 @@ public class EstudanteController {
     })
 
     @GetMapping(value = "/download/{idImagem}")
-    public ResponseEntity<byte[]> download(@PathVariable("idImagem") Integer idImagem){
+    public ResponseEntity<byte[]> download(@PathVariable("idImagem") Integer idImagem) throws IOException {
         Optional<Imagem> imagemOptional = imagemRepository.findById(idImagem);
-        if (imagemOptional.isEmpty()){
-            return ResponseEntity.status(404).build();
+        if (imagemOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
 
         Imagem imagemBanco = imagemOptional.get();
-
         File file = this.diretorioBase.resolve(imagemBanco.getCaminho()).toFile();
 
-        try{
-            InputStream fileInputStream = new FileInputStream(file);
-            return ResponseEntity.status(200).header("Content-Disposition","attachment;" +
-                    "fileName =" + imagemBanco.getCaminho()).body(fileInputStream.readAllBytes());
-        }catch (FileNotFoundException erro){
-            erro.printStackTrace();
-            throw new ResponseStatusException(422, "Diretorio nao encontrado", null);
-        }catch (IOException erro){
-            erro.printStackTrace();
-            throw new ResponseStatusException(422, "Não foi possivel converter para byte[]", null);
+        if (!file.exists()) {
+            return ResponseEntity.notFound().build();
         }
+
+        byte[] fileContent = Files.readAllBytes(file.toPath());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + imagemBanco.getCaminho());
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(fileContent);
     }
+
 
     private String formatarNomeArquivo(String nomeOriginal){
         return String.format("%s_%s", UUID.randomUUID(),nomeOriginal);
