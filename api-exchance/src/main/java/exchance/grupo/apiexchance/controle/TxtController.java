@@ -53,9 +53,9 @@ public class TxtController {
         for (int i = 0; i < listaReserva.getTamanho(); i++) {
             Reserva reservas = listaReserva.getElemento(i);
             corpo = "02";
-            corpo += String.format("%-10.10s", reservas.getEntrada().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            corpo += String.format("%-10.10s", reservas.getSaida());
-            corpo += String.format("%-10.10s", reservas.getFormaPagamento());
+            corpo += String.format("%-11.11s", reservas.getEntrada().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            corpo += String.format("%-11.11s", reservas.getSaida());
+            corpo += String.format("%-11.11s", reservas.getFormaPagamento());
             gravaRegistro(corpo, nomeArq);
             contaRegDadosGravados++;
         }
@@ -64,10 +64,10 @@ public class TxtController {
             Acomodacao acomodacoes = listaAcomodacao.getElemento(i);
             dados = "03";
             dados += String.format("%-300.300s", acomodacoes.getDescricao() );
-            dados += String.format("%-10.10s", acomodacoes.getInicioDisponibilidade().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            dados += String.format("%-10.10s", acomodacoes.getFimDisponibilidade().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            dados += String.format("%8.8s", acomodacoes.getValorDiaria());
-            dados += String.format("%-150.150s", acomodacoes.getRegras());
+            dados += String.format("%-11.11s", acomodacoes.getInicioDisponibilidade().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            dados += String.format("%-11.11s", acomodacoes.getFimDisponibilidade().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            dados += String.format("%9.9s", acomodacoes.getValorDiaria());
+            dados += String.format("%-300.300s", acomodacoes.getRegras());
             gravaRegistro(dados, nomeArq);
             contaRegDadosGravados++;
         }
@@ -83,8 +83,8 @@ public class TxtController {
 
         Reserva reserva1 = new Reserva();
 
-        reserva1.setEntrada(LocalDate.ofEpochDay(2022-04-10));
-        reserva1.setSaida(LocalDate.ofEpochDay(2022-06-30));
+        reserva1.setEntrada(LocalDate.of(2022,04,10));
+        reserva1.setSaida(LocalDate.of(2022,06,30));
         reserva1.setFormaPagamento("Boleto");
 
         Acomodacao acomodacao1 = new Acomodacao();
@@ -92,8 +92,8 @@ public class TxtController {
         acomodacao1.setDescricao("Somos uma familia bem tranquila, e gostamos muito de sair" +
                 ",temos filhos que já não moram mais conosco, e sentimos a casa muito vazia, seria uma honra recebe-los" +
                 "em nossa casa.");
-        acomodacao1.setInicioDisponibilidade(LocalDate.ofEpochDay(2022-03-10));
-        acomodacao1.setFimDisponibilidade(LocalDate.ofEpochDay(2022-06-30));
+        acomodacao1.setInicioDisponibilidade(LocalDate.of(2022,03,10));
+        acomodacao1.setFimDisponibilidade(LocalDate.of(2022,06,30));
         acomodacao1.setValorDiaria(312.00);
         acomodacao1.setRegras("Temos uma casa grande então gostamos de mante-la sempre limpa," +
                 "é importante sempre ajudar na cozinha, e não lavamos suas roupas, isso ficara em sua" +
