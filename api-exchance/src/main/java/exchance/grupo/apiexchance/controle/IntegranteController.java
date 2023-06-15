@@ -35,11 +35,5 @@ public class IntegranteController {
         return ResponseEntity.status(200).body(integrantes);
     }
 
-    @PostMapping("/add-integrante")
-    public ResponseEntity<Void> cadastrar(@RequestBody @Valid IntegranteDTO integranteDTO) {
-        this.integranteService.criar(integranteDTO);
 
-
-        return ResponseEntity.status(201).build();
-    }
 }

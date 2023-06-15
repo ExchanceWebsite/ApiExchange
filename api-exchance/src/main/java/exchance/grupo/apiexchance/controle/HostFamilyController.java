@@ -154,4 +154,12 @@ public class HostFamilyController {
 
     }
 
+    @PostMapping("/add-integrante")
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid IntegranteDTO integranteDTO) {
+        this.integranteService.criar(integranteDTO);
+
+
+        return ResponseEntity.status(201).build();
+    }
+
 }

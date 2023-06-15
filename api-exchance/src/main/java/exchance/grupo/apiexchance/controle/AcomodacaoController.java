@@ -49,9 +49,9 @@ public class AcomodacaoController {
     }
 
     @GetMapping("/acomodacoes-localidade-disponivel")
-    public ResponseEntity<List<Acomodacao>> listarAcomodacaoLocalidade(@RequestParam String endereco, @RequestParam LocalDate entrada, @RequestParam LocalDate saida){
+    public ResponseEntity<List<Acomodacao>> listarAcomodacaoLocalidade(@RequestParam String cidade, @RequestParam LocalDate entrada, @RequestParam LocalDate saida){
 
-        Localidade localidade = this.localidadeService.buscarLocalidadePorEndereco(endereco);
+        Localidade localidade = this.localidadeService.buscarLocalidadePorCidade(cidade);
 
         List<Acomodacao> acomodacaos = this.acomodacaoService.findAccommodations(localidade.getIdLocalidade(), entrada, saida);
 

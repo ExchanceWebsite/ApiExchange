@@ -42,4 +42,16 @@ public class LocalidadeService {
     return enderecoEncontrado.get();
 
   }
+
+  public Localidade buscarLocalidadePorCidade(String cidade){
+
+    Optional<Localidade> enderecoEncontrado = this.localidadeRepository.findByCidade(cidade);
+
+    if(enderecoEncontrado.isEmpty()){
+      return null;
+    }
+
+    return enderecoEncontrado.get();
+
+  }
 }
