@@ -129,7 +129,7 @@ public class HostFamilyController {
         List<String> nomes = new ArrayList<>();
 
         for (int i = 0; i < integrantes.size(); i++ ){
-            if(filaObj.isEmpty()) {
+            if(!filaObj.isFull()) {
                 nomes.add(integrantes.get(i).getNome());
                 filaObj.insert(integrantes.get(i));
             }
@@ -145,7 +145,7 @@ public class HostFamilyController {
     @DeleteMapping("remove-integrante")
     public ResponseEntity<Void> remover(){
 
-        if(filaObj.getTamanho() == 1){
+        if(filaObj.getTamanho() >= 1){
             this.integranteService.remover(filaObj.poll());
             return ResponseEntity.ok().build();
         }
