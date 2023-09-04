@@ -48,10 +48,25 @@ public class AcomodacaoController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/acomodacoes-localidade-disponivel")
+    @GetMapping("/acomodacoes-cidade-disponivel")
     public ResponseEntity<List<Acomodacao>> listarAcomodacaoLocalidade(@RequestParam String cidade, @RequestParam LocalDate entrada, @RequestParam LocalDate saida){
 
         Localidade localidade = this.localidadeService.buscarLocalidadePorCidade(cidade);
+
+        List<Acomodacao> acomodacaos = this.acomodacaoService.findAccommodations(localidade.getIdLocalidade(), entrada, saida);
+
+        if(localidade == null || acomodacaos.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
+
+        return ResponseEntity.ok(acomodacaos);
+
+    }
+
+    @GetMapping("/acomodacoes-pais-disponivel")
+    public ResponseEntity<List<Acomodacao>> listarAcomodacaoLocalidadePais(@RequestParam String Pais, @RequestParam LocalDate entrada, @RequestParam LocalDate saida){
+
+        Localidade localidade = this.localidadeService.buscarLocalidadePorPais(Pais);
 
         List<Acomodacao> acomodacaos = this.acomodacaoService.findAccommodations(localidade.getIdLocalidade(), entrada, saida);
 

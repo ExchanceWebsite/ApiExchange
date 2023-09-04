@@ -1,6 +1,7 @@
 package exchance.grupo.apiexchance.entidade;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -31,6 +32,7 @@ public class Reserva {
     @Column(name = "formaPagamento")
     private String formaPagamento;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "fkAcomodacao")
     private Acomodacao acomodacao;

@@ -10,4 +10,7 @@ public interface LocalidadeRepository extends JpaRepository<Localidade, Integer>
     Optional<Localidade> findByEndereco(String endereco);
 
     Optional<Localidade> findByCidade(String cidade);
+
+    Optional<Localidade> findByPais(String pais);
+
 }

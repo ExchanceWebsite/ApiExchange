@@ -33,4 +33,6 @@ public class AcomodacaoService {
     Specification<Acomodacao> specification = AcomodacaoSpecification.findByLocalidadeIdAndAvailability(localidadeId, dataEntrada, dataSaida);
     return acomodacaoRepository.findAll(specification);
   }
+
+
 }

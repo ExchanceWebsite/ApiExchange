@@ -57,6 +57,26 @@ public class ReservaController {
         return ResponseEntity.status(201).build();
     }
 
+    /*
+    Exemplo de JsonUsado para cadastro de uma reserva
+
+    {
+      "estudante": {
+        "idEstudante": 1
+      },
+      "entrada": "2023-09-03",
+      "saida": "2023-09-05",
+      "formaPagamento": "cartao",
+      "acomodacao": {
+        "idAcomodacao": 1
+      },
+      "host": {
+        "idHostFamily": 1
+      }
+    }
+
+     */
+
     @GetMapping("/reservas-estudante")
     public ResponseEntity<List<Reserva>> listarReservasEstudante(@RequestParam Integer idEstudante){
         List<Reserva> reservas = this.reservaService.listarReservasEstudante(idEstudante);
