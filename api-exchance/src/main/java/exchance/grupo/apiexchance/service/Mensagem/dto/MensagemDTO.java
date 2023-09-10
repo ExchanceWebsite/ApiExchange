@@ -2,13 +2,11 @@ package exchance.grupo.apiexchance.service.Mensagem.dto;
 
 import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class MensagemDTO {
     private Integer idMensagem;
@@ -57,8 +55,8 @@ public class MensagemDTO {
         this.texto = texto;
     }
 
-    public LocalDateTime getDataMensagem() {
-        return dataMensagem;
+    public LocalDate getDataMensagem() {
+        return LocalDate.from(dataMensagem);
     }
 
     public void setDataMensagem(LocalDateTime dataMensagem) {

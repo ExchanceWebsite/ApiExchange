@@ -107,13 +107,9 @@ public class ReservaController {
         if (optionalReserva.isPresent()){
             Reserva reserva = optionalReserva.get();
             pilhaObj.push(reserva);
-                this.reservaRepository.updateEstudante(id);
-                this.reservaRepository.updateHost(id);
-                this.reservaRepository.updateAcomodacao(id);
                 this.reservaRepository.deleteById(id);
                 return ResponseEntity.status(200).body("Reserva Cancelada!");
             }else{
-            this.reservaRepository.updateEstudante(id);
             this.reservaRepository.deleteById(id);
             return ResponseEntity.status(200).body("Reserva Cancelada!");
         }

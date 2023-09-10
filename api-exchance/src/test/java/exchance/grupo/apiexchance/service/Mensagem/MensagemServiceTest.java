@@ -48,7 +48,7 @@ class MensagemServiceTest {
 
         Mensagem mensagem = new Mensagem();
         mensagem.setTexto("Hello");
-        mensagem.setDataMensagem(LocalDate.now().atStartOfDay());
+        mensagem.setDataMensagem(LocalDate.now());
 
         when(mensagemRepository.save(any(Mensagem.class))).thenReturn(mensagem);
 

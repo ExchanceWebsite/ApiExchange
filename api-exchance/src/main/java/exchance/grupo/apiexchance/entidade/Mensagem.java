@@ -60,11 +60,11 @@ public class Mensagem {
         this.texto = texto;
     }
 
-    public String getDataMensagem() {
-        return dataMensagem.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    public LocalDate getDataMensagem() {
+        return dataMensagem;
     }
 
-    public void setDataMensagem(LocalDateTime dataMensagem) {
-        this.dataMensagem = LocalDate.from(dataMensagem);
+    public void setDataMensagem(LocalDate dataMensagem) {
+        this.dataMensagem = dataMensagem;
     }
 }
