@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AppExchance</string>
+    <string name="escolha_seu_tipo_usuario"> Escolha seu tipo de usuário.</string>
+    <string name="intercambista"> Intercambista</string>
+    <string name="host_family"> Host Family</string>
+    <string name="pular"> Pular</string>
+    <string name="seja_bem_vindo"> Seja Bem-Vindo à Exchance.</string>
+    <string name="entrar"> Entrar</string>
+    <string name="cadastro"> Cadastre-se</string>
+</resources>
