@@ -21,7 +21,7 @@ public class MensagemDTO {
     private String texto;
 
     @PastOrPresent
-    private LocalDateTime dataMensagem;
+    private LocalDate dataMensagem;
 
     public Integer getIdMensagem() {
         return idMensagem;
@@ -59,8 +59,8 @@ public class MensagemDTO {
         return LocalDate.from(dataMensagem);
     }
 
-    public void setDataMensagem(LocalDateTime dataMensagem) {
-        LocalDateTime datahora = LocalDateTime.now();
+    public void setDataMensagem(LocalDate dataMensagem) {
+        LocalDate datahora = LocalDate.now();
         this.dataMensagem = datahora;
     }
 }
