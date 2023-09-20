@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class MensagemServiceTest {
@@ -32,6 +31,7 @@ class MensagemServiceTest {
     @Mock
     private HostFamilyService hostFamilyService;
 
+
     private MensagemService mensagemService;
 
     @BeforeEach
@@ -44,8 +44,7 @@ class MensagemServiceTest {
     void testCriarMensagem() {
         MensagemDTO mensagemDTO = new MensagemDTO();
         mensagemDTO.setTexto("Hello");
-        mensagemDTO.setDataMensagem(LocalDate.now().atStartOfDay());
-
+        mensagemDTO.setDataMensagem(LocalDate.now());
         Mensagem mensagem = new Mensagem();
         mensagem.setTexto("Hello");
         mensagem.setDataMensagem(LocalDate.now());
