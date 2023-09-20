@@ -39,17 +39,22 @@
 
             <Button
                 style="@style/Botoes"
-                android:layout_width="600px"
+                android:layout_width="650px"
                 android:layout_height="130px"
-                android:backgroundTint="@color/blue"
-                android:text="@string/intercambista" />
+                android:text="@string/intercambista"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
 
             <Button
                 style="@style/Botoes"
-                android:layout_width="600px"
+                android:layout_width="650px"
                 android:layout_height="130px"
-                android:backgroundTint="@color/blue"
-                android:text="@string/host_family"/>
+                android:text="@string/host_family"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
+
 
         </LinearLayout>
 
@@ -59,10 +64,12 @@
 
             <Button
                 style="@style/BotaoRignt"
-                android:layout_width="600px"
+                android:layout_width="500px"
                 android:layout_height="130px"
                 android:text="@string/pular"
-                android:backgroundTint="@color/blue"/>
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
 
         </RelativeLayout>
 

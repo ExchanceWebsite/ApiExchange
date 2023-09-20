@@ -40,17 +40,21 @@
 
             <Button
                 style="@style/Botoes"
-                android:layout_width="600px"
+                android:layout_width="650px"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue"
-                android:text="@string/entrar" />
+                android:text="@string/entrar"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
 
             <Button
                 style="@style/Botoes"
-                android:layout_width="600px"
+                android:layout_width="650px"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue"
-                android:text="@string/cadastro"/>
+                android:text="@string/cadastro"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
 
         </LinearLayout>
 
@@ -60,10 +64,12 @@
 
             <Button
                 style="@style/BotaoRignt"
-                android:layout_width="600px"
+                android:layout_width="500px"
                 android:layout_height="wrap_content"
                 android:text="@string/pular"
-                android:backgroundTint="@color/blue"/>
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
 
         </RelativeLayout>
 
