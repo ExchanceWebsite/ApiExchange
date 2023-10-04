@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="Buttons" parent="Base.Theme.AppExchance">
-        <item name="android:layout_marginVertical"></item>
-    </style>
-</resources>
