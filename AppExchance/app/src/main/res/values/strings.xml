@@ -7,4 +7,13 @@
     <string name="seja_bem_vindo"> Seja Bem-Vindo à Exchance.</string>
     <string name="entrar"> Entrar</string>
     <string name="cadastro"> Cadastre-se</string>
+    <string name="login"> Login </string>
+    <string name="acessar"> Acessar </string>
+    <string name="esqueceu_senha"> Esqueceu sua senha? Clique aqui.</string>
+    <string name="criar_cadastro"> Ainda não tem conta? Clique aqui.</string>
+
+    <string-array name="opcoes_usuario">
+        <item> Intercambista </item>
+        <item> Host Family </item>
+    </string-array>
 </resources>

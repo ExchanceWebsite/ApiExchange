@@ -13,6 +13,12 @@
         android:theme="@style/Theme.AppExchance"
         tools:targetApi="31">
         <activity
+            android:name=".forms.FormLogin"
+            android:exported="false" />
+        <activity
+            android:name=".forms.FormCadastro"
+            android:exported="false" />
+        <activity
             android:name=".tela_opcoes"
             android:exported="false" />
         <activity

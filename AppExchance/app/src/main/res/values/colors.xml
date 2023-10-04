@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0861A6</color>
     <color name="rosinha">#E4B69D</color>
+    <color name="cinza">#F1F5F4</color>
+    <color name="cinza_escuro">#A0A0A0</color>
 </resources>
