@@ -3,40 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".forms.FormLogin">
-
+    android:layout_height="wrap_content"
+    tools:context=".forms.FormCadastro">
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/host_family"
         style="@style/TitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
+        android:text="@string/host_family"
         android:textColor="@color/rosinha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"/>
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <View
         android:id="@+id/containerComponents"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintTop_toBottomOf="@+id/host_family" />
+
+    <EditText
+        android:id="@+id/edit_nome_host"
+        style="@style/Edit_Text"
+        android:hint="Nome"
+        app:layout_constraintStart_toStartOf="@+id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
+        app:layout_constraintTop_toTopOf="@+id/containerComponents" />
 
     <EditText
         android:id="@+id/edit_email"
@@ -45,23 +52,41 @@
         android:drawableRight="@drawable/ic_email"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toTopOf="@+id/containerComponents"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/edit_nome_host" />
+
     <EditText
-        android:id="@+id/edit_senha"
+        android:id="@+id/edit_pais_host"
+        style="@style/Edit_Text"
+        android:hint="País"
+        app:layout_constraintStart_toStartOf="@+id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
+
+    <EditText
+        android:id="@+id/edit_estado_host"
+        style="@style/Edit_Text"
+        android:hint="Estado"
+        app:layout_constraintStart_toStartOf="@+id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pais_host" />
+
+    <EditText
+        android:id="@+id/edit_senha_host"
         style="@style/Edit_Text"
         android:hint="Senha"
+        android:drawableRight="@drawable/ic_eye_off"
+        app:layout_constraintStart_toStartOf="@+id/containerComponents"
+        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@+id/edit_estado_host" />
+
+    <EditText
+        android:id="@+id/edit_confirme_senha_host"
+        style="@style/Edit_Text"
+        android:hint="Confirme sua senha"
         android:drawableRight="@drawable/ic_eye"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email"
-        />
-    <Spinner
-        android:id="@+id/select_box"
-        style="@style/Edit_Text"
-        app:layout_constraintStart_toStartOf="@+id/containerComponents"
-        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/edit_senha"/>
+        app:layout_constraintTop_toBottomOf="@+id/edit_senha_host" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_acessar"
@@ -72,20 +97,7 @@
         android:background="@drawable/btn1"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/select_box"/>
-
-    <TextView
-        android:id="@+id/Esqueceu_Senha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/esqueceu_senha"
-        android:textSize="18sp"
-        android:textColor="@color/cinza_escuro"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="@+id/containerComponents"
-        app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/button_acessar"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/edit_confirme_senha_host"/>
 
     <TextView
         android:id="@+id/Criar_Conta"
@@ -97,7 +109,7 @@
         android:layout_marginTop="75dp"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/Esqueceu_Senha"
+        app:layout_constraintTop_toBottomOf="@+id/edit_confirme_senha_host"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
