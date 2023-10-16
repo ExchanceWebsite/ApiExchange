@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AppExchance</string>
+    <string name="title_activity_form_cadastro_intercambista">Cadastro</string>
     <string name="escolha_seu_tipo_usuario"> Escolha seu tipo de usuário.</string>
     <string name="intercambista"> Intercambista</string>
     <string name="host_family"> Host Family</string>

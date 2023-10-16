@@ -1,19 +1,34 @@
 package com.example.appexchance.forms
 
+import android.content.Intent
 import com.example.appexchance.R
 import android.os.Bundle;
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.appexchance.activity_form_busca
+import com.example.appexchance.databinding.ActivityFormLoginBinding
+import com.example.appexchance.forms.models.LoginRequest
+import com.example.appexchance.forms.models.RespostaDoServidor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FormLogin : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
+
+    val binding by lazy {
+        ActivityFormLoginBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_login)
+        setContentView(binding.root)
 
         val spinner : Spinner = findViewById(R.id.select_box)
 
@@ -27,13 +42,59 @@ class FormLogin : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             spinner.onItemSelectedListener = this
         }
 
+
+        fun fazerLogin(): Call<RespostaDoServidor> {
+
+            val email = binding.editEmail.text.toString()
+            val senha = binding.editSenha.text.toString()
+
+            val loginRequest = LoginRequest(email, senha)
+
+
+            val apiService = RestClient.create()
+            return apiService.login(loginRequest)
+        }
+
+        binding.buttonAcessar.setOnClickListener {
+            val call = fazerLogin()
+
+            call.enqueue(object : Callback<RespostaDoServidor> {
+                override fun onResponse(call: Call<RespostaDoServidor>, response: Response<RespostaDoServidor>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@FormLogin, "autenticação feita!!!", Toast.LENGTH_SHORT).show()
+                        val resposta = response.body()
+                        val telaBusca = Intent(this@FormLogin, activity_form_busca::class.java)
+
+                        if (resposta != null) {
+                            val txtBusca = "dados da autenticação: Nome: "+ resposta.nome + "\n, Email: "+ resposta.email + "\n, Token: " + resposta.token
+                            telaBusca.putExtra("txt_busca", txtBusca)
+                        } else {
+                            telaBusca.putExtra("txt_busca", "Sem resposta válida do servidor")
+                        }
+
+                        startActivity(telaBusca)
+                    } else {
+                        Toast.makeText(this@FormLogin, "Erro na autenticação", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<RespostaDoServidor>, t: Throwable) {
+                    Toast.makeText(this@FormLogin, "Erro de rede", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+
+
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        TODO("Not yet implemented")
+        val selectedItem = p0?.getItemAtPosition(p2)
+        // Faça algo com a opção selecionada, se necessário
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
+        // Lidar com a situação em que nada foi selecionado, se necessário
     }
+
 }
