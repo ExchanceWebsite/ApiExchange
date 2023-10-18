@@ -15,6 +15,15 @@
         android:theme="@style/Theme.AppExchance"
         tools:targetApi="31">
         <activity
+            android:name=".TelaUsuarioIntercambista"
+            android:exported="false" />
+        <activity
+            android:name=".TelaUsuarioHost"
+            android:exported="false" />
+        <activity
+            android:name=".TelaPrincipal"
+            android:exported="false" />
+        <activity
             android:name=".activity_form_busca"
             android:exported="false" />
         <activity
