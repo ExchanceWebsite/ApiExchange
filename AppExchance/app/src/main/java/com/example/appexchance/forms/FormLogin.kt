@@ -3,14 +3,14 @@ package com.example.appexchance.forms
 import android.content.Intent
 import com.example.appexchance.R
 import android.os.Bundle;
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.appexchance.activity_form_busca
+import com.example.appexchance.TelaUsuarioHost
+import com.example.appexchance.TelaUsuarioIntercambista
 import com.example.appexchance.databinding.ActivityFormLoginBinding
 import com.example.appexchance.forms.models.LoginRequest
 import com.example.appexchance.forms.models.RespostaDoServidor
@@ -48,11 +48,16 @@ class FormLogin : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
 
+
             val loginRequest = LoginRequest(email, senha)
-
-
             val apiService = RestClient.create()
-            return apiService.login(loginRequest)
+
+            if(spinner.selectedItem.equals("Intercambista")){
+                return apiService.login(loginRequest)
+            }else{
+                return apiService.loginHost(loginRequest)
+            }
+
         }
 
         binding.buttonAcessar.setOnClickListener {
@@ -63,18 +68,25 @@ class FormLogin : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     if (response.isSuccessful) {
                         Toast.makeText(this@FormLogin, "autenticação feita!!!", Toast.LENGTH_SHORT).show()
                         val resposta = response.body()
-                        val telaBusca = Intent(this@FormLogin, activity_form_busca::class.java)
+                        lateinit var telaUsuario: Any
 
-                        if (resposta != null) {
-                            val txtBusca = "dados da autenticação: Nome: "+ resposta.nome + "\n, Email: "+ resposta.email + "\n, Token: " + resposta.token
-                            telaBusca.putExtra("txt_busca", txtBusca)
-                        } else {
-                            telaBusca.putExtra("txt_busca", "Sem resposta válida do servidor")
+                        if(spinner.selectedItem.equals("Intercambista")){
+                             telaUsuario = Intent(this@FormLogin, TelaUsuarioIntercambista::class.java)
+                        }else{
+                            telaUsuario = Intent(this@FormLogin, TelaUsuarioHost::class.java)
                         }
 
-                        startActivity(telaBusca)
+                        if (resposta != null) {
+                            telaUsuario.putExtra("txt_nome", resposta.nome)
+                            telaUsuario.putExtra("txt_email", resposta.email)
+                        } else {
+                            telaUsuario.putExtra("txt_busca", "Sem resposta válida do servidor")
+                        }
+                        startActivity(telaUsuario)
+
+
                     } else {
-                        Toast.makeText(this@FormLogin, "Erro na autenticação", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@FormLogin, "Usuario ou Senha invalidos!!!", Toast.LENGTH_SHORT).show()
                     }
                 }
 

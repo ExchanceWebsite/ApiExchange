@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <View
+    <LinearLayout
         android:id="@+id/conteiner_menu"
         android:layout_width="421dp"
         android:layout_height="701dp"
@@ -28,7 +28,18 @@
         android:background="@drawable/view_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_usuario_host" />
+        app:layout_constraintTop_toBottomOf="@+id/nome_usuario_host">
 
+        <TextView
+            android:id="@+id/txt_busca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dados usuario"
+            android:layout_margin="25dp"
+            android:layout_marginTop="33dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

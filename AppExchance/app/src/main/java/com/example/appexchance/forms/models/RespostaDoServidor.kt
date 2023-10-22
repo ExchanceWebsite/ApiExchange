@@ -6,3 +6,5 @@ data class RespostaDoServidor(
     val email: String, // Email do estudante
     val token: String // Token de autenticação
 )
+
+
