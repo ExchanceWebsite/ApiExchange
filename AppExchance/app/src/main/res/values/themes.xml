@@ -56,6 +56,12 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="opcoes_classificar" parent="Base.Theme.AppExchance">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/style_classificar</item>
+    </style>
+
 
 
 </resources>

@@ -116,5 +116,20 @@
         tools:layout_editor_absoluteX="123dp"
         tools:layout_editor_absoluteY="415dp" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_busca"
+            android:textSize="12sp"
+            android:text="Dados usuario"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
