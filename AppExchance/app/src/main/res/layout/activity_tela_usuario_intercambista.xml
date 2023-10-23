@@ -7,41 +7,129 @@
     android:background="@color/blue"
     tools:context=".TelaUsuarioIntercambista">
 
+    <ImageView
+        android:layout_width="79dp"
+        android:layout_height="67dp"
+        android:src="@drawable/img_usua_inter"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="33dp"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="37dp"
+        android:src="@drawable/verificado_azul"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="26dp" />
+
     <TextView
         android:id="@+id/nome_usuario_host"
         style="@style/TitleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="226dp"
+        android:layout_height="34dp"
+        android:layout_margin="20dp"
+        android:text="@string/usuario_inter"
         android:textColor="@color/white"
-        android:layout_margin="20dp"
-        android:text="@string/bem_vindo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="47dp"
+        tools:ignore="MissingConstraints" />
 
-    <LinearLayout
+    <View
         android:id="@+id/conteiner_menu"
-        android:layout_width="421dp"
-        android:layout_height="701dp"
+        android:layout_width="416dp"
+        android:layout_height="651dp"
         android:layout_margin="20dp"
-        android:layout_marginTop="64dp"
         android:background="@drawable/view_menu"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_usuario_host">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="115dp" />
 
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="47dp"
+        android:src="@drawable/perfil"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="183dp" />
+
+    <TextView
+        style="@style/Opcoes_Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/meu_perfil"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="198dp" />
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="45dp"
+        android:src="@drawable/editar_imagem"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="259dp" />
+
+    <TextView
+        style="@style/Opcoes_Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/editar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="268dp"/>
+
+    <ImageView
+        android:layout_width="62dp"
+        android:layout_height="41dp"
+        android:src="@drawable/favorito"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    <TextView
+        style="@style/Opcoes_Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/favoritos"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="47dp"
+        android:src="@drawable/engrenagem_config"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="403dp" />
+
+    <TextView
+        style="@style/Opcoes_Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confg"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="415dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
         <TextView
-            android:id="@+id/txt_busca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/txt_busca"
+            android:textSize="12sp"
             android:text="Dados usuario"
-            android:layout_margin="25dp"
-            android:layout_marginTop="55dp"
-            android:textColor="@color/black"
-            android:textSize="22sp"
             tools:ignore="MissingConstraints" />
-
     </LinearLayout>
+
+
 
 
 

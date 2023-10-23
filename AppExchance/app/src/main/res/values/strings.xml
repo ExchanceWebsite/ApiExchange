@@ -25,9 +25,24 @@
     <string name="cidades">Cidades</string>
     <string name="frase_menu">Encontre a Host Family mais próxima do seu local de intercambio.</string>
     <string name="paises">Paises</string>
+    <string name="menu">Menu</string>
+    <string name="historico">Histórico</string>
+    <string name="chat"> Chat</string>
+    <string name="perfil"> Perfil</string>
+    
+    
     <string name="meu_perfil">Meu Perfil</string>
     <string name="editar">Editar os detalhes</string>
     <string name="favoritos">Lista de Favoritos</string>
     <string name="confg">Configurações</string>
+    <string name="usuario_host"> Familia Jones</string>
+    <string name="usuario_inter"> Anna Alves</string>
+
+    <string name="cid_londres"> Londres</string>
+    <string name="classificar"> Classificar</string>
+    <string name="filtros"> Filtros</string>
+    <string name="qtd_pesquisa"> Exibindo 20 propriedades.</string>
+    
+    
 
 </resources>
