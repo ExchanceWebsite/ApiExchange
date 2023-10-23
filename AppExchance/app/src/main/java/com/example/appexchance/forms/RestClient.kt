@@ -8,7 +8,7 @@ import javax.net.ssl.X509TrustManager
 
 class RestClient {
     companion object {
-        private const val BASE_URL = "https://52.87.17.249"
+        private const val BASE_URL = "https://3.221.247.133"
 
         fun create(): ApiService {
             // Cria um TrustManager que aceita todos os certificados (apenas para desenvolvimento)
