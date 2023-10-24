@@ -18,7 +18,7 @@
             android:name=".TelaUsuarioIntercambista"
             android:exported="false" />
         <activity
-            android:name=".TelaUsuarioHost"
+            android:name=".forms.FormLogin"
             android:exported="false" />
         <activity
             android:name=".TelaPrincipal"
@@ -32,7 +32,7 @@
             android:label="@string/title_activity_form_cadastro_intercambista"
             android:theme="@style/Theme.AppExchance" />
         <activity
-            android:name=".forms.FormLogin"
+            android:name=".TelaUsuarioHost"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
