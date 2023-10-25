@@ -6,6 +6,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".tela_opcao_usuario">
 
+<<<<<<< HEAD
+=======
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        </LinearLayout>
+>>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
 
         <ImageView
             android:id="@+id/img_logo"
@@ -31,8 +47,15 @@
 
 
             <Button
+<<<<<<< HEAD
                 android:id="@+id/buttun_inter"
                 style="@style/Button_Login"
+=======
+                android:id="@+id/button_inter"
+                style="@style/Botoes"
+                android:layout_width="650px"
+                android:layout_height="wrap_content"
+>>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
                 android:text="@string/intercambista"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
@@ -45,7 +68,13 @@
 
             <Button
                 android:id="@+id/button_host"
+<<<<<<< HEAD
                 style="@style/Button_Login"
+=======
+                style="@style/Botoes"
+                android:layout_width="650px"
+                android:layout_height="wrap_content"
+>>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
                 android:text="@string/host_family"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
@@ -55,6 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/buttun_inter"
                 tools:ignore="MissingConstraints" />
 
+<<<<<<< HEAD
 <!--            <Button-->
 <!--                style="@style/BotaoRignt"-->
 <!--                android:layout_width="160dp"-->
@@ -66,5 +96,27 @@
 <!--                tools:ignore="MissingConstraints"-->
 <!--                tools:layout_editor_absoluteX="211dp"-->
 <!--                tools:layout_editor_absoluteY="645dp" />-->
+=======
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button_pular"
+                style="@style/BotaoRignt"
+                android:layout_width="500px"
+                android:layout_height="wrap_content"
+                android:text="@string/pular"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/btn1"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+>>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
 
 </androidx.constraintlayout.widget.ConstraintLayout>

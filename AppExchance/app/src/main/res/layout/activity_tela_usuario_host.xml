@@ -133,6 +133,24 @@
         android:layout_marginTop="310dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/icon_config"/>
+<<<<<<< HEAD
+=======
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_busca"
+            android:textSize="12sp"
+            android:text="Dados usuario"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+>>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
