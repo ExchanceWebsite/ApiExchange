@@ -22,7 +22,7 @@ interface ApiService {
     fun cadastroHost(@Body cadastroHostRequest: CadastroHostRequest )
 
     @POST("/estudantes")
-    fun cadastro(@Body cadastroInterRequest: CadastroInterRequest)
+    fun cadastro(@Body cadastroInterRequest: CadastroInterRequest): Call<Void>
 
 
     @GET("/estudantes/estudante")

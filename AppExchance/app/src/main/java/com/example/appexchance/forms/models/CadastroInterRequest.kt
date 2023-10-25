@@ -8,7 +8,7 @@ data class CadastroInterRequest(
     val senha: String,
     val telefone: String,
     val cpf: String,
-    val localidade: Localidade
+    val localidade: Localidade?
 )
 
 //"nome": "string",

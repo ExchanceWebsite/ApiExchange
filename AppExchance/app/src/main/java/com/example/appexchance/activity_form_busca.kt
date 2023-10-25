@@ -14,9 +14,5 @@ class activity_form_busca : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (intent != null) {
-            val dados = intent.getStringExtra("txt_busca")
-            binding.txtBusca.text = dados
-        }
     }
 }
