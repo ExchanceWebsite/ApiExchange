@@ -55,20 +55,20 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_nome_host" />
 
     <EditText
-        android:id="@+id/edit_pais_host"
+        android:id="@+id/edit_verificado_host"
         style="@style/Edit_Text"
-        android:hint="País"
+        android:hint="Verificado"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
         app:layout_constraintTop_toBottomOf="@+id/edit_email" />
 
     <EditText
-        android:id="@+id/edit_estado_host"
+        android:id="@+id/edit_descricao_host"
         style="@style/Edit_Text"
-        android:hint="Estado"
+        android:hint="Descrição"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pais_host" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_verificado_host" />
 
     <EditText
         android:id="@+id/edit_senha_host"
@@ -77,7 +77,7 @@
         android:drawableRight="@drawable/ic_eye_off"
         app:layout_constraintStart_toStartOf="@+id/containerComponents"
         app:layout_constraintEnd_toEndOf="@+id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@+id/edit_estado_host" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_descricao_host" />
 
     <EditText
         android:id="@+id/edit_confirme_senha_host"

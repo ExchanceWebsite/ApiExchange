@@ -18,7 +18,7 @@
             android:name=".TelaUsuarioIntercambista"
             android:exported="false" />
         <activity
-            android:name=".TelaUsuarioHost"
+            android:name=".forms.FormLogin"
             android:exported="false" />
         <activity
             android:name=".TelaPrincipal"
@@ -32,14 +32,8 @@
             android:label="@string/title_activity_form_cadastro_intercambista"
             android:theme="@style/Theme.AppExchance" />
         <activity
-            android:name=".forms.FormLogin"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".TelaUsuarioHost"
+            android:exported="false"/>
         <activity
             android:name=".forms.FormCadastro"
             android:exported="false" />
@@ -51,7 +45,13 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

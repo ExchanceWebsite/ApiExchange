@@ -1,5 +1,7 @@
 package com.example.appexchance.forms
 
+import com.example.appexchance.forms.models.CadastroHostRequest
+import com.example.appexchance.forms.models.CadastroInterRequest
 import com.example.appexchance.forms.models.LoginRequest
 import com.example.appexchance.forms.models.RespostaDadosIntercambista
 import com.example.appexchance.forms.models.RespostaDoServidor
@@ -15,6 +17,13 @@ interface ApiService {
 
     @POST("/hosts/login")
     fun loginHost(@Body loginRequest: LoginRequest): Call<RespostaDoServidor>
+
+    @POST("/hosts")
+    fun cadastroHost(@Body cadastroHostRequest: CadastroHostRequest )
+
+    @POST("/estudantes")
+    fun cadastro(@Body cadastroInterRequest: CadastroInterRequest)
+
 
     @GET("/estudantes/estudante")
     fun buscar(@Query("emai") emai: String, @Query("nome") nome: String): Call<RespostaDadosIntercambista>

@@ -3,77 +3,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".tela_opcao_usuario">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-        </LinearLayout>
 
         <ImageView
-            android:layout_width="match_parent"
+            android:id="@+id/img_logo"
+            android:layout_width="120dp"
             android:layout_height="200dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/frase_opcoes"
             style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/escolha_seu_tipo_usuario"
-            android:textColor="@color/rosinha"/>
+            android:textColor="@color/rosinha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo"
+            tools:ignore="MissingConstraints" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="400px"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_margin="200px">
+
 
             <Button
-                style="@style/Botoes"
-                android:layout_width="650px"
-                android:layout_height="130px"
+                android:id="@+id/buttun_inter"
+                style="@style/Button_Login"
                 android:text="@string/intercambista"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
-                android:background="@drawable/btn1"/>
+                android:background="@drawable/btn1"
+                android:layout_marginTop="70dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frase_opcoes"
+                tools:ignore="MissingConstraints" />
 
             <Button
-                style="@style/Botoes"
-                android:layout_width="650px"
-                android:layout_height="130px"
+                android:id="@+id/button_host"
+                style="@style/Button_Login"
                 android:text="@string/host_family"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
-                android:background="@drawable/btn1"/>
+                android:background="@drawable/btn1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttun_inter"
+                tools:ignore="MissingConstraints" />
 
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                style="@style/BotaoRignt"
-                android:layout_width="500px"
-                android:layout_height="130px"
-                android:text="@string/pular"
-                android:textColor="@color/white"
-                android:fontFamily="sans-serif-medium"
-                android:background="@drawable/btn1"/>
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
+<!--            <Button-->
+<!--                style="@style/BotaoRignt"-->
+<!--                android:layout_width="160dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="@drawable/btn1"-->
+<!--                android:fontFamily="sans-serif-medium"-->
+<!--                android:text="@string/pular"-->
+<!--                android:textColor="@color/white"-->
+<!--                tools:ignore="MissingConstraints"-->
+<!--                tools:layout_editor_absoluteX="211dp"-->
+<!--                tools:layout_editor_absoluteY="645dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
