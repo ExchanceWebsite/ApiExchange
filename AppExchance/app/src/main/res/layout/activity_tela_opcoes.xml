@@ -39,6 +39,7 @@
             android:layout_margin="200px">
 
             <Button
+                android:id="@+id/button_login"
                 style="@style/Botoes"
                 android:layout_width="650px"
                 android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                 android:background="@drawable/btn1"/>
 
             <Button
+                android:id="@+id/button_cadastro"
                 style="@style/Botoes"
                 android:layout_width="650px"
                 android:layout_height="wrap_content"
@@ -63,6 +65,7 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/button_pular"
                 style="@style/BotaoRignt"
                 android:layout_width="500px"
                 android:layout_height="wrap_content"

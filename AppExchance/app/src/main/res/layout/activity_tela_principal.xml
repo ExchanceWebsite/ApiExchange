@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/blue"
     tools:context=".TelaPrincipal">
 
@@ -16,18 +16,17 @@
         android:layout_marginTop="16dp"
         android:text="@string/bem_vindo"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:layout_width="61dp"
         android:layout_height="49dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/img_usua_inter"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="335dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toEndOf="@id/msg_bem_vindo"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/barra_pesquisa"
@@ -201,15 +200,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frase_paises" />
 
+    <!--  Menu  -->
 
     <ImageView
         android:id="@+id/menu_casa"
         android:layout_width="78dp"
         android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="712dp"
         android:src="@drawable/menu_casa"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="714dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         style="@style/Abas_Menu"
@@ -218,7 +219,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_casa" />
 
@@ -226,10 +227,11 @@
         android:id="@+id/arquivo_hist"
         android:layout_width="78dp"
         android:layout_height="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="712dp"
         android:src="@drawable/menu_arquivo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="714dp" />
+        app:layout_constraintStart_toEndOf="@id/menu_casa"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         style="@style/Abas_Menu"
@@ -246,10 +248,11 @@
         android:id="@+id/icon_chat"
         android:layout_width="78dp"
         android:layout_height="44dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="712dp"
         android:src="@drawable/bate_papo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="221dp"
-        tools:layout_editor_absoluteY="714dp" />
+        app:layout_constraintStart_toEndOf="@id/arquivo_hist"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         style="@style/Abas_Menu"
@@ -265,10 +268,11 @@
         android:id="@+id/icon_perfil"
         android:layout_width="78dp"
         android:layout_height="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="712dp"
         android:src="@drawable/do_utilizador"
-        tools:layout_editor_absoluteX="321dp"
-        tools:layout_editor_absoluteY="714dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toEndOf="@id/icon_chat"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         style="@style/Abas_Menu"
@@ -277,8 +281,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/perfil"
         app:layout_constraintTop_toBottomOf="@+id/icon_perfil"
-        tools:layout_editor_absoluteX="335dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="326dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
