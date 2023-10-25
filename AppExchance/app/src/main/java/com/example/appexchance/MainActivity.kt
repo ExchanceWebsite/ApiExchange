@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tela_carregamento)
 
-        val delayMillis: Long = 1000 //
+        val delayMillis: Long = 1500 //
 
         Handler().postDelayed({
             val intent = Intent(this, tela_opcoes::class.java)

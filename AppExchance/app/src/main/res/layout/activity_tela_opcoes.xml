@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/seja_bem_vindo"
-            android:textColor="@color/rosinha"/>
+            android:textColor="@color/rosinha" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,11 +39,7 @@
             android:layout_margin="200px">
 
             <Button
-<<<<<<< HEAD
                 android:id="@+id/btn_login"
-=======
-                android:id="@+id/button_login"
->>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
                 style="@style/Botoes"
                 android:layout_width="650px"
                 android:layout_height="wrap_content"
@@ -53,11 +49,7 @@
                 android:background="@drawable/btn1"/>
 
             <Button
-<<<<<<< HEAD
                 android:id="@+id/btn_cadastro"
-=======
-                android:id="@+id/button_cadastro"
->>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
                 style="@style/Botoes"
                 android:layout_width="650px"
                 android:layout_height="wrap_content"
@@ -71,17 +63,6 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-<<<<<<< HEAD
-<!--            <Button-->
-<!--                style="@style/BotaoRignt"-->
-<!--                android:layout_width="500px"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/pular"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:fontFamily="sans-serif-medium"-->
-<!--                android:background="@drawable/btn1"/>-->
-=======
             <Button
                 android:id="@+id/button_pular"
                 style="@style/BotaoRignt"
@@ -91,10 +72,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-medium"
                 android:background="@drawable/btn1"/>
->>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
-
         </RelativeLayout>
-
 
     </LinearLayout>
 

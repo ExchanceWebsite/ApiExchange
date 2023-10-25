@@ -17,25 +17,12 @@ class tela_opcao_usuario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-<<<<<<< HEAD
-
-        binding.buttonHost.setOnClickListener {
-            val intent = Intent(this, FormCadastro::class.java)
-            startActivity(intent)
-        }
 
         binding.buttunInter.setOnClickListener {
             val intent = Intent(this, Form_Cadastro_Intercambista::class.java)
             startActivity(intent)
         }
 
-
-=======
-        binding.buttonInter.setOnClickListener{
-            val opcaoCadastroIntercambista = Intent(this, Form_Cadastro_Intercambista::class.java)
-
-            startActivity(opcaoCadastroIntercambista)
-        }
 
         binding.buttonHost.setOnClickListener {
             val opcaoCadastroHost = Intent(this, FormCadastro::class.java)
@@ -48,6 +35,6 @@ class tela_opcao_usuario : AppCompatActivity() {
 
             startActivity(opcaoPular)
         }
->>>>>>> e38534c6157714f50c8e0165b1a3971245df837e
+
     }
 }
