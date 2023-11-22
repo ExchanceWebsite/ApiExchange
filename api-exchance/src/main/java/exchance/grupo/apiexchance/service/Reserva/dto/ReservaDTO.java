@@ -24,6 +24,8 @@ public class ReservaDTO {
 
     private String formaPagamento;
 
+    private Boolean reservado;
+
 
     private Acomodacao acomodacao;
 
@@ -49,6 +51,10 @@ public class ReservaDTO {
 
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
+    }
+
+    public void setReservado(Boolean reservado) {
+        this.reservado = reservado;
     }
 
     public Acomodacao getAcomodacao() {

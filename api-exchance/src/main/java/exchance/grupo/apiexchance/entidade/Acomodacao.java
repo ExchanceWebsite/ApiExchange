@@ -19,6 +19,13 @@ public class Acomodacao {
     @JoinColumn(name = "fkHost")
     private HostFamily host;
 
+    @ManyToOne
+    @JoinColumn(name = "fkLocalidade")
+    private Localidade localidade;
+
+    @Column(name = "reservado")
+    private boolean reservado;
+
     @OneToOne(mappedBy = "acomodacao")
     private Reserva reserva;
 
@@ -75,6 +82,22 @@ public class Acomodacao {
 
     public void setInicioDisponibilidade(LocalDate inicioDisponibilidade) {
         this.inicioDisponibilidade = inicioDisponibilidade;
+    }
+
+    public Localidade getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(Localidade localidade) {
+        this.localidade = localidade;
+    }
+
+    public boolean getReservado() {
+        return reservado;
+    }
+
+    public void setReservado(boolean reservado) {
+        this.reservado = reservado;
     }
 
     public LocalDate getFimDisponibilidade() {

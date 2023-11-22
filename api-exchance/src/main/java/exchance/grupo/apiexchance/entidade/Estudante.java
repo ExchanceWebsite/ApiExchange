@@ -49,9 +49,6 @@ public class Estudante {
     @OneToMany(mappedBy = "estudante")
     private List<Imagem> imagens;
 
-    @OneToMany(mappedBy = "proprietario")
-    private List<Mensagem> mensagens;
-
 
     public Integer getIdEstudante() {
         return idEstudante;

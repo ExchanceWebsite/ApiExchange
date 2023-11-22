@@ -47,8 +47,6 @@ public class HostFamily {
     @OneToMany(mappedBy = "hostFamily")
     private List<Imagem> imagens;
 
-    @OneToMany(mappedBy = "destinatario")
-    private List<Mensagem> mensagens;
 
     public List<Integrante> pegarIntegrantes() {
         return this.integrantes;

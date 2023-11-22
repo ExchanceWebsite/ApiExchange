@@ -16,13 +16,13 @@ public class AcomodacaoSpecification {
 
     public static Specification<Acomodacao> findByLocalidadeIdAndAvailability(Integer localidadeId, LocalDate dataEntrada, LocalDate dataSaida) {
         return (Root<Acomodacao> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
-            Join<Acomodacao, HostFamily> hostJoin = root.join("host");
-            Join<HostFamily, Localidade> localidadeJoin = hostJoin.join("localidade");
+            Join<Acomodacao, Localidade> localidadeJoin = root.join("localidade");
 
             Predicate predicate = criteriaBuilder.and(
                     criteriaBuilder.equal(localidadeJoin.get("idLocalidade"), localidadeId),
                     criteriaBuilder.lessThanOrEqualTo(root.get("inicioDisponibilidade"), dataEntrada),
-                    criteriaBuilder.greaterThanOrEqualTo(root.get("fimDisponibilidade"), dataSaida)
+                    criteriaBuilder.greaterThanOrEqualTo(root.get("fimDisponibilidade"), dataSaida),
+                    criteriaBuilder.equal(root.get("reservado"), false)
             );
 
             return query.where(predicate).getRestriction();

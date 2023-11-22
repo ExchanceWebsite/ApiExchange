@@ -1,14 +1,15 @@
 package exchance.grupo.apiexchance.service.Reserva;
 
+import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.entidade.Reserva;
 import exchance.grupo.apiexchance.repositorio.ReservaRepository;
+import exchance.grupo.apiexchance.service.Acomodacao.AcomodacaoService;
 import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
 import exchance.grupo.apiexchance.service.Reserva.dto.ReservaDTO;
 import exchance.grupo.apiexchance.service.Reserva.dto.ReservaMapper;
 import exchance.grupo.apiexchance.service.hostFamily.HostFamilyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,16 +22,24 @@ public class ReservaService {
   private final ReservaRepository reservaRepository;
   private final EstudanteService estudanteService;
   private final HostFamilyService hostFamilyService;
+  private final AcomodacaoService acomodacaoService;
 
-  public ReservaService(ReservaRepository reservaRepository, EstudanteService estudanteService, HostFamilyService hostFamilyService) {
+  public ReservaService(ReservaRepository reservaRepository, EstudanteService estudanteService, HostFamilyService hostFamilyService, AcomodacaoService acomodacaoService) {
     this.reservaRepository = reservaRepository;
     this.estudanteService = estudanteService;
     this.hostFamilyService = hostFamilyService;
+    this.acomodacaoService = acomodacaoService;
   }
 
 
   public void criar(ReservaDTO reservaDTO) {
-    final Reserva novaReserva = ReservaMapper.of(reservaDTO);
+    Reserva novaReserva = ReservaMapper.of(reservaDTO);
+
+    Acomodacao acomodacao = acomodacaoService.buscarPorId(novaReserva.getAcomodacao().getIdAcomodacao());
+
+    acomodacao.setReservado(true);
+
+    acomodacaoService.atualizar(acomodacao.getIdAcomodacao(), acomodacao);
 
     this.reservaRepository.save(novaReserva);
   }

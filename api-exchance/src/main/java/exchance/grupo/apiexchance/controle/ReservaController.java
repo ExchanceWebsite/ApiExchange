@@ -1,12 +1,14 @@
 package exchance.grupo.apiexchance.controle;
 
 
+import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.entidade.Reserva;
 import exchance.grupo.apiexchance.lista.PilhaObj;
 import exchance.grupo.apiexchance.repositorio.AcomodacaoRepository;
 import exchance.grupo.apiexchance.repositorio.EstudanteRepository;
 import exchance.grupo.apiexchance.repositorio.HostFamilyRepository;
 import exchance.grupo.apiexchance.repositorio.ReservaRepository;
+import exchance.grupo.apiexchance.service.Acomodacao.AcomodacaoService;
 import exchance.grupo.apiexchance.service.Reserva.ReservaService;
 import exchance.grupo.apiexchance.service.Reserva.dto.ReservaDTO;
 import jakarta.validation.Valid;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Stack;
 
 @RestController
 @RequestMapping("/reservas")
@@ -38,6 +39,10 @@ public class ReservaController {
 
     @Autowired
     private AcomodacaoRepository acomodacaoRepository;
+
+    @Autowired
+    private AcomodacaoService acomodacaoService;
+
 
     @GetMapping
     public ResponseEntity<List<Reserva>> listar() {
@@ -107,6 +112,13 @@ public class ReservaController {
         if (optionalReserva.isPresent()){
             Reserva reserva = optionalReserva.get();
             pilhaObj.push(reserva);
+
+            Acomodacao acomodacao = acomodacaoService.buscarPorId(reserva.getAcomodacao().getIdAcomodacao());
+
+            acomodacao.setReservado(false);
+
+            acomodacaoService.atualizar(acomodacao.getIdAcomodacao(), acomodacao);
+
                 this.reservaRepository.deleteById(id);
                 return ResponseEntity.status(200).body("Reserva Cancelada!");
             }else{
@@ -119,6 +131,11 @@ public class ReservaController {
     public ResponseEntity<String> restaurarReservaCancelada(@PathVariable int id){
         if (!pilhaObj.isEmpty()){
             Reserva reserva = (Reserva) pilhaObj.pop();
+            Acomodacao acomodacao = acomodacaoService.buscarPorId(reserva.getAcomodacao().getIdAcomodacao());
+
+            acomodacao.setReservado(true);
+
+            acomodacaoService.atualizar(acomodacao.getIdAcomodacao(), acomodacao);
             this.reservaRepository.save(reserva);
             return ResponseEntity
                     .status(200).body("Reserva restaurada com Sucesso!");

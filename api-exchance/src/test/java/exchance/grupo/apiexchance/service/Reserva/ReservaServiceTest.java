@@ -4,9 +4,8 @@ import exchance.grupo.apiexchance.entidade.Estudante;
 import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.entidade.Reserva;
 import exchance.grupo.apiexchance.repositorio.ReservaRepository;
+import exchance.grupo.apiexchance.service.Acomodacao.AcomodacaoService;
 import exchance.grupo.apiexchance.service.Estudante.EstudanteService;
-import exchance.grupo.apiexchance.service.Reserva.dto.ReservaDTO;
-import exchance.grupo.apiexchance.service.Reserva.dto.ReservaMapper;
 import exchance.grupo.apiexchance.service.hostFamily.HostFamilyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,10 +32,14 @@ class ReservaServiceTest {
     @Mock
     private HostFamilyService hostFamilyService;
 
+    @Mock
+    private AcomodacaoService acomodacaoService;
+
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        reservaService = new ReservaService(reservaRepository, estudanteService, hostFamilyService);
+        reservaService = new ReservaService(reservaRepository, estudanteService, hostFamilyService, acomodacaoService);
     }
 
     @Test
