@@ -5,9 +5,7 @@ pipeline {
         stage('Etapa 1 - Atualizando ') {
             steps {
                 script {
-                    sshagent(credentials: ['privateKey-AllMachines']) {
                         sh "pwd'"
-                    }
                 }
             }
         }
@@ -15,9 +13,7 @@ pipeline {
         stage('Buildando imagen da API') {
             steps {
                 script {
-                    sshagent(credentials: ['privateKey-AllMachines']) {
-                        sh ""
-                    }
+                        sh "Build"
                 }
             }
         }
