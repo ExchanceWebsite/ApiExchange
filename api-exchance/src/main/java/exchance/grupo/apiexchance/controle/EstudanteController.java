@@ -111,7 +111,7 @@ public class EstudanteController {
     public ResponseEntity<Estudante> buscar(@RequestParam String emai, @RequestParam String nome){
 
         Estudante estudante = this.estudanteService.buscar(emai, nome);
-
+        //comparação
 
         if(estudante == null){
             return  ResponseEntity.status(400).build();
