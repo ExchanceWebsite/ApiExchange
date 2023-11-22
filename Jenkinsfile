@@ -1,29 +1,33 @@
 pipeline {
-    agent any // Define onde o pipeline será executado (em qualquer agente disponível)
+    agent any
 
     stages {
-        stage('Etapa 1') {
+        stage('Etapa 1 - Atualizando ') {
             steps {
-                // Adicione os comandos ou scripts que deseja executar nesta etapa
-                echo 'Executando a Etapa 1'
+                script {
+                    sshagent(credentials: ['privateKey-AllMachines']) {
+                        sh "ssh ubuntu@3.221.247.133 'cd VmConfig/ && git pull'"
+                    }
+                }
             }
         }
 
-        stage('Etapa 2') {
+        stage('Buildando imagen da API') {
             steps {
-                // Adicione os comandos ou scripts que deseja executar nesta etapa
-                echo 'Executando a Etapa 2'
+                script {
+                    sshagent(credentials: ['privateKey-AllMachines']) {
+                        sh "ssh ubuntu@3.221.247.133 'cd Api/'"
+                    }
+                }
             }
         }
     }
 
     post {
         success {
-            // Este bloco será executado se o pipeline for bem-sucedido
             echo 'Pipeline bem-sucedido!'
         }
         failure {
-            // Este bloco será executado se o pipeline falhar
             echo 'Pipeline falhou!'
         }
     }
