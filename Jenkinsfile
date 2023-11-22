@@ -5,8 +5,8 @@ pipeline {
         stage('Etapa 1 - Atualizando ') {
             steps {
                 script {
-                       withCredentials([sshUserPrivateKey(credentialsId: 'privateKey-AllMachines', keyFileVariable: 'SSH_KEY')]) {
-                        sh "ssh -i \$SSH_KEY ubuntu@ec2-3-221-247-133.compute-1.amazonaws.com 'cd VmConfig/ && git pull'"
+                       sshagent(credentials: ['privateKey-AllMachines']) {
+                        sh "ssh -i /home/ubuntu/key.pem ubuntu@ec2-3-221-247-133.compute-1.amazonaws.com 'cd VmConfig/ && git pull'"
                     }
                 }
             }
