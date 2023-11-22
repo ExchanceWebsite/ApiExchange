@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['privateKey-AllMachines']) {
-                        sh "ssh ubuntu@3.221.247.133 'cd VmConfig/ && git pull'"
+                        sh "pwd'"
                     }
                 }
             }
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['privateKey-AllMachines']) {
-                        sh "ssh ubuntu@3.221.247.133 'cd Api/'"
+                        sh ""
                     }
                 }
             }
