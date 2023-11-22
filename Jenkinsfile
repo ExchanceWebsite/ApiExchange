@@ -19,6 +19,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Subindo container') {
+            steps {
+                script {
+                       echo 'Sub'
+                }
+            }
+        }
     }
 
     post {
