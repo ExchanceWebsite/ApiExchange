@@ -19,9 +19,10 @@ pipeline {
         stage('Buildando imagem da API') {
             steps {
                 script {
-                    echo 'Build'
+                    echo 'Building...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker stop api-exchance'"
                     sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker rm api-exchance && sudo docker rmi exchance-api'"
-                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker images'"
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker images && sudo docker ps'"
                 }
             }
         }
