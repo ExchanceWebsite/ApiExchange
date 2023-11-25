@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SSH_KEY = credentials('id-da-sua-credencial-no-jenkins')
+        SSH_KEY = credentials('privateKey-AllMachines')
     }
 
     stages {
