@@ -19,9 +19,12 @@ pipeline {
         stage('Buildando imagem da API') {
             steps {
                 script {
-                    echo 'Building...'
+                    echo 'Parando container...'
                     sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker stop api-exchance'"
+                    echo 'Deletando container antigo e imagem...'
                     sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker rm api-exchance && sudo docker rmi exchance-api'"
+                    echo 'Buildando nova imagem...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker build -t exchance-api /home/ubuntu/VmConfig/Api/'"
                     sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker images && sudo docker ps'"
                 }
             }
@@ -30,7 +33,10 @@ pipeline {
         stage('Subindo container') {
             steps {
                 script {
-                    echo 'Sub'
+                    echo 'Contruindo o container...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker run --name api-exchance -p 443:443 -d  exchance-api'"
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker update --restart unless-stopped api-exchance'"
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker ps'"
                 }
             }
         }
