@@ -5,9 +5,7 @@ pipeline {
         stage('Acessar Máquina Externa e Atualizar o Repositório') {
             steps {
                 script {
-                    sshagent(credentials: ['privateKey-AllMachines']) {
                          sh "ssh -i /home/ubuntu/key-2210.pem ubuntu@ec2-3-221-247-133.compute-1.amazonaws.com 'cd /home/ubuntu/VmConfig/ && git pull'"
-                    }
                 }
             }
         }
