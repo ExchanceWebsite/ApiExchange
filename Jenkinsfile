@@ -11,9 +11,7 @@ pipeline {
         stage('Acessar Máquina Externa e Atualizar o Repositório') {
             steps {
                 script {
-                    sh """
-                        sudo ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} 'cd ${REMOTE_DIR} && git pull'
-                    """
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'cd ${REMOTE_DIR} && git pull'"
                 }
             }
         }
