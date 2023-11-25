@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        SSH_KEY = credentials('id-da-sua-credencial-no-jenkins')
+    }
+
     stages {
         stage('Acessar Máquina Externa e Atualizar o Repositório') {
             steps {
                 script {
-                         sh "ssh  -i /home/ubuntu/key-2210.pem -v ubuntu@ec2-3-221-247-133.compute-1.amazonaws.com 'cd /home/ubuntu/VmConfig/ && git pull'"
+                         sh "ssh  -i ${SSH_KEY} -v ubuntu@ec2-3-221-247-133.compute-1.amazonaws.com 'cd /home/ubuntu/VmConfig/ && git pull'"
                 }
             }
         }
