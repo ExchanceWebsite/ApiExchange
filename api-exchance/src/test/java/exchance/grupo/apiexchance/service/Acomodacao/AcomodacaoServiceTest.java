@@ -2,8 +2,7 @@ package exchance.grupo.apiexchance.service.Acomodacao;
 
 import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.repositorio.AcomodacaoRepository;
-import exchance.grupo.apiexchance.service.Acomodacao.dto.AcomodacaoDTO;
-import exchance.grupo.apiexchance.service.Acomodacao.dto.AcomodacaoMapper;
+import exchance.grupo.apiexchance.service.hostFamily.HostFamilyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -24,10 +23,13 @@ class AcomodacaoServiceTest {
 
     private AcomodacaoService acomodacaoService;
 
+    @Mock
+    private HostFamilyService hostFamilyService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        acomodacaoService = new AcomodacaoService(acomodacaoRepository);
+        acomodacaoService = new AcomodacaoService(acomodacaoRepository, hostFamilyService);
     }
 
     @Test

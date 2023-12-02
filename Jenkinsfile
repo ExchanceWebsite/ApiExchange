@@ -1,29 +1,52 @@
 pipeline {
-    agent any // Define onde o pipeline será executado (em qualquer agente disponível)
+    agent any
+
+    environment {
+        REMOTE_USER = 'ubuntu'
+        REMOTE_HOST = 'ec2-3-221-247-133.compute-1.amazonaws.com'
+        REMOTE_DIR = '/home/ubuntu/VmConfig/'
+    }
 
     stages {
-        stage('Etapa 1') {
+        stage('Acessar Máquina Externa e Atualizar o Repositório') {
             steps {
-                // Adicione os comandos ou scripts que deseja executar nesta etapa
-                echo 'Executando a Etapa 1'
+                script {
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'cd ${REMOTE_DIR} && git pull'"
+                }
             }
         }
 
-        stage('Etapa 2') {
+        stage('Buildando imagem da API') {
             steps {
-                // Adicione os comandos ou scripts que deseja executar nesta etapa
-                echo 'Executando a Etapa 2'
+                script {
+                    echo 'Parando container...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker stop api-exchance'"
+                    echo 'Deletando container antigo e imagem...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker rm api-exchance && sudo docker rmi exchance-api'"
+                    echo 'Buildando nova imagem...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker build -t exchance-api /home/ubuntu/VmConfig/Api/'"
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker images && sudo docker ps'"
+                }
+            }
+        }
+
+        stage('Subindo container') {
+            steps {
+                script {
+                    echo 'Contruindo o container...'
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker run --name api-exchance -p 443:443 -d  exchance-api'"
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker update --restart unless-stopped api-exchance'"
+                    sh"sudo ssh -i /home/ubuntu/key-2210.pem ${REMOTE_USER}@${REMOTE_HOST} 'sudo docker ps'"
+                }
             }
         }
     }
 
     post {
         success {
-            // Este bloco será executado se o pipeline for bem-sucedido
             echo 'Pipeline bem-sucedido!'
         }
         failure {
-            // Este bloco será executado se o pipeline falhar
             echo 'Pipeline falhou!'
         }
     }

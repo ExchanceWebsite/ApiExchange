@@ -15,6 +15,7 @@ public class HostFamilyMapper {
    hostFamily.setSenha(hostFamilyDTO.getSenha());
    hostFamily.setLocalidade(hostFamilyDTO.getLocalidade());
    hostFamily.setVerificado(hostFamilyDTO.getVerificado());
+   hostFamily.setTelefone(hostFamilyDTO.getTelefone());
 
     return hostFamily;
   }

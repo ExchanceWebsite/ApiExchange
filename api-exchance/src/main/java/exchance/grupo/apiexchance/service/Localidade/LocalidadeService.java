@@ -30,6 +30,10 @@ public class LocalidadeService {
     this.localidadeRepository.save(novaLocalidade);
   }
 
+  public Integer findTopLocalidadeId() {
+    return localidadeRepository.findTopLocalidadeId();
+  }
+
 
   public Localidade buscarLocalidadePorEndereco(String endereco){
 

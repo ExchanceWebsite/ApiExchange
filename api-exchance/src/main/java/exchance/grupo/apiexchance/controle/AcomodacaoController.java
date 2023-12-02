@@ -2,6 +2,7 @@ package exchance.grupo.apiexchance.controle;
 
 import exchance.grupo.apiexchance.entidade.Acomodacao;
 import exchance.grupo.apiexchance.entidade.Localidade;
+import exchance.grupo.apiexchance.entidade.Reserva;
 import exchance.grupo.apiexchance.repositorio.AcomodacaoRepository;
 import exchance.grupo.apiexchance.repositorio.LocalidadeRepository;
 import exchance.grupo.apiexchance.service.Acomodacao.AcomodacaoService;
@@ -47,6 +48,19 @@ public class AcomodacaoController {
         this.acomodacaoService.criar(acomodacaoDTO);
         return ResponseEntity.status(201).build();
     }
+
+    @GetMapping("/acomodacoes-host")
+    public ResponseEntity<List<Acomodacao>> listarAcomodacoesHost(@RequestParam Integer idHost){
+        List<Acomodacao> acomodacoesHost = this.acomodacaoService.listarAcomodacoesHost(idHost);
+
+        if(acomodacoesHost.size() >= 1){
+            return ResponseEntity.ok(acomodacoesHost);
+
+        }
+
+        return ResponseEntity.status(204).build();
+    }
+
 
     @GetMapping("/acomodacoes-cidade-disponivel")
     public ResponseEntity<List<Acomodacao>> listarAcomodacaoLocalidade(@RequestParam String cidade, @RequestParam LocalDate entrada, @RequestParam LocalDate saida){

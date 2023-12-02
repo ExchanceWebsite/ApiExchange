@@ -1,10 +1,11 @@
 package exchance.grupo.apiexchance.service.Acomodacao;
 
 import exchance.grupo.apiexchance.entidade.Acomodacao;
-import exchance.grupo.apiexchance.entidade.Reserva;
+import exchance.grupo.apiexchance.entidade.HostFamily;
 import exchance.grupo.apiexchance.repositorio.AcomodacaoRepository;
 import exchance.grupo.apiexchance.service.Acomodacao.dto.AcomodacaoDTO;
 import exchance.grupo.apiexchance.service.Acomodacao.dto.AcomodacaoMapper;
+import exchance.grupo.apiexchance.service.hostFamily.HostFamilyService;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,11 @@ import java.util.Optional;
 public class AcomodacaoService {
 
   private final AcomodacaoRepository acomodacaoRepository;
+  private final HostFamilyService hostFamilyService;
 
-  public AcomodacaoService(AcomodacaoRepository acomodacaoRepository) {
+  public AcomodacaoService(AcomodacaoRepository acomodacaoRepository, HostFamilyService hostFamilyService) {
     this.acomodacaoRepository = acomodacaoRepository;
+    this.hostFamilyService = hostFamilyService;
   }
 
   public void criar(AcomodacaoDTO acomodacaoDTO) {
@@ -70,4 +73,18 @@ public class AcomodacaoService {
   }
 
 
+  public List<Acomodacao> listarAcomodacoesHost(Integer idHost) {
+    Optional<HostFamily> hostFamily = this.hostFamilyService.buscarPorID(idHost);
+
+    List<Acomodacao> acomodacaos = this.acomodacaoRepository.findAllByHost(hostFamily.get());
+
+    if(acomodacaos.size() >= 1){
+      return acomodacaos;
+    }else if(hostFamily == null){
+      return null;
+    }
+
+
+    return acomodacaos;
+  }
 }

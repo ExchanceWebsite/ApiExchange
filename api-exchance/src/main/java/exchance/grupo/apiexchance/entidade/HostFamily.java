@@ -35,6 +35,9 @@ public class HostFamily {
     @JoinColumn(name = "fkLocalidade")
     private Localidade localidade;
 
+    @Column(name = "telefone")
+    private String telefone;
+
     @OneToMany(mappedBy = "host")
     private List<Acomodacao> acomodacoes;
 
@@ -107,5 +110,13 @@ public class HostFamily {
 
     public void setLocalidade(Localidade localidade) {
         this.localidade = localidade;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

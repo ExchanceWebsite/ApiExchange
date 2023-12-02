@@ -31,6 +31,9 @@ public class HostFamilyDTO {
 
     private Localidade localidade;
 
+    @Size(max = 14)
+    private String telefone;
+
 
     public String getNome() {
         return nome;
@@ -50,6 +53,14 @@ public class HostFamilyDTO {
 
     public Localidade getLocalidade() {
         return localidade;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public void setNome(String nome) {

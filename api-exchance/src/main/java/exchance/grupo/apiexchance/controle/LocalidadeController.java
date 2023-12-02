@@ -40,4 +40,9 @@ public class LocalidadeController {
         this.localidadeService.criar(localidadeDTO);
         return ResponseEntity.status(200).build();
     }
+
+    @GetMapping("/top-id")
+    public ResponseEntity<Integer> getTopLocalidadeId() {
+        return ResponseEntity.status(200).body(localidadeService.findTopLocalidadeId());
+    }
 }

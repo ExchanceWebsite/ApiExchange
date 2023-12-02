@@ -1,6 +1,7 @@
 package exchance.grupo.apiexchance.repositorio;
 
 import exchance.grupo.apiexchance.entidade.Acomodacao;
+import exchance.grupo.apiexchance.entidade.HostFamily;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,5 @@ public interface AcomodacaoRepository extends JpaRepository<Acomodacao, Integer>
     @Query("delete from Acomodacao a where a.idAcomodacao = :id")
     int deleteById(int id);
 
+    List<Acomodacao> findAllByHost(HostFamily hostFamily);
 }

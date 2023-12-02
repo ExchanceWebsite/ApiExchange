@@ -73,6 +73,7 @@ public class HostFamilyService {
         hostEncontrado.get().setSenha(passwordEncoder.encode(hostFamilyDTO.getSenha()));
         hostEncontrado.get().setDescricao(hostFamilyDTO.getDescricao());
         hostEncontrado.get().setLocalidade(hostFamilyDTO.getLocalidade());
+        hostEncontrado.get().setTelefone(hostFamilyDTO.getTelefone());
 
 
 
