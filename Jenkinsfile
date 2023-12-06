@@ -50,4 +50,9 @@ pipeline {
             echo 'Pipeline falhou!'
         }
     }
+
 }
+
+}
+
+

@@ -20,8 +20,8 @@ public class AcomodacaoSpecification {
 
             Predicate predicate = criteriaBuilder.and(
                     criteriaBuilder.equal(localidadeJoin.get("idLocalidade"), localidadeId),
-                    criteriaBuilder.lessThanOrEqualTo(root.get("inicioDisponibilidade"), dataEntrada),
-                    criteriaBuilder.greaterThanOrEqualTo(root.get("fimDisponibilidade"), dataSaida),
+                    criteriaBuilder.greaterThanOrEqualTo(root.get("inicioDisponibilidade"), dataEntrada),
+                    criteriaBuilder.lessThanOrEqualTo(root.get("fimDisponibilidade"), dataSaida),
                     criteriaBuilder.equal(root.get("reservado"), false)
             );
 
