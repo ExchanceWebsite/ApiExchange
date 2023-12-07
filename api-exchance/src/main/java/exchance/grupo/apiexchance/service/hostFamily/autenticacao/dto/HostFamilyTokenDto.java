@@ -7,8 +7,8 @@ public class HostFamilyTokenDto {
   private String email;
   private String token;
 
-  public Integer getIdHostFamily(Integer idHostFamily) {
-    return this.idHostFamily;
+  public Integer getIdHostFamily() {
+    return idHostFamily;
   }
 
   public void setIdHostFamily(Integer idHostFamily) {

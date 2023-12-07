@@ -23,7 +23,7 @@ public class HostFamilyMapper {
  public static HostFamilyTokenDto of(HostFamily hostFamily, String token) {
     HostFamilyTokenDto hostFamilyTokenDto = new HostFamilyTokenDto();
 
-     hostFamilyTokenDto.getIdHostFamily(hostFamily.getIdHostFamily());
+     hostFamilyTokenDto.setIdHostFamily(hostFamily.getIdHostFamily());
      hostFamilyTokenDto.setEmail(hostFamily.getEmail());
      hostFamilyTokenDto.setNome(hostFamily.getNome());
      hostFamilyTokenDto.setToken(token);
