@@ -23,11 +23,11 @@ public class LocalidadeService {
   }
 
 
-  public void criar(LocalidadeDTO localidadeDTO) {
+  public Localidade criar(LocalidadeDTO localidadeDTO) {
     final Localidade novaLocalidade = LocalidadeMapper.of(localidadeDTO);
 
 
-    this.localidadeRepository.save(novaLocalidade);
+    return this.localidadeRepository.save(novaLocalidade);
   }
 
   public Integer findTopLocalidadeId() {

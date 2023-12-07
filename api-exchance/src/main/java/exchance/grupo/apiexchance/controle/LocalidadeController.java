@@ -36,9 +36,9 @@ public class LocalidadeController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> cadastrar(@RequestBody @Valid LocalidadeDTO localidadeDTO) {
-        this.localidadeService.criar(localidadeDTO);
-        return ResponseEntity.status(200).build();
+    public ResponseEntity<Localidade> cadastrar(@RequestBody @Valid LocalidadeDTO localidadeDTO) {
+       Localidade localidade = this.localidadeService.criar(localidadeDTO);
+        return ResponseEntity.status(200).body(localidade);
     }
 
     @GetMapping("/top-id")
