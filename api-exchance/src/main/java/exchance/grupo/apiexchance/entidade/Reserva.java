@@ -32,8 +32,6 @@ public class Reserva {
     @Column(name = "formaPagamento")
     private String formaPagamento;
 
-
-    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "fkAcomodacao")
     private Acomodacao acomodacao;

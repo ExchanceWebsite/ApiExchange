@@ -1,5 +1,6 @@
 package exchance.grupo.apiexchance.entidade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
@@ -26,6 +27,7 @@ public class Acomodacao {
     @Column(name = "reservado")
     private boolean reservado;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "acomodacao")
     private Reserva reserva;
 
